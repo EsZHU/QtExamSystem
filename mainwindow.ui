@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1258</width>
+    <height>956</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1440</width>
+    <height>960</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>抽考系统</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="widgetBig" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>1411</width>
+      <height>751</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="SingleRow" name="firstWidget" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="secondWidget" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="thirdWidget" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="forthWidget" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="fifthWidget" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="sixthWidget" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="seventhWidget" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="eightWidget" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="ninthWidget" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="tenthWidget" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="widget_11" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="widget_12" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="widget_13" native="true"/>
+     </item>
+     <item>
+      <widget class="SingleRow" name="widget_14" native="true"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>509</x>
+      <y>810</y>
+      <width>121</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
+QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
+    </property>
+    <property name="text">
+     <string>确认抽考</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>810</y>
+      <width>121</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
+QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
+    </property>
+    <property name="text">
+     <string>历史记录</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SingleRow</class>
+   <extends>QWidget</extends>
+   <header location="global">singlerow.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

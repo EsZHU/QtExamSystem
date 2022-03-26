@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SingleRow</class>
+ <widget class="QWidget" name="SingleRow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>50</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1200</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1200</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLineEdit" name="chosenPerEdit">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>10</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>24</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignHCenter|Qt::AlignTop</set>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="sigWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>-10</y>
+     <width>361</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <widget class="QSpinBox" name="spinBox">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+	background:transparent;
+
+	/*
+	border: 0px solid gray;
+	border-radius: 6px;*/
+	
+}
+
+/*spinbox 抬起样式*/
+QSpinBox::up-button {
+	subcontrol-position:right;
+	height: 29px;
+	width: 29px;
+	/*overflow-x: hidden;
+	border-radius: 0px 6px 6px 0px;
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(200, 200, 200, 255), stop:1 rgba(255, 255, 255, 255))*/
+	/*image: url(:/Qss/Qss/spinBox右箭头.png);*/
+	image: url(:/Qss/Qss/spinBox右箭头未选中3.0.png);
+}
+QSpinBox::down-button {
+	subcontrol-position:left;
+	height: 29px;
+	width: 29px;
+	/*border-radius: 6px 0px 0px 6px;
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(200, 200, 200, 255), stop:1 rgba(255, 255, 255, 255))*/
+	/*image: url(:/Qss/Qss/spinBox左箭头.png);*/
+	image: url(:/Qss/Qss/spinBox左箭头未选中3.0.png);
+}
+
+QSpinBox::up-button:hover{
+	subcontrol-position:right;
+	height: 29px;
+	width: 29px;
+	image: url(:/Qss/Qss/spinBox右按钮中间3.0.png);
+}
+
+QSpinBox::down-button:hover{
+	subcontrol-position:left;
+	height: 29px;
+	width: 29px;
+	image: url(:/Qss/Qss/spinBox左按钮中间3.0.png);
+}
+
+/*按钮按下样式*/
+QSpinBox::up-button:pressed{
+	subcontrol-position:right;
+	height: 29px;
+	width: 29px;
+	image: url(:/Qss/Qss/spinBox右箭头已选中4.0.png);
+}
+ 
+QSpinBox::down-button:pressed{
+	subcontrol-position:left;
+	height: 29px;
+	width: 29px;
+	image: url(:/Qss/Qss/spinBox左箭头已选中4.0.png);
+}
+</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="value">
+     <number>3</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="chooseButton">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>20</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
+QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
+    </property>
+    <property name="text">
+     <string>点选</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="perNumLabel">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>20</y>
+      <width>49</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>人数</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="deptLabel">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>10</y>
+     <width>321</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>24</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>1060</x>
+     <y>10</y>
+     <width>111</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>24</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
+QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
+   </property>
+   <property name="text">
+    <string>取消选择</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/Qss">
+        <file>Qss/spinBox右箭头.png</file>
+        <file>Qss/spinBox左箭头.png</file>
+        <file>Qss/MyStyle.qss</file>
+        <file>Qss/spinBox右箭头未选中3.0.png</file>
+        <file>Qss/spinBox右箭头已选中3.0.png</file>
+        <file>Qss/spinBox左箭头未选中3.0.png</file>
+        <file>Qss/spinBox左箭头已选中3.0.png</file>
+        <file>Qss/spinBox右箭头已选中4.0.png</file>
+        <file>Qss/spinBox左箭头已选中4.0.png</file>
+        <file>Qss/spinBox右按钮中间3.0.png</file>
+        <file>Qss/spinBox左按钮中间3.0.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>Qss/MyStyle.qss</file>
+    </qresource>
+</RCC>

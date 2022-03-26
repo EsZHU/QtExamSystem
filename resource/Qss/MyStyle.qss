@@ -1,0 +1,23 @@
+/*spinbox 抬起样式*/
+QSpinBox::up-button {subcontrol-origin:border;
+        subcontrol-position:right;
+        width: 60px;
+        height: 60px;
+}
+QSpinBox::down-button {subcontrol-origin:border;
+        subcontrol-position:left;
+        width: 60px;
+        height: 60px;
+}
+/*按钮按下样式*/
+QSpinBox::up-button:pressed{subcontrol-origin:border;
+        subcontrol-position:right;
+        width: 60px;
+        height: 60px;
+}
+
+QSpinBox::down-button:pressed{
+        subcontrol-position:left;
+        width: 60px;
+        height: 60px;}
+}
