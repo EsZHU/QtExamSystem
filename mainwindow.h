@@ -14,11 +14,15 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     SqliteDatabase* database = nullptr;
+    QVector<SingleRow*> singleRows;
 
+    QVector<department> m_depts;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void getData();
+    void initGUI();
     void showDept(QVector<department> dept);
     void getRanPers();
 

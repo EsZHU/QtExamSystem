@@ -35,50 +35,7 @@
       <height>751</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="SingleRow" name="firstWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="secondWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="thirdWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="forthWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="fifthWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="sixthWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="seventhWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="eightWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="ninthWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="tenthWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="widget_11" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="widget_12" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="widget_13" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="widget_14" native="true"/>
-     </item>
-    </layout>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
@@ -129,14 +86,6 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>SingleRow</class>
-   <extends>QWidget</extends>
-   <header location="global">singlerow.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
