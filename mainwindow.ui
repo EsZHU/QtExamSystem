@@ -37,7 +37,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout"/>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="checkButton">
     <property name="geometry">
      <rect>
       <x>509</x>
@@ -60,7 +60,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
      <string>确认抽考</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="hisShowButton">
     <property name="geometry">
      <rect>
       <x>790</x>

@@ -17,15 +17,18 @@ class MainWindow : public QMainWindow
     QVector<SingleRow*> singleRows;
 
     QVector<department> m_depts;
+    QMap<int,QVector<person>> m_pers;
+
+    QMap<int, QPair<int, QString>> m_readPersons;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
     void getData();
     void initGUI();
-    void showDept(QVector<department> dept);
-    void getRanPers();
+    void showDept();
 
+    void refreshSingleRow(int line);
 
 
 private:
