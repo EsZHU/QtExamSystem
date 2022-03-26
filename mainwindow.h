@@ -14,7 +14,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     SqliteDatabase* database = nullptr;
-    QVector<SingleRow> m_singleRows;
+    QVector<SingleRow*> m_singleRows;
     QMap<int,QVector<person>> m_pers;
     QVector<department> m_depts;
 
@@ -24,7 +24,7 @@ public:
 
     void showDept(QVector<department> dept);
     void getRanPers();
-    void showGUI();
+    void showGUI(int line);
     void getData();
 
 

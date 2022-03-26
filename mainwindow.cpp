@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     showDept(database->getDeptData());
     getRanPers();
     getData();
-
+    showGUI(14);
 }
 
 MainWindow::~MainWindow()
@@ -161,9 +161,12 @@ void MainWindow::getRanPers()
     });
 }
 
-void MainWindow::showGUI()
+void MainWindow::showGUI(int line)
 {
-
+//    for(int i = 0; i < line; i++){
+//        m_singleRows.push_back(new SingleRow(ui->widgetBig));
+//        m_singleRows[i]->move(10, i * 50);
+//    }
 }
 
 void MainWindow::getData()
