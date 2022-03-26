@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     showDept(database->getDeptData());
     getRanPers();
-
+    getData();
 
 }
 
@@ -23,11 +23,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::showDept(QVector<department> dept)
 {
-    for(int i = 0; i < dept.size(); i++) {
-        qDebug() << dept[i].id << ":" \
-                 << dept[i].deptName;
+//    for(int i = 0; i < dept.size(); i++) {
+//        qDebug() << dept[i].id << ":" \
+//                 << dept[i].deptName;
 
-    }
+//    }
     ui->firstWidget->setDeptLabel(dept[0].deptName);
     ui->secondWidget->setDeptLabel(dept[1].deptName);
     ui->thirdWidget->setDeptLabel(dept[2].deptName);
@@ -46,6 +46,8 @@ void MainWindow::showDept(QVector<department> dept)
 
 void MainWindow::getRanPers()
 {
+//    auto w15 = new SingleRow(ui->widgetBig);
+
     // 选择按钮
     connect(ui->firstWidget->chooseButton(), &QPushButton::clicked, ui->firstWidget->lineEdit(), [=](){
         SqliteDatabase* random;
@@ -157,5 +159,19 @@ void MainWindow::getRanPers()
     connect(ui->eightWidget->cancelButton(), &QPushButton::clicked, ui->eightWidget->lineEdit(), [=](){
         ui->eightWidget->setLineEdit("");
     });
+}
+
+void MainWindow::showGUI()
+{
+
+}
+
+void MainWindow::getData()
+{
+    m_depts = database->getDeptData();
+    m_pers = database->getPerData();
+    for(auto dept :m_depts){
+        qDebug() << dept.id << ":" << dept.deptName;
+    }
 }
 
