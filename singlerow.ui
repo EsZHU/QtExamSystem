@@ -191,7 +191,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
   <widget class="QLabel" name="deptLabel">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>140</x>
      <y>10</y>
      <width>321</width>
      <height>31</height>

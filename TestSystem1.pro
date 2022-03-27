@@ -11,21 +11,27 @@ CONFIG += c++11
 
 SOURCES += \
     eachrow.cpp \
+    labelplus.cpp \
     main.cpp \
     mainwindow.cpp \
+    pickresultdiagram.cpp \
     randomaccess.cpp \
     singlerow.cpp \
     sqlitedatabase.cpp
 
 HEADERS += \
     eachrow.h \
+    labelplus.h \
     mainwindow.h \
+    pickresultdiagram.h \
     randomaccess.h \
     singlerow.h \
     sqlitedatabase.h
 
 FORMS += \
+    labelplus.ui \
     mainwindow.ui \
+    pickresultdiagram.ui \
     singlerow.ui
 
 # Default rules for deployment.
