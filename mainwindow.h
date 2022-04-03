@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <sqlitedatabase.h>
 #include <singlerow.h>
+#include <pickresultdiagram.h>
+#include "defs.h"
+#include <historyshow.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,19 +17,26 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     SqliteDatabase* database = nullptr;
-    QVector<SingleRow*> m_singleRows;
-    QMap<int,QVector<person>> m_pers;
-    QVector<department> m_depts;
+    PickResultDiagram* m_resultDiagram = nullptr;
+    QVector<SingleRow*> singleRows;
 
+    QVector<department> m_depts;
+    QMap<int,QVector<person>> m_pers;
+
+    QMap<int, QPair<int, QString>> m_readPersons;
+    QVector<hisRecord> m_his;
+    int pickNum = 0;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void showDept(QVector<department> dept);
-    void getRanPers();
-    void showGUI(int line);
     void getData();
+    void initGUI();
+    void showDept();
 
+    void refreshSingleRow(int line);
+
+    void showHisDialog();
 
 
 private:

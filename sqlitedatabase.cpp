@@ -145,21 +145,50 @@ QPair<int, QString> SqliteDatabase::getRanPer(int n, int deptId, QMap<int,QVecto
     return ranPairMess;
 }
 
-void SqliteDatabase::writePickHis(QMap<int, QString> ranData) // 确认抽考
+void SqliteDatabase::writePickHis(QString curTime, int deptId, QString names) // 确认抽考
 {
     // QMap<int, QString> ranData:int deptId; QString names 同一个处室的人
-    // current_date字符串结果为"2016.05.20 12:17:01.445 周五"
-    QDateTime current_date_time =QDateTime::currentDateTime();
-    QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss.zzz ddd");
-    qDebug() << current_date;
 
     QSqlQuery query;
+
+    qDebug() <<"test" << deptId << ":" << names;
 
     query.prepare("insert into pickHistory (curTime, ranNames, deptId) "
                   "values (:curTime, :ranNames, :deptId)"); // id自增，不管
 
-    query.bindValue(":curTime", current_date);
-    query.bindValue(":ranNames", "");
-    query.bindValue(":deptId", "");
+    query.bindValue(":curTime", curTime);
+    query.bindValue(":ranNames", names);
+    query.bindValue(":deptId", deptId);
 
+    if(!query.exec()){
+        qDebug() << "Error: Fail." << query.lastError();
+    }
+
+}
+
+QVector<hisRecord> SqliteDatabase::getHisData()
+{
+    QVector<hisRecord> hisVect;
+
+    QSqlQuery query; // 执行操作类对象
+
+    // 查询数据
+    query.prepare("select * from pickHistory");
+    query.exec(); // 执行
+
+    while (query.next()) {
+        hisRecord dept;
+        dept.curTime = query.value("curTime").toString();
+        dept.ranNames = query.value("ranNames").toString();
+        dept.deptId = query.value("deptId").toInt();
+        hisVect.push_back(dept); // 将查询到的单位数据存储在向量中
+    }
+
+    for(int i = 0; i < hisVect.size(); i++) {
+        qDebug() << hisVect[i].curTime << ":" \
+                 << hisVect[i].ranNames<< ":" \
+                 << hisVect[i].deptId   ;
+    }
+
+    return hisVect;
 }

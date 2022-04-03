@@ -30,57 +30,14 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
+      <y>80</y>
       <width>1411</width>
-      <height>751</height>
+      <height>701</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="SingleRow" name="firstWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="secondWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="thirdWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="forthWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="fifthWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="sixthWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="seventhWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="eightWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="ninthWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="tenthWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="widget_11" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="widget_12" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="widget_13" native="true"/>
-     </item>
-     <item>
-      <widget class="SingleRow" name="widget_14" native="true"/>
-     </item>
-    </layout>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="checkButton">
     <property name="geometry">
      <rect>
       <x>509</x>
@@ -103,7 +60,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
      <string>确认抽考</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="hisShowButton">
     <property name="geometry">
      <rect>
       <x>790</x>
@@ -126,17 +83,27 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
      <string>历史记录</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>30</y>
+      <width>711</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>处室                     人数                 操作                         结果</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>SingleRow</class>
-   <extends>QWidget</extends>
-   <header location="global">singlerow.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
