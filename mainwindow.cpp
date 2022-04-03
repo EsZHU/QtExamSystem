@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     getData();
     initGUI();
     showDept();
+    showHisDialog();
 }
 
 MainWindow::~MainWindow()
@@ -46,6 +47,7 @@ void MainWindow::initGUI()
 
     connect(ui->checkButton, &QPushButton::clicked, [=](){
         QVector<SelectRecord> pickResultVec;
+
         // current_date字符串结果为"2016.05.20 12:17:01.445 周五"
         QDateTime current_date_time =QDateTime::currentDateTime();
         QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss.zzz ddd");
@@ -63,11 +65,19 @@ void MainWindow::initGUI()
                 pickResultVec.push_back({tempDept, deptChoosenPersons.second});
             }
         }
-        auto resultDiagram = new PickResultDiagram();
-        resultDiagram->refresh(pickResultVec, current_date);
-        resultDiagram->show();
-        pickResultVec.clear();
+//        auto resultDiagram = new PickResultDiagram();
+//        resultDiagram->refresh(pickResultVec, current_date);
+
+        // 新加
+        auto pickResultDiagram = new PickResultDiagram();
+        pickResultDiagram->refresh(pickResultVec, current_date);
+        pickResultDiagram->show();
+
+//        resultDiagram->show();
+//        pickResultVec.clear();
     });
+
+
 }
 
 void MainWindow::showDept()
@@ -81,4 +91,14 @@ void MainWindow::refreshSingleRow(int line)
 {
     auto widget = singleRows[line];
     widget->setLineEdit(m_readPersons[line].second);
+}
+
+void MainWindow::showHisDialog()
+{
+    connect(ui->hisShowButton, &QPushButton::clicked, [=](){
+        auto hisDiagram = new HistoryShow();
+        m_his = database->getHisData();
+        hisDiagram->refresh(m_his, m_depts);
+        hisDiagram->show();
+    });
 }

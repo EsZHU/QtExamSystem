@@ -17,22 +17,26 @@ PickResultDiagram::~PickResultDiagram()
 
 void PickResultDiagram::refresh(QVector<SelectRecord> pickResult, QString curTime)
 {
-    int p = 0;
-
-    ui->labelValue->setText(curTime);
-
-    auto addToast = [=](QString key, QString val, int top){
-        auto widget = new LabelPlus(ui->widget);
-        widget->move(10, top);
-        widget->setLabelText(key, val);
-    };
-
+    qDebug() << "shdjsh";
+//    this->setWindowTitle("历史记录");
+    QTableWidget *tableWidget = new QTableWidget(this);
+    tableWidget->resize(this->width(), this->height());
+    tableWidget->setColumnCount(3); //设置列数为3
+    QStringList header;
+    header << "选择时间"<< "部门名称" << "选择人员";
+    tableWidget->setHorizontalHeaderLabels(header);
+    int row = 0;
+    int col;
     for (const auto& it : pickResult) {
-        addToast("部门名称", it.deptName,(p++)*50);
-        addToast("选择人员", it.choosenPersons,(p++)*50);
+        col = 0;
+        tableWidget->insertRow(row);
+        tableWidget->setItem(row, col++, new QTableWidgetItem(curTime));
+        tableWidget->setItem(row, col++, new QTableWidgetItem(it.deptName));
+        tableWidget->setItem(row, col++, new QTableWidgetItem(it.choosenPersons));
     }
-}
 
-//QMap<QString,QString>::const_iterator i;
-//    for(i=map.constBegin();i!=map.constEnd();++i)
-//        qDebug()<<" "<<i.key()<<" "<<i.value();
+    tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    tableWidget->resizeColumnsToContents();
+    tableWidget->resizeRowsToContents();
+}

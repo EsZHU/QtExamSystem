@@ -11,6 +11,7 @@ CONFIG += c++11
 
 SOURCES += \
     eachrow.cpp \
+    historyshow.cpp \
     labelplus.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 HEADERS += \
     defs.h \
     eachrow.h \
+    historyshow.h \
     labelplus.h \
     mainwindow.h \
     pickresultdiagram.h \
@@ -30,6 +32,7 @@ HEADERS += \
     sqlitedatabase.h
 
 FORMS += \
+    historyshow.ui \
     labelplus.ui \
     mainwindow.ui \
     pickresultdiagram.ui \

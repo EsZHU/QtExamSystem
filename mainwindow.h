@@ -6,6 +6,7 @@
 #include <singlerow.h>
 #include <pickresultdiagram.h>
 #include "defs.h"
+#include <historyshow.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,7 +24,7 @@ class MainWindow : public QMainWindow
     QMap<int,QVector<person>> m_pers;
 
     QMap<int, QPair<int, QString>> m_readPersons;
-
+    QVector<hisRecord> m_his;
     int pickNum = 0;
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -34,6 +35,8 @@ public:
     void showDept();
 
     void refreshSingleRow(int line);
+
+    void showHisDialog();
 
 
 private:

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <labelplus.h>
 #include "defs.h"
+#include <QTableWidget>
 
 namespace Ui {
 class PickResultDiagram;
