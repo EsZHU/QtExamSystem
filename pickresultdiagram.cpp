@@ -15,16 +15,21 @@ PickResultDiagram::~PickResultDiagram()
     delete ui;
 }
 
-void PickResultDiagram::refresh(QMap<QString, QString> pickResult)
+void PickResultDiagram::refresh(QVector<SelectRecord> pickResult, QString curTime)
 {
-
-    QMap<QString, QString>::const_iterator i;
     int p = 0;
-    for(i = pickResult.constBegin(); i != pickResult.constEnd(); i++){
+
+    ui->labelValue->setText(curTime);
+
+    auto addToast = [=](QString key, QString val, int top){
         auto widget = new LabelPlus(ui->widget);
-        widget->move(10, p * 50);
-        p++;
-        widget->setLabelText(i.key(), i.value());
+        widget->move(10, top);
+        widget->setLabelText(key, val);
+    };
+
+    for (const auto& it : pickResult) {
+        addToast("部门名称", it.deptName,(p++)*50);
+        addToast("选择人员", it.choosenPersons,(p++)*50);
     }
 }
 

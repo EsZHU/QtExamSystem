@@ -45,24 +45,28 @@ void MainWindow::initGUI()
     }
 
     connect(ui->checkButton, &QPushButton::clicked, [=](){
-        QMap<QString, QString> pickResultMap;
+        QVector<SelectRecord> pickResultVec;
         // current_date字符串结果为"2016.05.20 12:17:01.445 周五"
         QDateTime current_date_time =QDateTime::currentDateTime();
         QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss.zzz ddd");
 
         for(const auto& deptChoosenPersons: m_readPersons){
+            QString tempDept;
             if(deptChoosenPersons.second.size()){
                 qDebug() << deptChoosenPersons.first << ": " << deptChoosenPersons.second;
                 database->writePickHis(current_date, deptChoosenPersons.first, deptChoosenPersons.second);
-                pickResultMap.insert("选择处室",  "123");
-                pickResultMap.insert("选 择 人", deptChoosenPersons.second);
+                for(auto dept : m_depts){
+                    if(dept.id == deptChoosenPersons.first){
+                        tempDept = dept.deptName;
+                    }
+                }
+                pickResultVec.push_back({tempDept, deptChoosenPersons.second});
             }
         }
-        pickResultMap.insert("选择时间", current_date);
         auto resultDiagram = new PickResultDiagram();
-        resultDiagram->refresh(pickResultMap);
+        resultDiagram->refresh(pickResultVec, current_date);
         resultDiagram->show();
-        pickResultMap.clear();
+        pickResultVec.clear();
     });
 }
 

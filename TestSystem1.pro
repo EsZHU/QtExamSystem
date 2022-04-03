@@ -20,6 +20,7 @@ SOURCES += \
     sqlitedatabase.cpp
 
 HEADERS += \
+    defs.h \
     eachrow.h \
     labelplus.h \
     mainwindow.h \

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <labelplus.h>
+#include "defs.h"
 
 namespace Ui {
 class PickResultDiagram;
@@ -15,7 +16,7 @@ class PickResultDiagram : public QWidget
 public:
     explicit PickResultDiagram(QWidget *parent = nullptr);
     ~PickResultDiagram();
-    void refresh(QMap<QString, QString> pickResult);
+    void refresh(QVector<SelectRecord> pickResult, QString curTime);
 
 private:
     Ui::PickResultDiagram *ui;

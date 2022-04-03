@@ -5,6 +5,7 @@
 #include <sqlitedatabase.h>
 #include <singlerow.h>
 #include <pickresultdiagram.h>
+#include "defs.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
