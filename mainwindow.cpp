@@ -50,7 +50,7 @@ void MainWindow::initGUI()
 
         // current_date字符串结果为"2016.05.20 12:17:01.445 周五"
         QDateTime current_date_time =QDateTime::currentDateTime();
-        QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss.zzz ddd");
+        QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss");
 
         for(const auto& deptChoosenPersons: m_readPersons){
             QString tempDept;
@@ -65,16 +65,11 @@ void MainWindow::initGUI()
                 pickResultVec.push_back({tempDept, deptChoosenPersons.second});
             }
         }
-//        auto resultDiagram = new PickResultDiagram();
-//        resultDiagram->refresh(pickResultVec, current_date);
 
         // 新加
         auto pickResultDiagram = new PickResultDiagram();
         pickResultDiagram->refresh(pickResultVec, current_date);
         pickResultDiagram->show();
-
-//        resultDiagram->show();
-//        pickResultVec.clear();
     });
 
 

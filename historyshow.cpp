@@ -46,7 +46,4 @@ void HistoryShow::refresh(QVector<hisRecord> hisResult, QVector<department> depa
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中的方式
     tableWidget->resizeColumnsToContents();
     tableWidget->resizeRowsToContents();
-
-
-
 }

@@ -17,8 +17,6 @@ PickResultDiagram::~PickResultDiagram()
 
 void PickResultDiagram::refresh(QVector<SelectRecord> pickResult, QString curTime)
 {
-    qDebug() << "shdjsh";
-//    this->setWindowTitle("历史记录");
     QTableWidget *tableWidget = new QTableWidget(this);
     tableWidget->resize(this->width(), this->height());
     tableWidget->setColumnCount(3); //设置列数为3
