@@ -18,7 +18,10 @@ SOURCES += \
     pickresultdiagram.cpp \
     randomaccess.cpp \
     singlerow.cpp \
-    sqlitedatabase.cpp
+    sqlitedatabase.cpp \
+    rygl.cpp \
+    info.cpp \
+    add_user_dlg.cpp
 
 HEADERS += \
     defs.h \
@@ -29,14 +32,20 @@ HEADERS += \
     pickresultdiagram.h \
     randomaccess.h \
     singlerow.h \
-    sqlitedatabase.h
+    sqlitedatabase.h \
+    rygl.h \
+    info.h \
+    add_user_dlg.h
 
 FORMS += \
     historyshow.ui \
     labelplus.ui \
     mainwindow.ui \
     pickresultdiagram.ui \
-    singlerow.ui
+    singlerow.ui \
+    rygl.ui \
+    info.ui \
+    add_user_dlg.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

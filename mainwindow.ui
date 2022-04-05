@@ -101,6 +101,29 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
      <string>处室                     人数                 操作                         结果</string>
     </property>
    </widget>
+  <widget class="QPushButton" name="renyuanguanli">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>30</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>人员管理</string>
+    </property>
+   </widget>
+   <zorder>checkButton</zorder>
+   <zorder>hisShowButton</zorder>
+   <zorder>label</zorder>
+   <zorder>widgetBig</zorder>
+   <zorder>renyuanguanli</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

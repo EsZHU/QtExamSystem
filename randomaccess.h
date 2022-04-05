@@ -2,9 +2,11 @@
 #define RANDOMACCESS_H
 #include <QVector>
 #include <QTime>
-#include <QRandomGenerator>
+//#include <QRandomGenerator>
 #include <QSet>
-
+//#include<QTime>
+#include <iostream>
+#include <ctime>
 class RandomAccess
 {
 public:
