@@ -17,7 +17,7 @@ class PickResultDiagram : public QWidget
 public:
     explicit PickResultDiagram(QWidget *parent = nullptr);
     ~PickResultDiagram();
-    void refresh(QVector<SelectRecord> pickResult, QString curTime);
+    void refresh(QVector<selectRecord> pickResult, QString curTime);
 
 private:
     Ui::PickResultDiagram *ui;

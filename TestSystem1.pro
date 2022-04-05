@@ -10,6 +10,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    confirmhisdeletedialog.cpp \
     eachrow.cpp \
     historyshow.cpp \
     labelplus.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
     sqlitedatabase.cpp
 
 HEADERS += \
+    confirmhisdeletedialog.h \
     defs.h \
     eachrow.h \
     historyshow.h \
@@ -32,6 +34,7 @@ HEADERS += \
     sqlitedatabase.h
 
 FORMS += \
+    confirmhisdeletedialog.ui \
     historyshow.ui \
     labelplus.ui \
     mainwindow.ui \

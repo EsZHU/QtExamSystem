@@ -14,13 +14,18 @@ struct person{
     QString perName;
 };
 
-struct SelectRecord {
+struct selectRecord {
     QString deptName, choosenPersons;
 };
 
 struct hisRecord {
     QString curTime, ranNames, deptName;
     int deptId;
+};
+
+struct hisDetScope {
+    int id;
+    QString scope;
 };
 
 

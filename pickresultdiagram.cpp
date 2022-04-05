@@ -15,7 +15,7 @@ PickResultDiagram::~PickResultDiagram()
     delete ui;
 }
 
-void PickResultDiagram::refresh(QVector<SelectRecord> pickResult, QString curTime)
+void PickResultDiagram::refresh(QVector<selectRecord> pickResult, QString curTime)
 {
     QTableWidget *tableWidget = new QTableWidget(this);
     tableWidget->resize(this->width(), this->height());

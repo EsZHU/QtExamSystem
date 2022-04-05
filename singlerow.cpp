@@ -7,7 +7,7 @@ SingleRow::SingleRow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
+//    setFixedSize(QSize(fontMetrics().horizontalAdvance(text()) + 35, 30));
 
 }
 

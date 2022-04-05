@@ -46,7 +46,7 @@ void MainWindow::initGUI()
     }
 
     connect(ui->checkButton, &QPushButton::clicked, [=](){
-        QVector<SelectRecord> pickResultVec;
+        QVector<selectRecord> pickResultVec;
 
         // current_date字符串结果为"2016.05.20 12:17:01.445 周五"
         QDateTime current_date_time =QDateTime::currentDateTime();
@@ -91,7 +91,14 @@ void MainWindow::refreshSingleRow(int line)
 void MainWindow::showHisDialog()
 {
     connect(ui->hisShowButton, &QPushButton::clicked, [=](){
+
         auto hisDiagram = new HistoryShow();
+
+        // 只显示一个窗体
+        hisDiagram->setWindowModality(Qt::ApplicationModal);
+        hisDiagram->setModal(true);
+        hisDiagram->setAttribute(Qt::WA_ShowModal, true);
+
         m_his = database->getHisData();
         hisDiagram->refresh(m_his, m_depts);
         hisDiagram->show();

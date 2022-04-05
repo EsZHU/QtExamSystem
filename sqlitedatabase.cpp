@@ -168,8 +168,6 @@ void SqliteDatabase::writePickHis(QString curTime, int deptId, QString names) //
 
 QVector<hisRecord> SqliteDatabase::getHisData()
 {
-    QVector<hisRecord> hisVect;
-
     QSqlQuery query; // 执行操作类对象
 
     // 查询数据
@@ -181,14 +179,20 @@ QVector<hisRecord> SqliteDatabase::getHisData()
         dept.curTime = query.value("curTime").toString();
         dept.ranNames = query.value("ranNames").toString();
         dept.deptId = query.value("deptId").toInt();
-        hisVect.push_back(dept); // 将查询到的单位数据存储在向量中
+        m_hisVect.push_back(dept); // 将查询到的单位数据存储在向量中
     }
 
-    for(int i = 0; i < hisVect.size(); i++) {
-        qDebug() << hisVect[i].curTime << ":" \
-                 << hisVect[i].ranNames<< ":" \
-                 << hisVect[i].deptId   ;
-    }
+//    for(int i = 0; i < hisVect.size(); i++) {
+//        qDebug() << hisVect[i].curTime << ":" \
+//                 << hisVect[i].ranNames<< ":" \
+//                 << hisVect[i].deptId   ;
+//    }
 
-    return hisVect;
+    return m_hisVect;
+}
+
+void SqliteDatabase::hisDelete(int deleteType)
+{
+    getHisData();
+
 }
