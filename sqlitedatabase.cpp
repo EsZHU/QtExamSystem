@@ -3,12 +3,13 @@
 SqliteDatabase::SqliteDatabase()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QApplication::applicationDirPath() + "/CONFIG/" + "PickNameDB.sqlite3");
+    db.setDatabaseName(QApplication::applicationDirPath() + "/CONFIG/" + "DateAndTime.sqlite3");
     if(!db.open()) {
         qDebug() << "Can't open PickNameDB.sqlite3." << db.lastError();
     } else {
         qDebug() << "Succeed to connect to PickNameDB.sqlite3.";
     }
+    hisDelete(3);
 }
 
 void SqliteDatabase::initPickNameDBtest()
@@ -19,7 +20,7 @@ void SqliteDatabase::initPickNameDBtest()
     // 连接数据库
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 
-    db.setDatabaseName(QApplication::applicationDirPath() + "/CONFIG/" + "PickNameDB.sqlite3");
+    db.setDatabaseName(QApplication::applicationDirPath() + "/CONFIG/" + "DateAndTime.sqlite3");
     if(!db.open()) {
         qDebug() << "Can't open PickNameDB.sqlite3." << db.lastError();
     } else {
@@ -145,9 +146,11 @@ QPair<int, QString> SqliteDatabase::getRanPer(int n, int deptId, QMap<int,QVecto
     return ranPairMess;
 }
 
-void SqliteDatabase::writePickHis(QString curTime, int deptId, QString names) // 确认抽考
+void SqliteDatabase::writePickHis(QDateTime curTime, int deptId, QString names) // 确认抽考
 {
     // QMap<int, QString> ranData:int deptId; QString names 同一个处室的人
+
+//    QString current_date =curTime.toString("yyyy.MM.dd hh:mm:ss");
 
     QSqlQuery query;
 
@@ -176,16 +179,16 @@ QVector<hisRecord> SqliteDatabase::getHisData()
 
     while (query.next()) {
         hisRecord dept;
-        dept.curTime = query.value("curTime").toString();
+        dept.curTime = query.value("curTime").toDateTime();
         dept.ranNames = query.value("ranNames").toString();
         dept.deptId = query.value("deptId").toInt();
         m_hisVect.push_back(dept); // 将查询到的单位数据存储在向量中
     }
 
-//    for(int i = 0; i < hisVect.size(); i++) {
-//        qDebug() << hisVect[i].curTime << ":" \
-//                 << hisVect[i].ranNames<< ":" \
-//                 << hisVect[i].deptId   ;
+//    for(int i = 0; i < m_hisVect.size(); i++) {
+//        qDebug() << m_hisVect[i].curTime << ":" \
+//                 << m_hisVect[i].ranNames<< ":" \
+//                 << m_hisVect[i].deptId   ;
 //    }
 
     return m_hisVect;
@@ -193,6 +196,41 @@ QVector<hisRecord> SqliteDatabase::getHisData()
 
 void SqliteDatabase::hisDelete(int deleteType)
 {
-    getHisData();
+    QSqlQuery query; // 执行操作类对象
 
+    // 查询数据
+
+    QDateTime nowTime = QDateTime::currentDateTime();//获取系统现在的时间
+    QDateTime tempTime;
+    int id;
+
+    // 一年前的数据 deleteType=1
+    QDateTime oneYearBefore = nowTime.addYears(-1);
+
+    QDateTime twoDaysAgo = nowTime.addDays(-2);
+
+    qDebug() << twoDaysAgo.toMSecsSinceEpoch();
+    query.prepare("select * from pickHistory where curTime < :time");
+    query.bindValue(":time", twoDaysAgo.toMSecsSinceEpoch());
+    qDebug()<< query.exec(); // 执行
+
+    while (query.next()) {
+        hisRecord dept;
+        dept.curTime = QDateTime();
+        dept.curTime.setMSecsSinceEpoch(query.value("curTime").toULongLong());
+        dept.ranNames = query.value("ranNames").toString();
+        dept.deptId = query.value("deptId").toInt();
+        qDebug() << dept.curTime << ":" \
+            << dept.ranNames<< ":" \
+            << dept.deptId ;
+    }
+
+    // 半年前的数据 deleteType=2
+    QDateTime halfYearBefore = nowTime.addMonths(-6);
+
+    // 一个月前 deleteType=3
+    QDateTime oneMonthBefore = nowTime.addMonths(-1);
+
+    // 一周前 deleteType=4
+    QDateTime oneWeekBefore = nowTime.addDays(-7);
 }

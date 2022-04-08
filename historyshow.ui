@@ -34,11 +34,16 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>310</x>
      <y>460</y>
-     <width>341</width>
+     <width>400</width>
      <height>32</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
+QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -133,7 +138,7 @@ QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
       </property>
       <property name="text">
-       <string>确认删除</string>
+       <string>点击删除</string>
       </property>
      </widget>
     </item>

@@ -2,6 +2,7 @@
 #define DEFS_H
 
 #include <QString>
+#include <QDateTime>
 
 struct department{
     int id;
@@ -19,7 +20,8 @@ struct selectRecord {
 };
 
 struct hisRecord {
-    QString curTime, ranNames, deptName;
+    QDateTime curTime;
+    QString ranNames, deptName;
     int deptId;
 };
 

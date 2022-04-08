@@ -34,7 +34,8 @@ void HistoryShow::refresh(QVector<hisRecord> hisResult, QVector<department> depa
     for(const auto &his : hisResult){
         col = 0;
         tableWidget->insertRow(0); // 之前0的位置是row，倒序显示历史记录，现在正序
-        tableWidget->setItem(0, col++, new QTableWidgetItem(his.curTime));
+        qDebug() << his.curTime;
+        tableWidget->setItem(0, col++, new QTableWidgetItem(his.curTime.toString("yyyy.MM.dd hh:mm:ss")));
         for (const auto& dep : departs) {
             if(dep.id == his.deptId){
                 tableWidget->setItem(0, col++, new QTableWidgetItem(dep.deptName));
@@ -87,6 +88,8 @@ void HistoryShow::hisDetScopeInit()
     hisDet.id = 5;
     hisDet.scope = "全部";
     m_scopeVect.push_back(hisDet);
+
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setText("关闭");
 
 //    for(int i = 0; i < 5; i++){
 //        qDebug() << scopeVect[i].id << scopeVect[i].scope;

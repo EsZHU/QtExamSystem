@@ -56,7 +56,7 @@ void MainWindow::initGUI()
             QString tempDept;
             if(deptChoosenPersons.second.size()){
                 qDebug() << deptChoosenPersons.first << ": " << deptChoosenPersons.second;
-                database->writePickHis(current_date, deptChoosenPersons.first, deptChoosenPersons.second);
+                database->writePickHis(current_date_time, deptChoosenPersons.first, deptChoosenPersons.second);
                 for(auto dept : m_depts){
                     if(dept.id == deptChoosenPersons.first){
                         tempDept = dept.deptName;

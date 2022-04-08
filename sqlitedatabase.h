@@ -22,7 +22,7 @@ public:
     QVector<department> getDeptData(); // 读取处表返回处的结构体
     QMap<int,QVector<person>> getPerData(); // 读取人员表返回人员的结构体
     QPair<int, QString> getRanPer(int n, int deptId, QMap<int,QVector<person>> perData); // 点击选择获取n人数据
-    void writePickHis(QString curTime, int deptId, QString names); // 确认抽考
+    void writePickHis(QDateTime curTime, int deptId, QString names); // 确认抽考
     QVector<hisRecord> getHisData();
     void hisDelete(int deleteType);
 
