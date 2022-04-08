@@ -3,7 +3,7 @@
 SqliteDatabase::SqliteDatabase()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QApplication::applicationDirPath() + "/CONFIG/" + "DateAndTime.sqlite3");
+    db.setDatabaseName(QApplication::applicationDirPath() + "/CONFIG/" + "PickNameDB.sqlite3");
     if(!db.open()) {
         qDebug() << "Can't open PickNameDB.sqlite3." << db.lastError();
     } else {
@@ -20,7 +20,7 @@ void SqliteDatabase::initPickNameDBtest()
     // 连接数据库
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 
-    db.setDatabaseName(QApplication::applicationDirPath() + "/CONFIG/" + "DateAndTime.sqlite3");
+    db.setDatabaseName(QApplication::applicationDirPath() + "/CONFIG/" + "PickNameDB.sqlite3");
     if(!db.open()) {
         qDebug() << "Can't open PickNameDB.sqlite3." << db.lastError();
     } else {
@@ -199,6 +199,8 @@ void SqliteDatabase::hisDelete(int deleteType)
     QSqlQuery query; // 执行操作类对象
 
     // 查询数据
+    query.prepare("select * from pickHistory");
+    query.exec(); // 执行
 
     QDateTime nowTime = QDateTime::currentDateTime();//获取系统现在的时间
     QDateTime tempTime;
@@ -208,21 +210,25 @@ void SqliteDatabase::hisDelete(int deleteType)
     QDateTime oneYearBefore = nowTime.addYears(-1);
 
     QDateTime twoDaysAgo = nowTime.addDays(-2);
-
-    qDebug() << twoDaysAgo.toMSecsSinceEpoch();
-    query.prepare("select * from pickHistory where curTime < :time");
-    query.bindValue(":time", twoDaysAgo.toMSecsSinceEpoch());
-    qDebug()<< query.exec(); // 执行
-
     while (query.next()) {
-        hisRecord dept;
-        dept.curTime = QDateTime();
-        dept.curTime.setMSecsSinceEpoch(query.value("curTime").toULongLong());
-        dept.ranNames = query.value("ranNames").toString();
-        dept.deptId = query.value("deptId").toInt();
-        qDebug() << dept.curTime << ":" \
-            << dept.ranNames<< ":" \
-            << dept.deptId ;
+        tempTime = query.value("curTime").toDateTime();
+        if(twoDaysAgo < tempTime){
+            id = query.value("_id").toInt();
+//            query.prepare("delete from pickHistory where _id=id");
+//            QSqlQuery query; // 执行操作类对象
+//            query.prepare("select * from pickHistory (_id) "
+//                          "values (:id)");
+//            query.bindValue(":id", id);
+//            query.exec();
+
+            hisRecord dept;
+            dept.curTime = query.value("curTime").toDateTime();
+            dept.ranNames = query.value("ranNames").toString();
+            dept.deptId = query.value("deptId").toInt();
+            qDebug() << dept.curTime << ":" \
+                << dept.ranNames<< ":" \
+                << dept.deptId ;
+        }
     }
 
     // 半年前的数据 deleteType=2
