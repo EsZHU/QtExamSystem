@@ -1,14 +1,20 @@
 #include "sqlitedatabase.h"
+#include <qDebug>
 
 SqliteDatabase::SqliteDatabase()
 {
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QApplication::applicationDirPath() + "/CONFIG/" + "PickNameDB.sqlite3");
-    if(!db.open()) {
-        qDebug() << "Can't open PickNameDB.sqlite3." << db.lastError();
-    } else {
-        qDebug() << "Succeed to connect to PickNameDB.sqlite3.";
-    }
+//    if(QSqlDatabase::contains("qt_sql_default_connection"))
+//        db = QSqlDatabase::database("qt_sql_default_connection");
+//    else
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(QApplication::applicationDirPath() + "/CONFIG/" + "PickNameDB.sqlite3");
+        qDebug() << QApplication::applicationDirPath();
+        if(!db.open()) {
+            qDebug() << "Can't open PickNameDB.sqlite3." << db.lastError();
+        } else {
+            qDebug() << "SqliteDatabase::Succeed to connect to PickNameDB.sqlite3.";
+        }
+        m_db = db;
 }
 
 void SqliteDatabase::initPickNameDBtest()

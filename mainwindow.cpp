@@ -97,3 +97,7 @@ void MainWindow::showHisDialog()
         hisDiagram->show();
     });
 }
+void MainWindow::on_renyuanguanli_clicked()
+{
+    m_rygl.show();
+}
