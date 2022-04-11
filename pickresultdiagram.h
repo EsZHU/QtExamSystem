@@ -2,7 +2,6 @@
 #define PICKRESULTDIAGRAM_H
 
 #include <QWidget>
-#include <labelplus.h>
 #include "defs.h"
 #include <QTableWidget>
 

@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     initGUI();
     showDept();
     showHisDialog();
+    PersonManagement();
 }
 
 MainWindow::~MainWindow()
@@ -103,3 +104,17 @@ void MainWindow::showHisDialog()
         hisDiagram->show();
     });
 }
+
+void MainWindow::PersonManagement()
+{
+    connect(ui->personManageButton, &QPushButton::clicked, [=](){
+        rygl* personManageDialog = new rygl();
+        personManageDialog->show();
+        personManageDialog->setWindowModality(Qt::ApplicationModal);
+    });
+}
+//void MainWindow::on_renyuanguanli_clicked()
+//{
+//    m_rygl.show();
+
+//}

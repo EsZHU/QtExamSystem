@@ -2,11 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <sqlitedatabase.h>
-#include <singlerow.h>
-#include <pickresultdiagram.h>
+#include "sqlitedatabase.h"
+#include "singlerow.h"
+#include "pickresultdiagram.h"
 #include "defs.h"
-#include <historyshow.h>
+#include "historyshow.h"
+#include "rygl.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,6 +39,10 @@ public:
 
     void showHisDialog();
 
+    void PersonManagement();
+
+//private slots:
+//    void on_renyuanguanli_clicked();
 
 private:
     Ui::MainWindow *ui;

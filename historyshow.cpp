@@ -6,7 +6,7 @@ HistoryShow::HistoryShow(QWidget *parent) :
     ui(new Ui::HistoryShow)
 {
     ui->setupUi(this);
-    ui->buttonBox->button(QDialogButtonBox::Ok)->setText("关闭");
+    connect(ui->closeButton, &QPushButton::clicked, [=](){this->close();});
     confirmHisDelete();
 //    hisDetScopeInit();
 }

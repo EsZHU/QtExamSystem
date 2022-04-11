@@ -1,4 +1,5 @@
 #include "sqlitedatabase.h"
+#include <qDebug>
 
 SqliteDatabase::SqliteDatabase()
 {

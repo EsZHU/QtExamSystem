@@ -14,13 +14,15 @@ SOURCES += \
     deletesuccessdialog.cpp \
     eachrow.cpp \
     historyshow.cpp \
-    labelplus.cpp \
     main.cpp \
     mainwindow.cpp \
     pickresultdiagram.cpp \
     randomaccess.cpp \
     singlerow.cpp \
-    sqlitedatabase.cpp
+    sqlitedatabase.cpp \
+    rygl.cpp \
+    info.cpp \
+    add_user_dlg.cpp
 
 HEADERS += \
     confirmhisdeletedialog.h \
@@ -28,21 +30,25 @@ HEADERS += \
     deletesuccessdialog.h \
     eachrow.h \
     historyshow.h \
-    labelplus.h \
     mainwindow.h \
     pickresultdiagram.h \
     randomaccess.h \
     singlerow.h \
-    sqlitedatabase.h
+    sqlitedatabase.h \
+    rygl.h \
+    info.h \
+    add_user_dlg.h
 
 FORMS += \
     confirmhisdeletedialog.ui \
     deletesuccessdialog.ui \
     historyshow.ui \
-    labelplus.ui \
     mainwindow.ui \
     pickresultdiagram.ui \
-    singlerow.ui
+    singlerow.ui \
+    rygl.ui \
+    info.ui \
+    add_user_dlg.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

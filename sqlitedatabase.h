@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QCoreApplication>
 #include <QDebug>
+#include <QMessageBox>
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -12,6 +13,16 @@
 #include <QMap>
 #include <randomaccess.h>
 #include <defs.h>
+
+struct UserInfo{
+    int id;
+    int depid;
+    QString pername;
+};
+struct DepInfo{
+    int id;
+    QString depname;
+};
 
 class SqliteDatabase
 {
@@ -29,6 +40,26 @@ public:
 private:
     QVector<hisRecord> m_hisVect;
     QMap<QString, int> scopeMap;
+
+ //init db
+    void init();
+    //增加人员
+    bool add_user(UserInfo info);
+    //更新人员
+    bool update_user(UserInfo info);
+    //删除人员
+    bool del_user(int id);
+    //get user
+    UserInfo get_user(int id);
+    //
+    void showall();
+    //
+    QList<UserInfo> get_all_user();
+    //
+
+private:
+    QSqlDatabase m_db;
+
 };
 
 #endif // SQLITEDATABASE_H
