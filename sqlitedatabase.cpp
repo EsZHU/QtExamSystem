@@ -9,7 +9,12 @@ SqliteDatabase::SqliteDatabase()
     } else {
         qDebug() << "Succeed to connect to PickNameDB.sqlite3.";
     }
-    hisDelete(3);
+//    hisDelete(3);
+    scopeMap.insert("一年前", 1);
+    scopeMap.insert("半年前", 2);
+    scopeMap.insert("一个月前", 3);
+    scopeMap.insert("一周前", 4);
+    scopeMap.insert("全部", 5);
 }
 
 void SqliteDatabase::initPickNameDBtest()
@@ -177,6 +182,8 @@ QVector<hisRecord> SqliteDatabase::getHisData()
     query.prepare("select * from pickHistory");
     query.exec(); // 执行
 
+    m_hisVect.clear();
+
     while (query.next()) {
         hisRecord dept;
         dept.curTime = query.value("curTime").toDateTime();
@@ -194,7 +201,7 @@ QVector<hisRecord> SqliteDatabase::getHisData()
     return m_hisVect;
 }
 
-void SqliteDatabase::hisDelete(int deleteType)
+void SqliteDatabase::hisDelete(QString deleteType)
 {
     QSqlQuery query; // 执行操作类对象
 
@@ -204,39 +211,47 @@ void SqliteDatabase::hisDelete(int deleteType)
 
     QDateTime nowTime = QDateTime::currentDateTime();//获取系统现在的时间
     QDateTime tempTime;
-    int id;
 
-    // 一年前的数据 deleteType=1
-    QDateTime oneYearBefore = nowTime.addYears(-1);
+    int scopeNum = scopeMap[deleteType];
 
-    QDateTime twoDaysAgo = nowTime.addDays(-2);
-    while (query.next()) {
-        tempTime = query.value("curTime").toDateTime();
-        if(twoDaysAgo < tempTime){
-            id = query.value("_id").toInt();
-//            query.prepare("delete from pickHistory where _id=id");
-//            QSqlQuery query; // 执行操作类对象
-//            query.prepare("select * from pickHistory (_id) "
-//                          "values (:id)");
-//            query.bindValue(":id", id);
-//            query.exec();
-
-            hisRecord dept;
-            dept.curTime = query.value("curTime").toDateTime();
-            dept.ranNames = query.value("ranNames").toString();
-            dept.deptId = query.value("deptId").toInt();
-            qDebug() << dept.curTime << ":" \
-                << dept.ranNames<< ":" \
-                << dept.deptId ;
-        }
+    switch (scopeNum) {
+    case 1:{
+        // 一年前的数据 deleteType=1
+        QDateTime oneYearBefore = nowTime.addYears(-1);
+        query.prepare("delete from pickHistory where curTime < :time");
+        query.bindValue(":time", oneYearBefore);
+        break;
     }
-
-    // 半年前的数据 deleteType=2
-    QDateTime halfYearBefore = nowTime.addMonths(-6);
-
-    // 一个月前 deleteType=3
-    QDateTime oneMonthBefore = nowTime.addMonths(-1);
-
-    // 一周前 deleteType=4
-    QDateTime oneWeekBefore = nowTime.addDays(-7);
+    case 2:{
+        // 半年前的数据 deleteType=2
+        QDateTime halfYearBefore = nowTime.addMonths(-6);
+        query.prepare("delete from pickHistory where curTime < :time");
+        query.bindValue(":time", halfYearBefore);
+        break;
+    }
+    case 3:{
+        // 一个月前 deleteType=3
+        QDateTime oneMonthBefore = nowTime.addMonths(-1);
+        query.prepare("delete from pickHistory where curTime < :time");
+        query.bindValue(":time", oneMonthBefore);
+        break;
+    }
+    case 4:{
+        // 一周前 deleteType=4
+        QDateTime oneWeekBefore = nowTime.addDays(-7);
+        query.prepare("delete from pickHistory where curTime < :time");
+        query.bindValue(":time", oneWeekBefore);
+        break;
+    }
+    case 5:{
+        // 全部 deleteType=5
+        QDateTime all = nowTime.addMSecs(-1);
+        query.prepare("delete from pickHistory where curTime < :time");
+        query.bindValue(":time", all);
+        break;
+    }
+    default:
+        break;
+    }
+    query.exec();
 }

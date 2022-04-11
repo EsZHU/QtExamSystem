@@ -6,10 +6,10 @@ ConfirmHisDeleteDialog::ConfirmHisDeleteDialog(QWidget *parent) :
     ui(new Ui::ConfirmHisDeleteDialog)
 {
     ui->setupUi(this);
+    database = new SqliteDatabase();
     this->setWindowTitle("您确认要删除吗？");
 //    ui->label_3->setTextInteractionFlags(Qt::TextSelectableByMouse); // 可复制
-    ui->confirmEdit->setPlaceholderText("我确定要删除指定范围内的历史记录");
-    hisDeleteDialogInit();
+//    ui->confirmEdit->setPlaceholderText("我确定要删除指定范围内的历史记录"); // 文字显示
 }
 
 ConfirmHisDeleteDialog::~ConfirmHisDeleteDialog()
@@ -17,8 +17,17 @@ ConfirmHisDeleteDialog::~ConfirmHisDeleteDialog()
     delete ui;
 }
 
-void ConfirmHisDeleteDialog::hisDeleteDialogInit()
+void ConfirmHisDeleteDialog::confirmDlgTrue(QString scopeType)
 {
-    ui->buttonBox->button(QDialogButtonBox::Yes)->setText("确认删除");
-    ui->buttonBox->button(QDialogButtonBox::Cancel)->setText("取消删除");
+    connect(ui->yesButton, &QPushButton::clicked, [=](){
+        if(ui->confirmEdit->text() == "我确定要删除指定范围内的历史记录"){
+            database->hisDelete(scopeType);
+            this->close();
+            DeleteSuccessDialog* successD = new DeleteSuccessDialog();
+            successD->showDeleteSuccess(scopeType);
+        }
+    });
+    connect(ui->noButton, &QPushButton::clicked, [=](){
+        this->close();
+    });
 }

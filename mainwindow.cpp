@@ -98,7 +98,6 @@ void MainWindow::showHisDialog()
         hisDiagram->setWindowModality(Qt::ApplicationModal);
         hisDiagram->setModal(true);
         hisDiagram->setAttribute(Qt::WA_ShowModal, true);
-
         m_his = database->getHisData();
         hisDiagram->refresh(m_his, m_depts);
         hisDiagram->show();

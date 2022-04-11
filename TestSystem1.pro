@@ -11,6 +11,7 @@ CONFIG += c++11
 
 SOURCES += \
     confirmhisdeletedialog.cpp \
+    deletesuccessdialog.cpp \
     eachrow.cpp \
     historyshow.cpp \
     labelplus.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
 HEADERS += \
     confirmhisdeletedialog.h \
     defs.h \
+    deletesuccessdialog.h \
     eachrow.h \
     historyshow.h \
     labelplus.h \
@@ -35,6 +37,7 @@ HEADERS += \
 
 FORMS += \
     confirmhisdeletedialog.ui \
+    deletesuccessdialog.ui \
     historyshow.ui \
     labelplus.ui \
     mainwindow.ui \

@@ -24,10 +24,11 @@ public:
     QPair<int, QString> getRanPer(int n, int deptId, QMap<int,QVector<person>> perData); // 点击选择获取n人数据
     void writePickHis(QDateTime curTime, int deptId, QString names); // 确认抽考
     QVector<hisRecord> getHisData();
-    void hisDelete(int deleteType);
+    void hisDelete(QString deleteType);
 
 private:
     QVector<hisRecord> m_hisVect;
+    QMap<QString, int> scopeMap;
 };
 
 #endif // SQLITEDATABASE_H
