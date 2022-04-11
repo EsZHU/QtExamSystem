@@ -8,6 +8,7 @@ PickResultDiagram::PickResultDiagram(QWidget *parent) :
     ui->setupUi(this);
 //    LabelPlus* singleRow;
 //    singleRow = new LabelPlus(this->ui->widget);
+    connect(ui->closeButton, &QPushButton::clicked, [=](){this->close();});
 }
 
 PickResultDiagram::~PickResultDiagram()
@@ -17,7 +18,7 @@ PickResultDiagram::~PickResultDiagram()
 
 void PickResultDiagram::refresh(QVector<selectRecord> pickResult, QString curTime)
 {
-    QTableWidget *tableWidget = new QTableWidget(this);
+    QTableWidget *tableWidget = new QTableWidget(ui->resultWidget);
     tableWidget->resize(this->width(), this->height());
     tableWidget->setColumnCount(3); //设置列数为3
     QStringList header;

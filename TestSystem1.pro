@@ -11,11 +11,13 @@ CONFIG += c++11
 
 SOURCES += \
     confirmhisdeletedialog.cpp \
+    customtabbar.cpp \
     deletesuccessdialog.cpp \
     eachrow.cpp \
     historyshow.cpp \
     main.cpp \
     mainwindow.cpp \
+    personmanagedialog.cpp \
     pickresultdiagram.cpp \
     randomaccess.cpp \
     singlerow.cpp \
@@ -25,12 +27,15 @@ SOURCES += \
     add_user_dlg.cpp
 
 HEADERS += \
+    CustomTabStyle.h \
     confirmhisdeletedialog.h \
+    customtabbar.h \
     defs.h \
     deletesuccessdialog.h \
     eachrow.h \
     historyshow.h \
     mainwindow.h \
+    personmanagedialog.h \
     pickresultdiagram.h \
     randomaccess.h \
     singlerow.h \
@@ -44,6 +49,7 @@ FORMS += \
     deletesuccessdialog.ui \
     historyshow.ui \
     mainwindow.ui \
+    personmanagedialog.ui \
     pickresultdiagram.ui \
     singlerow.ui \
     rygl.ui \

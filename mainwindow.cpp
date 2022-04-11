@@ -70,6 +70,7 @@ void MainWindow::initGUI()
         // 新加
         auto pickResultDiagram = new PickResultDiagram();
         pickResultDiagram->refresh(pickResultVec, current_date);
+        pickResultDiagram->setWindowModality(Qt::ApplicationModal);
         pickResultDiagram->show();
     });
 
@@ -108,13 +109,9 @@ void MainWindow::showHisDialog()
 void MainWindow::PersonManagement()
 {
     connect(ui->personManageButton, &QPushButton::clicked, [=](){
-        rygl* personManageDialog = new rygl();
+        PersonManageDialog* personManageDialog = new PersonManageDialog();
+        personManageDialog->setWindowModality(Qt::ApplicationModal);
         personManageDialog->show();
         personManageDialog->setWindowModality(Qt::ApplicationModal);
     });
 }
-//void MainWindow::on_renyuanguanli_clicked()
-//{
-//    m_rygl.show();
-
-//}

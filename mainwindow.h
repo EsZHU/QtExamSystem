@@ -7,7 +7,8 @@
 #include "pickresultdiagram.h"
 #include "defs.h"
 #include "historyshow.h"
-#include "rygl.h"
+//#include "rygl.h"
+#include "personmanagedialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
