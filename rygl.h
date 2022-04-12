@@ -4,7 +4,6 @@
 #include <QWidget>
 #include "info.h"
 #include "sqlitedatabase.h"
-#include "add_user_dlg.h"
 namespace Ui {
 class rygl;
 }
@@ -28,7 +27,6 @@ private:
     Ui::rygl *ui;
     SqliteDatabase *m_db;
     info m_info;
-    add_user_dlg m_add;
 
 };
 

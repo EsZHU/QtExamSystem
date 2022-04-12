@@ -10,6 +10,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    addpersondialog.cpp \
     confirmhisdeletedialog.cpp \
     customtabbar.cpp \
     deletesuccessdialog.cpp \
@@ -23,11 +24,11 @@ SOURCES += \
     singlerow.cpp \
     sqlitedatabase.cpp \
     rygl.cpp \
-    info.cpp \
-    add_user_dlg.cpp
+    info.cpp
 
 HEADERS += \
     CustomTabStyle.h \
+    addpersondialog.h \
     confirmhisdeletedialog.h \
     customtabbar.h \
     defs.h \
@@ -41,10 +42,10 @@ HEADERS += \
     singlerow.h \
     sqlitedatabase.h \
     rygl.h \
-    info.h \
-    add_user_dlg.h
+    info.h
 
 FORMS += \
+    addpersondialog.ui \
     confirmhisdeletedialog.ui \
     deletesuccessdialog.ui \
     historyshow.ui \
@@ -53,8 +54,7 @@ FORMS += \
     pickresultdiagram.ui \
     singlerow.ui \
     rygl.ui \
-    info.ui \
-    add_user_dlg.ui
+    info.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

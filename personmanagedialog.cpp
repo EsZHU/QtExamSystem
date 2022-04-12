@@ -11,6 +11,7 @@ PersonManageDialog::PersonManageDialog(QWidget *parent) :
     getData();
     setTabWidgetValue();
     database = new SqliteDatabase();
+    addPersonButton();
 }
 
 PersonManageDialog::~PersonManageDialog()
@@ -21,7 +22,6 @@ PersonManageDialog::~PersonManageDialog()
 void PersonManageDialog::setTabWidgetValue()
 {
     QTableWidget* firstTB = new QTableWidget(ui->tabWidget);
-//    firstTB = nullptr;
     QTableWidget* secondTB = new QTableWidget(ui->tabWidget);
     QTableWidget* thirdTB = new QTableWidget(ui->tabWidget);
     QTableWidget* forthTB = new QTableWidget(ui->tabWidget);
@@ -69,8 +69,6 @@ void PersonManageDialog::setTabWidgetValue()
         QTableWidgetItem *firstPerName=new QTableWidgetItem();//创建一个Item
         firstPerName->setText(firstPer.perName);//设置内容
         firstTB->setItem(row,0,firstPerName);//把这个Item加到第一行第二列中
-
-        qDebug() << firstPer.perName;
     }
 
     if(nullptr != secondTB)
@@ -261,4 +259,13 @@ void PersonManageDialog::setTabWidgetValue()
 void PersonManageDialog::getData()
 {
     m_pers = database->getPerData();
+}
+
+void PersonManageDialog::addPersonButton()
+{
+    connect(ui->addPersonButton, &QPushButton::clicked, [=](){
+        AddPersonDialog* addPerDlg = new AddPersonDialog();
+        addPerDlg->setWindowModality(Qt::ApplicationModal);
+        addPerDlg->show();
+    });
 }

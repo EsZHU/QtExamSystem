@@ -7,6 +7,7 @@
 #include <customtabbar.h>
 #include "defs.h"
 #include "sqlitedatabase.h"
+#include "addpersondialog.h"
 
 namespace Ui {
 class PersonManageDialog;
@@ -22,6 +23,7 @@ public:
     void setTabWidgetValue();
     void getData();
     void setTableText();
+    void addPersonButton();
 
 private:
     Ui::PersonManageDialog *ui;
