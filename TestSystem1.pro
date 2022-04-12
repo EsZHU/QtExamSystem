@@ -11,8 +11,11 @@ CONFIG += c++11
 
 SOURCES += \
     addpersondialog.cpp \
+    changepersondialog.cpp \
+    changeperwarning.cpp \
     confirmhisdeletedialog.cpp \
     customtabbar.cpp \
+    deletepersondialog.cpp \
     deletesuccessdialog.cpp \
     eachrow.cpp \
     historyshow.cpp \
@@ -21,6 +24,7 @@ SOURCES += \
     personmanagedialog.cpp \
     pickresultdiagram.cpp \
     randomaccess.cpp \
+    searchpersondialog.cpp \
     singlerow.cpp \
     sqlitedatabase.cpp \
     rygl.cpp \
@@ -29,9 +33,12 @@ SOURCES += \
 HEADERS += \
     CustomTabStyle.h \
     addpersondialog.h \
+    changepersondialog.h \
+    changeperwarning.h \
     confirmhisdeletedialog.h \
     customtabbar.h \
     defs.h \
+    deletepersondialog.h \
     deletesuccessdialog.h \
     eachrow.h \
     historyshow.h \
@@ -39,6 +46,7 @@ HEADERS += \
     personmanagedialog.h \
     pickresultdiagram.h \
     randomaccess.h \
+    searchpersondialog.h \
     singlerow.h \
     sqlitedatabase.h \
     rygl.h \
@@ -46,12 +54,16 @@ HEADERS += \
 
 FORMS += \
     addpersondialog.ui \
+    changepersondialog.ui \
+    changeperwarning.ui \
     confirmhisdeletedialog.ui \
+    deletepersondialog.ui \
     deletesuccessdialog.ui \
     historyshow.ui \
     mainwindow.ui \
     personmanagedialog.ui \
     pickresultdiagram.ui \
+    searchpersondialog.ui \
     singlerow.ui \
     rygl.ui \
     info.ui
