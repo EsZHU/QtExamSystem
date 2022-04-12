@@ -26,7 +26,7 @@ public:
         if (element == CE_TabBarTabLabel) {
             if (const QStyleOptionTab *tab = qstyleoption_cast<const QStyleOptionTab *>(option)) {
                 QRect allRect = tab->rect;
-                qDebug() << allRect;
+//                qDebug() << allRect;
                 allRect.setWidth(allRect.width());
                 allRect.setHeight(allRect.height());
                 //选中状态
@@ -61,7 +61,7 @@ public:
                 painter->setFont(QFont("楷体", 12, QFont::Bold));
                 painter->setPen(0xffffff);
                 painter->drawText(allRect, tab->text, option);
-                qDebug() << tab->text;
+//                qDebug() << tab->text;
                 return;
             }
         }

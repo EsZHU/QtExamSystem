@@ -5,7 +5,8 @@
 #include <QTableWidget>
 #include <CustomTabStyle.h>
 #include <customtabbar.h>
-
+#include "defs.h"
+#include "sqlitedatabase.h"
 
 namespace Ui {
 class PersonManageDialog;
@@ -19,10 +20,13 @@ public:
     explicit PersonManageDialog(QWidget *parent = nullptr);
     ~PersonManageDialog();
     void setTabWidgetValue();
+    void getData();
+    void setTableText();
 
 private:
     Ui::PersonManageDialog *ui;
-    QTableWidget* m_firstTB;
+    QMap<int,QVector<person>> m_pers;
+    SqliteDatabase* database;
 };
 
 #endif // PERSONMANAGEDIALOG_H
