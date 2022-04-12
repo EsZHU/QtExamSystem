@@ -12,6 +12,8 @@ PersonManageDialog::PersonManageDialog(QWidget *parent) :
     setTabWidgetValue();
     database = new SqliteDatabase();
     addPersonButton();
+    deletePersonButton();
+    changePersonButton();
 }
 
 PersonManageDialog::~PersonManageDialog()
@@ -267,5 +269,23 @@ void PersonManageDialog::addPersonButton()
         AddPersonDialog* addPerDlg = new AddPersonDialog();
         addPerDlg->setWindowModality(Qt::ApplicationModal);
         addPerDlg->show();
+    });
+}
+
+void PersonManageDialog::deletePersonButton()
+{
+    connect(ui->deleteButton, &QPushButton::clicked, [=](){
+        DeletePersonDialog* delPerDlg = new DeletePersonDialog();
+        delPerDlg->setWindowModality(Qt::ApplicationModal);
+        delPerDlg->show();
+    });
+}
+
+void PersonManageDialog::changePersonButton()
+{
+    connect(ui->changePersonButton, &QPushButton::clicked, [=](){
+        ChangePersonDialog* changePerDlg = new ChangePersonDialog();
+        changePerDlg->setWindowModality(Qt::ApplicationModal);
+        changePerDlg->show();
     });
 }

@@ -8,6 +8,8 @@
 #include "defs.h"
 #include "sqlitedatabase.h"
 #include "addpersondialog.h"
+#include "deletepersondialog.h"
+#include "changepersondialog.h"
 
 namespace Ui {
 class PersonManageDialog;
@@ -24,6 +26,8 @@ public:
     void getData();
     void setTableText();
     void addPersonButton();
+    void deletePersonButton();
+    void changePersonButton();
 
 private:
     Ui::PersonManageDialog *ui;

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DeleteSuccessDialog</class>
- <widget class="QWidget" name="DeleteSuccessDialog">
+ <class>ChangePerWarning</class>
+ <widget class="QWidget" name="ChangePerWarning">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>91</height>
+    <width>402</width>
+    <height>81</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="deleteSuccessLabel">
+  <widget class="QLabel" name="warnLabel">
    <property name="geometry">
     <rect>
-     <x>17</x>
-     <y>30</y>
-     <width>261</width>
+     <x>20</x>
+     <y>20</y>
+     <width>371</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>您输入的改变前的信息不正确！请重新核对后重新输入！</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -32,9 +32,9 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>219</x>
-     <y>60</y>
-     <width>71</width>
+     <x>320</x>
+     <y>50</y>
+     <width>51</width>
      <height>21</height>
     </rect>
    </property>
