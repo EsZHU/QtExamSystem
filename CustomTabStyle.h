@@ -58,7 +58,7 @@ public:
                 option.setAlignment(Qt::AlignCenter);
                 option.setWrapMode(option.WrapAnywhere);
 
-                painter->setFont(QFont("楷体", 12, QFont::Bold));
+//                painter->setFont(QFont("楷体", 10, QFont::Bold));
                 painter->setPen(0xffffff);
                 painter->drawText(allRect, tab->text, option);
 //                qDebug() << tab->text;
