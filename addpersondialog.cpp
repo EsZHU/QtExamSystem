@@ -1,16 +1,46 @@
 #include "addpersondialog.h"
 #include "ui_addpersondialog.h"
+#include "defs.h"
 
-AddPersonDialog::AddPersonDialog(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::AddPersonDialog)
+AddPersonDialog::AddPersonDialog(QWidget* pmd, QWidget *parent) :
+    QWidget(parent), ui(new Ui::AddPersonDialog),
+    m_pmd(pmd)
 {
     ui->setupUi(this);
+    database = new SqliteDatabase();
     this->setWindowTitle("增加人员界面");
     connect(ui->cancelBtn, &QPushButton::clicked, [=](){this->close();});
+    addPersonButton();
 }
 
 AddPersonDialog::~AddPersonDialog()
 {
     delete ui;
+}
+
+void AddPersonDialog::addPersonButton()
+{
+    connect(ui->saveBtn, &QPushButton::clicked, [=](){
+        QString addName = ui->nameLabel->text();
+        QString addDeptName = ui->depNameComboBox->currentText();
+
+        m_depts = database->getDeptData();
+        int addDeptId;
+        for(auto dept : m_depts)
+            if(dept.deptName == addDeptName)
+                addDeptId = dept.id;
+        qDebug() << addDeptId;
+
+        database->manageAddPerson(addName, addDeptId);
+
+        DeleteSuccessDialog* delDlg = new DeleteSuccessDialog();
+        delDlg->showManageAddSuccess(addName, addDeptName);
+        delDlg->setWindowModality(Qt::ApplicationModal);
+        delDlg->show();
+
+        this->close();
+
+        // 动态显示 没成功？
+//        ((PersonManageDialog* )m_pmd)->setTabWidgetValue();
+    });
 }

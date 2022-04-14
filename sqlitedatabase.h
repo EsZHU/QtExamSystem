@@ -36,6 +36,11 @@ public:
     void writePickHis(QDateTime curTime, int deptId, QString names); // 确认抽考
     QVector<hisRecord> getHisData();
     void hisDelete(QString deleteType);
+    void manageAddPerson(QString addName, int deptId);
+    bool manageDeletePerson(QString delName, int deptId);
+    void manageChangePerson(QString beforeName, int beforeDeptId, QString afterName, int afterDeptId);
+    int manageSearchPerson(QString searchName);
+    bool manageExist(QString nameS, int deptId);
 
 private:
     QVector<hisRecord> m_hisVect;

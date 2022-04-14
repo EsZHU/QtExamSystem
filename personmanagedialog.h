@@ -10,6 +10,7 @@
 #include "addpersondialog.h"
 #include "deletepersondialog.h"
 #include "changepersondialog.h"
+#include "searchpersondialog.h"
 
 namespace Ui {
 class PersonManageDialog;
@@ -28,6 +29,7 @@ public:
     void addPersonButton();
     void deletePersonButton();
     void changePersonButton();
+    void searchPersonButton();
 
 private:
     Ui::PersonManageDialog *ui;

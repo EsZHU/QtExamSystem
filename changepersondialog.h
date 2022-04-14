@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include "changeperwarning.h"
+#include "deletesuccessdialog.h"
+#include "sqlitedatabase.h"
+#include "defs.h"
 
 namespace Ui {
 class ChangePersonDialog;
@@ -15,10 +18,13 @@ class ChangePersonDialog : public QWidget
 public:
     explicit ChangePersonDialog(QWidget *parent = nullptr);
     ~ChangePersonDialog();
-    void confirmButton();
+    void changePersonButton();
 
 private:
     Ui::ChangePersonDialog *ui;
+    DeleteSuccessDialog* delDlg;
+    SqliteDatabase* database;
+    QVector<department> m_depts;
 };
 
 #endif // CHANGEPERSONDIALOG_H

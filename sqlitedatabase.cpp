@@ -10,7 +10,7 @@ SqliteDatabase::SqliteDatabase()
     } else {
         qDebug() << "Succeed to connect to PickNameDB.sqlite3.";
     }
-//    hisDelete(3);
+
     scopeMap.insert("一年前", 1);
     scopeMap.insert("半年前", 2);
     scopeMap.insert("一个月前", 3);
@@ -255,4 +255,64 @@ void SqliteDatabase::hisDelete(QString deleteType)
         break;
     }
     query.exec();
+}
+
+// 增加人员
+void SqliteDatabase::manageAddPerson(QString addName, int deptId)
+{
+    QSqlQuery query;
+
+    query.prepare("insert into person (deptId, perName) values (:deptId, :perName)");
+    query.bindValue(":deptId", deptId);
+    query.bindValue(":perName", addName);
+    if(!query.exec()){
+        qDebug() << "manageAddPerson failed" << query.lastError();
+    }
+}
+
+bool SqliteDatabase::manageDeletePerson(QString delName, int deptId)
+{
+    QSqlQuery query;
+
+    if(manageExist(delName, deptId)){
+        query.prepare("delete from person where perName = :perName");
+        query.bindValue(":perName", delName);
+        query.exec();
+        return true;
+    }
+    return false;
+}
+
+void SqliteDatabase::manageChangePerson(QString beforeName, int beforeDeptId, QString afterName, int afterDeptId)
+{
+
+}
+
+int SqliteDatabase::manageSearchPerson(QString searchName)
+{
+    QSqlQuery query;
+
+    query.prepare("select * from person where perName = :perName");
+    query.bindValue(":perName", searchName);
+    query.exec();
+    query.next();
+    int chartDeptId = query.value("deptId").toInt();
+    return chartDeptId;
+}
+
+bool SqliteDatabase::manageExist(QString nameS, int deptId)
+{
+    QSqlQuery query;
+
+    // 首先查看对应部门有没有这个人
+    query.prepare("select * from person where perName = :perName");
+    query.bindValue(":perName", nameS);
+    query.exec();
+    query.next();
+    int chartDeptId = query.value("deptId").toInt();
+    qDebug() << chartDeptId << "chartDeptId" << deptId << "deptId";
+    if(chartDeptId == deptId){
+        return true;
+    }
+    return false;
 }

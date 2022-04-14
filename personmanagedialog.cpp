@@ -14,6 +14,7 @@ PersonManageDialog::PersonManageDialog(QWidget *parent) :
     addPersonButton();
     deletePersonButton();
     changePersonButton();
+    searchPersonButton();
 }
 
 PersonManageDialog::~PersonManageDialog()
@@ -266,7 +267,7 @@ void PersonManageDialog::getData()
 void PersonManageDialog::addPersonButton()
 {
     connect(ui->addPersonButton, &QPushButton::clicked, [=](){
-        AddPersonDialog* addPerDlg = new AddPersonDialog();
+        AddPersonDialog* addPerDlg = new AddPersonDialog(this);
         addPerDlg->setWindowModality(Qt::ApplicationModal);
         addPerDlg->show();
     });
@@ -278,6 +279,8 @@ void PersonManageDialog::deletePersonButton()
         DeletePersonDialog* delPerDlg = new DeletePersonDialog();
         delPerDlg->setWindowModality(Qt::ApplicationModal);
         delPerDlg->show();
+
+//        setTabWidgetValue();
     });
 }
 
@@ -287,5 +290,14 @@ void PersonManageDialog::changePersonButton()
         ChangePersonDialog* changePerDlg = new ChangePersonDialog();
         changePerDlg->setWindowModality(Qt::ApplicationModal);
         changePerDlg->show();
+    });
+}
+
+void PersonManageDialog::searchPersonButton()
+{
+    connect(ui->searchPersonButton, &QPushButton::clicked, [=](){
+        SearchPersonDialog* searchPerDlg = new SearchPersonDialog();
+        searchPerDlg->setWindowModality(Qt::ApplicationModal);
+        searchPerDlg->show();
     });
 }
