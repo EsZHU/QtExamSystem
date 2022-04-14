@@ -35,6 +35,7 @@ void DeletePersonDialog::deletePersonButton()
                 if(dept.deptName == delDeptName)
                     delDeptId = dept.id;
 
+            qDebug() << "sda";
             bool delSuc = database->manageDeletePerson(delName, delDeptId);
 
             if(delSuc){ // 删除成功

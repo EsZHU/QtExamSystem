@@ -27,6 +27,7 @@ void SearchPersonDialog::searchPersonButton()
         QString searchName = ui->nameLabel->text();
         QString fromDept;
         if(ui->nameLabel->text() == ""){ // 改变前后的名字少了不行
+            ui->departLabel->setText("");
             delDlg->setWindowModality(Qt::ApplicationModal);
             delDlg->showManageNotComplete();
             delDlg->show();
