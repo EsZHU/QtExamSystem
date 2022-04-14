@@ -24,23 +24,29 @@ void DeletePersonDialog::deletePersonButton()
         QString delName = ui->nameLabel->text();
         QString delDeptName = ui->depNameComboBox->currentText();
 
-        m_depts = database->getDeptData();
-        int delDeptId;
-        for(auto dept : m_depts)
-            if(dept.deptName == delDeptName)
-                delDeptId = dept.id;
-
-        bool delSuc = database->manageDeletePerson(delName, delDeptId);
-
-        if(delSuc){ // 删除成功
-            delDlg->showManageDeleteSuccess(delName, delDeptName);
+        if(ui->nameLabel->text() == ""){ // 改变前后的名字少了不行
             delDlg->setWindowModality(Qt::ApplicationModal);
+            delDlg->showManageNotComplete();
             delDlg->show();
-            this->close();
-        } else { // 删除失败
-            delDlg->showManageDeleteFail(delName, delDeptName);
-            delDlg->setWindowModality(Qt::ApplicationModal);
-            delDlg->show();
+        } else {
+            m_depts = database->getDeptData();
+            int delDeptId;
+            for(auto dept : m_depts)
+                if(dept.deptName == delDeptName)
+                    delDeptId = dept.id;
+
+            bool delSuc = database->manageDeletePerson(delName, delDeptId);
+
+            if(delSuc){ // 删除成功
+                delDlg->showManageDeleteSuccess(delName, delDeptName);
+                delDlg->setWindowModality(Qt::ApplicationModal);
+                delDlg->show();
+                this->close();
+            } else { // 删除失败
+                delDlg->showManageDeleteFail(delName, delDeptName);
+                delDlg->setWindowModality(Qt::ApplicationModal);
+                delDlg->show();
+            }
         }
     });
 }
