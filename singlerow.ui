@@ -42,7 +42,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
@@ -160,7 +160,7 @@ QSpinBox::down-button:pressed{
     </property>
     <property name="font">
      <font>
-      <pointsize>24</pointsize>
+      <pointsize>18</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -184,7 +184,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
    </property>
    <property name="font">
     <font>
-     <pointsize>24</pointsize>
+     <pointsize>18</pointsize>
     </font>
    </property>
    <property name="text">
@@ -205,7 +205,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
    </property>
    <property name="font">
     <font>
-     <pointsize>24</pointsize>
+     <pointsize>18</pointsize>
     </font>
    </property>
    <property name="styleSheet">
