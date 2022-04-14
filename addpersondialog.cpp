@@ -10,6 +10,7 @@ AddPersonDialog::AddPersonDialog(QWidget* pmd, QWidget *parent) :
     database = new SqliteDatabase();
     this->setWindowTitle("增加人员界面");
     connect(ui->cancelBtn, &QPushButton::clicked, [=](){this->close();});
+    delDlg = new DeleteSuccessDialog();
     addPersonButton();
 }
 
@@ -24,23 +25,29 @@ void AddPersonDialog::addPersonButton()
         QString addName = ui->nameLabel->text();
         QString addDeptName = ui->depNameComboBox->currentText();
 
-        m_depts = database->getDeptData();
-        int addDeptId;
-        for(auto dept : m_depts)
-            if(dept.deptName == addDeptName)
-                addDeptId = dept.id;
-        qDebug() << addDeptId;
+        if(ui->nameLabel->text() == ""){ // 改变前后的名字少了不行
+            delDlg->setWindowModality(Qt::ApplicationModal);
+            delDlg->showManageNotComplete();
+            delDlg->show();
+        } else{
+            m_depts = database->getDeptData();
+            int addDeptId;
+            for(auto dept : m_depts)
+                if(dept.deptName == addDeptName)
+                    addDeptId = dept.id;
+            qDebug() << addDeptId;
 
-        database->manageAddPerson(addName, addDeptId);
+            database->manageAddPerson(addName, addDeptId);
 
-        DeleteSuccessDialog* delDlg = new DeleteSuccessDialog();
-        delDlg->showManageAddSuccess(addName, addDeptName);
-        delDlg->setWindowModality(Qt::ApplicationModal);
-        delDlg->show();
+            DeleteSuccessDialog* delDlg = new DeleteSuccessDialog();
+            delDlg->showManageAddSuccess(addName, addDeptName);
+            delDlg->setWindowModality(Qt::ApplicationModal);
+            delDlg->show();
 
-        this->close();
+            this->close();
 
-        // 动态显示 没成功？
-//        ((PersonManageDialog* )m_pmd)->setTabWidgetValue();
+            // 动态显示 没成功？
+    //        ((PersonManageDialog* )m_pmd)->setTabWidgetValue();
+        }
     });
 }

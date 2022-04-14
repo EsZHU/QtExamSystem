@@ -1,4 +1,4 @@
-#ifndef ADDPERSONDIALOG_H
+﻿#ifndef ADDPERSONDIALOG_H
 #define ADDPERSONDIALOG_H
 
 #include <QWidget>
@@ -24,6 +24,7 @@ private:
     SqliteDatabase* database;
     QVector<department> m_depts;
     QWidget* m_pmd;
+    DeleteSuccessDialog* delDlg;
 };
 
 #endif // ADDPERSONDIALOG_H
