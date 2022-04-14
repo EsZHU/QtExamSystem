@@ -8,8 +8,9 @@ ChangePersonDialog::ChangePersonDialog(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->cancelBtn, &QPushButton::clicked, [=](){this->close();});
     this->setWindowTitle("修改人员界面");
-
-    confirmButton();
+    delDlg = new DeleteSuccessDialog();
+    database = new SqliteDatabase();
+    changePersonButton();
 }
 
 ChangePersonDialog::~ChangePersonDialog()
@@ -17,15 +18,42 @@ ChangePersonDialog::~ChangePersonDialog()
     delete ui;
 }
 
-void ChangePersonDialog::confirmButton()
+void ChangePersonDialog::changePersonButton()
 {
-    // 您输入的改变前的信息不正确！请重新核对后重新输入！
     connect(ui->saveBtn, &QPushButton::clicked, [=](){
-        // if不满足条件
-        {
-            ChangePerWarning* warnDlg = new ChangePerWarning();
-            warnDlg->setWindowModality(Qt::ApplicationModal);
-            warnDlg->show();
+        QString beforeName = ui->nameLabelBefore->text();
+        QString beforeDept = ui->depNameComboBoxBefore->currentText();
+        QString afterName = ui->nameLabelAfter->text();
+        QString afterDept = ui->depNameComboBoxAfter->currentText();
+
+        if(ui->nameLabelBefore->text() == "" || ui->nameLabelAfter->text() == ""){ // 改变前后的名字少了一个都不行
+            delDlg->setWindowModality(Qt::ApplicationModal);
+            delDlg->showManageNotComplete();
+            delDlg->show();
+        } else { // 名字都有，看第一个名字存在性
+            m_depts = database->getDeptData();
+            int beDeptId, afDeptId;
+            for(auto dept : m_depts){
+                if(dept.deptName == beforeDept)
+                    beDeptId = dept.id;
+                if(dept.deptName == afterDept)
+                    afDeptId = dept.id;
+            }
+
+            if(!database->manageExist(beforeName, beDeptId)) { // 待修改名不合法
+                delDlg->setWindowModality(Qt::ApplicationModal);
+                delDlg->showManageChangeFail(beforeName, beforeDept);
+                delDlg->show();
+            } else { // 待修改名合法
+                // 先删除待修改
+                database->manageDeletePerson(beforeName, beDeptId);
+                // 再增加新加的
+                database->manageAddPerson(afterName, afDeptId);
+                // 成功弹窗
+                delDlg->showManageChangeSuccess(beforeName, beforeDept, afterName, afterDept);
+                delDlg->setWindowModality(Qt::ApplicationModal);
+                delDlg->show();
+            }
         }
     });
 }

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
+    <width>530</width>
     <height>91</height>
    </rect>
   </property>
@@ -16,9 +16,9 @@
   <widget class="QLabel" name="deleteSuccessLabel">
    <property name="geometry">
     <rect>
-     <x>17</x>
+     <x>0</x>
      <y>30</y>
-     <width>261</width>
+     <width>531</width>
      <height>20</height>
     </rect>
    </property>
@@ -32,7 +32,7 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>219</x>
+     <x>450</x>
      <y>60</y>
      <width>71</width>
      <height>21</height>

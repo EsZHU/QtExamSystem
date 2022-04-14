@@ -112,6 +112,5 @@ void MainWindow::PersonManagement()
         PersonManageDialog* personManageDialog = new PersonManageDialog();
         personManageDialog->setWindowModality(Qt::ApplicationModal);
         personManageDialog->show();
-        personManageDialog->setWindowModality(Qt::ApplicationModal);
     });
 }
