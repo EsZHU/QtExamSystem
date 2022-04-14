@@ -100,7 +100,7 @@ QSpinBox::up-button {
 	border-radius: 0px 6px 6px 0px;
 	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(200, 200, 200, 255), stop:1 rgba(255, 255, 255, 255))*/
 	/*image: url(:/Qss/Qss/spinBox右箭头.png);*/
-	image: url(:/Qss/Qss/spinBox右箭头未选中3.0.png);
+	image: url(:/Qss/Qss/spinBoxRightArrowUnchosen.png);
 }
 QSpinBox::down-button {
 	subcontrol-position:left;
@@ -109,21 +109,21 @@ QSpinBox::down-button {
 	/*border-radius: 6px 0px 0px 6px;
 	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(200, 200, 200, 255), stop:1 rgba(255, 255, 255, 255))*/
 	/*image: url(:/Qss/Qss/spinBox左箭头.png);*/
-	image: url(:/Qss/Qss/spinBox左箭头未选中3.0.png);
+	image: url(:/Qss/Qss/spinBoxLeftArrowUnchosen.png);
 }
 
 QSpinBox::up-button:hover{
 	subcontrol-position:right;
 	height: 29px;
 	width: 29px;
-	image: url(:/Qss/Qss/spinBox右按钮中间3.0.png);
+	image: url(:/Qss/Qss/spinBoxRightButtonMiddle.png);
 }
 
 QSpinBox::down-button:hover{
 	subcontrol-position:left;
 	height: 29px;
 	width: 29px;
-	image: url(:/Qss/Qss/spinBox左按钮中间3.0.png);
+	image: url(:/Qss/Qss/spinBoxLeftButtonMiddle.png);
 }
 
 /*按钮按下样式*/
@@ -131,14 +131,14 @@ QSpinBox::up-button:pressed{
 	subcontrol-position:right;
 	height: 29px;
 	width: 29px;
-	image: url(:/Qss/Qss/spinBox右箭头已选中4.0.png);
+	image: url(:/Qss/Qss/spinBoxRightArrowChosen.png);
 }
  
 QSpinBox::down-button:pressed{
 	subcontrol-position:left;
 	height: 29px;
 	width: 29px;
-	image: url(:/Qss/Qss/spinBox左箭头已选中4.0.png);
+	image: url(:/Qss/Qss/spinBoxLeftArrowChosen.png);
 }
 </string>
     </property>
