@@ -40,7 +40,7 @@
    <widget class="QPushButton" name="checkButton">
     <property name="geometry">
      <rect>
-      <x>840</x>
+      <x>920</x>
       <y>820</y>
       <width>121</width>
       <height>32</height>
@@ -63,7 +63,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
    <widget class="QPushButton" name="hisShowButton">
     <property name="geometry">
      <rect>
-      <x>500</x>
+      <x>580</x>
       <y>820</y>
       <width>121</width>
       <height>32</height>
@@ -98,13 +98,13 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
      </font>
     </property>
     <property name="text">
-     <string>处室                 人数             操作                    结果</string>
+     <string>    处室                             人数                        操作                                     结果</string>
     </property>
    </widget>
    <widget class="QPushButton" name="personManageButton">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>750</x>
       <y>820</y>
       <width>121</width>
       <height>31</height>
@@ -124,11 +124,59 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
      <string>人员管理</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="absentButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>820</y>
+      <width>121</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
+QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
+    </property>
+    <property name="text">
+     <string>请假管理</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="dptManageButton">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>820</y>
+      <width>121</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
+QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
+    </property>
+    <property name="text">
+     <string>部门管理</string>
+    </property>
+   </widget>
    <zorder>checkButton</zorder>
    <zorder>hisShowButton</zorder>
    <zorder>label</zorder>
    <zorder>widgetBig</zorder>
    <zorder>personManageButton</zorder>
+   <zorder>absentButton</zorder>
+   <zorder>dptManageButton</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

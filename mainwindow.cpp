@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
     showDept();
     showHisDialog();
     PersonManagement();
+    AbsentManageButton();
+    DptManageButton();
 }
 
 MainWindow::~MainWindow()
@@ -112,5 +114,23 @@ void MainWindow::PersonManagement()
         PersonManageDialog* personManageDialog = new PersonManageDialog();
         personManageDialog->setWindowModality(Qt::ApplicationModal);
         personManageDialog->show();
+    });
+}
+
+void MainWindow::AbsentManageButton()
+{
+    connect(ui->absentButton, &QPushButton::clicked, [=](){
+        AbsenceManageDialog* absenceManageDialog = new AbsenceManageDialog();
+        absenceManageDialog->setWindowModality(Qt::ApplicationModal);
+        absenceManageDialog->show();
+    });
+}
+
+void MainWindow::DptManageButton()
+{
+    connect(ui->dptManageButton, &QPushButton::clicked, [=](){
+        DptManageDialog* dptManageDialog = new DptManageDialog();
+        dptManageDialog->setWindowModality(Qt::ApplicationModal);
+        dptManageDialog->show();
     });
 }

@@ -320,3 +320,94 @@ bool SqliteDatabase::manageExist(QString nameS, int deptId)
     }
     return false;
 }
+
+bool SqliteDatabase::manageAddDept(QString deptName)
+{
+    QSqlQuery query;
+    int exist = 0;
+
+    // 首先看有没有这个部门
+    QVector<department> depts;
+    depts = getDeptData();
+    for(auto dept: depts){
+        if(dept.deptName == deptName){
+            exist = 1;
+        }
+    }
+
+    if(!exist){
+        query.prepare("insert into department where deptName = :deptName");
+        query.bindValue(":deptName", deptName);
+        if(!query.exec())
+        {
+            qDebug() << "Insert failed." << query.lastError();
+        }
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool SqliteDatabase::manageDelDept(QString deptName)
+{
+    QSqlQuery query;
+    int exist = 0, deptNum;
+
+    // 首先看有没有这个部门
+    QVector<department> depts;
+    depts = getDeptData();
+    for(auto dept: depts){
+        if(dept.deptName == deptName){
+            exist = 1;
+            deptNum = dept.id;
+        }
+    }
+
+    if(exist){
+        query.prepare("delete from department where id = :deptNum");
+        query.bindValue(":deptNum", deptNum);
+        if(!query.exec())
+        {
+            qDebug() << "Delete failed." << query.lastError();
+        }
+        return true;
+    } else {
+        return false;
+    }
+}
+
+int SqliteDatabase::manageChangingDept(QString beName, QString afName)
+{
+    QSqlQuery query;
+    int beforeExist = 0;
+    int afterExist = 0;
+    int beId;
+
+    // 首先看有没有这两个部门
+    QVector<department> depts;
+    depts = getDeptData();
+    for(auto dept: depts){
+        if(dept.deptName == beName){
+            beforeExist = 1;
+            beId = dept.id;
+        }
+        if(dept.deptName == afName){
+            afterExist = 1;
+        }
+    }
+
+    if(beforeExist && !afterExist){
+        query.prepare("update department set deptName = :afName where id = :beId");
+        query.bindValue(":afName", afName);
+        query.bindValue(":beId", beId);
+        if(!query.exec())
+        {
+            qDebug() << "Delete failed." << query.lastError();
+        }
+        return 1;
+    } else if(!beforeExist){
+        return 0;
+    } else if(beforeExist && afterExist){
+        return 2;
+    }
+}

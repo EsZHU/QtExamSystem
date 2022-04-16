@@ -9,6 +9,8 @@
 #include "historyshow.h"
 //#include "rygl.h"
 #include "personmanagedialog.h"
+#include "absencemanagedialog.h"
+#include "dptmanagedialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -41,6 +43,8 @@ public:
     void showHisDialog();
 
     void PersonManagement();
+    void AbsentManageButton();
+    void DptManageButton();
 
 //private slots:
 //    void on_renyuanguanli_clicked();

@@ -41,6 +41,9 @@ public:
     void manageChangePerson(QString beforeName, int beforeDeptId, QString afterName, int afterDeptId);
     int manageSearchPerson(QString searchName);
     bool manageExist(QString nameS, int deptId);
+    bool manageAddDept(QString deptName);
+    bool manageDelDept(QString deptName);
+    int manageChangingDept(QString beName, QString afName);
 
 private:
     QVector<hisRecord> m_hisVect;
