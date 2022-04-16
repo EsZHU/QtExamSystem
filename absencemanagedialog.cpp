@@ -28,8 +28,8 @@ void AbsenceManageDialog::getData()
 
 void AbsenceManageDialog::refresh()
 {
-    ui->widget_5->hide(); // 暂时不想做成员和处室的适配
-    ui->widget_6->hide(); // 暂时不想做成员和处室的适配
+//    ui->widget_5->hide(); // 暂时不想做成员和处室的适配
+//    ui->widget_6->hide(); // 暂时不想做成员和处室的适配
     QTableWidget* absPerTable = new QTableWidget(ui->absenceTableWidget);
     absPerTable->resize(ui->absenceTableWidget->width(), ui->absenceTableWidget->height());
     absPerTable->setColumnCount(2); //设置列数为3
@@ -74,7 +74,7 @@ void AbsenceManageDialog::confirmAbsentButton()
     connect(ui->confirmAbsent, &QPushButton::clicked, [=](){
         int find = 0;
         QString perName = ui->askLeaveNameLabel->text();
-        QString deptName = ui->askLeaveDepNameComboBox->currentText();
+//        QString deptName = ui->askLeaveDepNameComboBox->currentText();
         if(perName != ""){
             for(int i = 1; i <= m_depts.size(); i++){
                 for(auto per: m_workPers[i]){
@@ -97,5 +97,25 @@ void AbsenceManageDialog::confirmAbsentButton()
 
 void AbsenceManageDialog::confirmBackButton()
 {
-
+    connect(ui->confirmBack, &QPushButton::clicked, [=](){
+        int find = 0;
+        QString perName = ui->askBackNameLabel->text();
+        if(perName != ""){
+            for(int i = 1; i <= m_depts.size(); i++){
+                for(auto per: m_absPers[i]){
+                    if(perName == per.perName){ // 找到需要销假的人
+                        database->setPerWork(perName);
+                        ui->hintLabelTwo->setText("【" + perName + "】成功销假");
+                        find = 1;
+                    }
+                }
+            }
+            if(find == 0){
+                // 您所输入的人不存在或已销假
+                ui->hintLabelTwo->setText("您所输入的人不存在或已销假");
+            }
+        } else if(perName == ""){
+                ui->hintLabelTwo->setText("输入栏不能为空");
+        }
+    });
 }

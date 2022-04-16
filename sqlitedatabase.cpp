@@ -158,16 +158,25 @@ QMap<int, QVector<person> > SqliteDatabase::getAbsentPerData()
 
 void SqliteDatabase::setPerAbsent(QString perName)
 {
-    // 更改表中id=1222 的deptName属性为admin
-//    query.prepare("update department set deptName='admin' where id='1222'");
-//    query.exec();
     QSqlQuery query;
 
     query.prepare("update person set absent = :absent where perName = :perName");
     query.bindValue(":absent", 1);
     query.bindValue(":perName", perName);
     if(!query.exec()){
-        qDebug() << "Delete failed." << query.lastError();
+        qDebug() << "ChangeData failed." << query.lastError();
+    }
+}
+
+void SqliteDatabase::setPerWork(QString perName)
+{
+    QSqlQuery query;
+
+    query.prepare("update person set absent = :absent where perName = :perName");
+    query.bindValue(":absent", 0);
+    query.bindValue(":perName", perName);
+    if(!query.exec()){
+        qDebug() << "ChangeData failed." << query.lastError();
     }
 }
 
