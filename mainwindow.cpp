@@ -26,7 +26,7 @@ MainWindow::~MainWindow()
 void MainWindow::getData()
 {
     m_depts = database->getDeptData();
-    m_pers = database->getPerData();
+    m_pers = database->getWorkPerData();
 }
 
 void MainWindow::initGUI()

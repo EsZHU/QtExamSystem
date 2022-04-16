@@ -31,7 +31,9 @@ public:
     SqliteDatabase();
     void initPickNameDBtest(); // 测试函数
     QVector<department> getDeptData(); // 读取处表返回处的结构体
-    QMap<int,QVector<person>> getPerData(); // 读取人员表返回人员的结构体
+    QMap<int,QVector<person>> getWorkPerData(); // 读取人员表返回人员的结构体
+    QMap<int,QVector<person>> getAbsentPerData(); // 读取人员表返回人员的结构体
+    void setPerAbsent(QString perName);
     QPair<int, QString> getRanPer(int n, int deptId, QMap<int,QVector<person>> perData); // 点击选择获取n人数据
     void writePickHis(QDateTime curTime, int deptId, QString names); // 确认抽考
     QVector<hisRecord> getHisData();

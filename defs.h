@@ -13,6 +13,7 @@ struct person{
     int id;
     int deptId;
     QString perName;
+    int absent;
 };
 
 struct selectRecord {

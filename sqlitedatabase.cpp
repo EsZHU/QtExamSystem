@@ -106,7 +106,7 @@ QVector<department> SqliteDatabase::getDeptData()
      return deptVect;
 }
 
-QMap<int,QVector<person>> SqliteDatabase::getPerData() // 获取人员信息
+QMap<int,QVector<person>> SqliteDatabase::getWorkPerData() // 获取人员信息
 {
     QMap<int,QVector<person>> perMap;
 
@@ -116,19 +116,59 @@ QMap<int,QVector<person>> SqliteDatabase::getPerData() // 获取人员信息
     query.exec();
 
     while (query.next()) {
-        if(!query.value("absent").toBool()){ // 缺席=0
+        if(query.value("absent").toInt() == 0){ // absent=0 不缺席
             person per;
             per.id = query.value("id").toInt();
             per.deptId = query.value("deptId").toInt();
             per.perName = query.value("perName").toString();
 
             perMap[per.deptId].push_back(per);
-        } else {
+        } else if(query.value("absent").toInt() == 1){
             continue;
         }
     }
 
     return perMap;
+}
+
+QMap<int, QVector<person> > SqliteDatabase::getAbsentPerData()
+{
+    QMap<int,QVector<person>> perMap;
+
+    QSqlQuery query;
+
+    query.prepare("select * from person");
+    query.exec();
+
+    while (query.next()) {
+        if(query.value("absent").toInt() == 1){ // absent=1 缺席
+            person per;
+            per.id = query.value("id").toInt();
+            per.deptId = query.value("deptId").toInt();
+            per.perName = query.value("perName").toString();
+
+            perMap[per.deptId].push_back(per);
+        } else if(query.value("absent").toInt() == 0){
+            continue;
+        }
+    }
+
+    return perMap;
+}
+
+void SqliteDatabase::setPerAbsent(QString perName)
+{
+    // 更改表中id=1222 的deptName属性为admin
+//    query.prepare("update department set deptName='admin' where id='1222'");
+//    query.exec();
+    QSqlQuery query;
+
+    query.prepare("update person set absent = :absent where perName = :perName");
+    query.bindValue(":absent", 1);
+    query.bindValue(":perName", perName);
+    if(!query.exec()){
+        qDebug() << "Delete failed." << query.lastError();
+    }
 }
 
 QPair<int, QString> SqliteDatabase::getRanPer(int n, int deptId, QMap<int,QVector<person>> perData)
@@ -138,7 +178,15 @@ QPair<int, QString> SqliteDatabase::getRanPer(int n, int deptId, QMap<int,QVecto
     QString ranPerMess = ""; // 随机人员信息
     QPair<int, QString> ranPairMess; // 随机<处室, 人员>信息
 
+    // 不能直接用处的人数，需要计算没有请假的人
+//    int lenth;
     int lenth = pers.size(); // 处的人数
+//    for(auto per: pers){
+//        qDebug() << "lenth";
+//        if(per.absent == 0){
+//            lenth++;
+//        }
+//    }
 
     // 测试随机选人类
     RandomAccess* random;

@@ -261,7 +261,7 @@ void PersonManageDialog::setTabWidgetValue()
 
 void PersonManageDialog::getData()
 {
-    m_pers = database->getPerData();
+    m_pers = database->getWorkPerData();
 }
 
 void PersonManageDialog::addPersonButton()
