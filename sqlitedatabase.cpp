@@ -106,7 +106,7 @@ QVector<department> SqliteDatabase::getDeptData()
      return deptVect;
 }
 
-QMap<int,QVector<person>> SqliteDatabase::getPerData()
+QMap<int,QVector<person>> SqliteDatabase::getPerData() // 获取人员信息
 {
     QMap<int,QVector<person>> perMap;
 
@@ -116,12 +116,16 @@ QMap<int,QVector<person>> SqliteDatabase::getPerData()
     query.exec();
 
     while (query.next()) {
-        person per;
-        per.id = query.value("id").toInt();
-        per.deptId = query.value("deptId").toInt();
-        per.perName = query.value("perName").toString();
+        if(!query.value("absent").toBool()){ // 缺席=0
+            person per;
+            per.id = query.value("id").toInt();
+            per.deptId = query.value("deptId").toInt();
+            per.perName = query.value("perName").toString();
 
-        perMap[per.deptId].push_back(per);
+            perMap[per.deptId].push_back(per);
+        } else {
+            continue;
+        }
     }
 
     return perMap;
