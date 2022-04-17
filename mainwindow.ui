@@ -29,9 +29,9 @@
    <widget class="QWidget" name="widgetBig" native="true">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>90</x>
       <y>80</y>
-      <width>1411</width>
+      <width>1400</width>
       <height>701</height>
      </rect>
     </property>
@@ -40,9 +40,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>300</x>
       <y>40</y>
-      <width>871</width>
+      <width>1021</width>
       <height>31</height>
      </rect>
     </property>
@@ -52,36 +52,19 @@
      </font>
     </property>
     <property name="text">
-     <string>    处室                             人数                        操作                                     结果                                                             可选人数</string>
+     <string>    处室                                                            人数                        操作                                     结果                                                             可选人数</string>
     </property>
    </widget>
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>820</y>
-      <width>671</width>
+      <x>440</x>
+      <y>800</y>
+      <width>601</width>
       <height>56</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="absentButton">
-       <property name="font">
-        <font>
-         <pointsize>18</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
-QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
-QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
-       </property>
-       <property name="text">
-        <string>请假管理</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QPushButton" name="dptManageButton">
        <property name="font">
@@ -100,7 +83,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="personManageButton">
+      <widget class="QPushButton" name="absentButton">
        <property name="font">
         <font>
          <pointsize>18</pointsize>
@@ -112,7 +95,7 @@ QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
        </property>
        <property name="text">
-        <string>人员管理</string>
+        <string>请假管理</string>
        </property>
       </widget>
      </item>
@@ -130,6 +113,23 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
        </property>
        <property name="text">
         <string>历史记录</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="personManageButton">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
+QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
+       </property>
+       <property name="text">
+        <string>人员管理</string>
        </property>
       </widget>
      </item>

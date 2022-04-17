@@ -31,9 +31,7 @@ SOURCES += \
     randomaccess.cpp \
     searchpersondialog.cpp \
     singlerow.cpp \
-    sqlitedatabase.cpp \
-    rygl.cpp \
-    info.cpp
+    sqlitedatabase.cpp
 
 HEADERS += \
     CustomTabStyle.h \
@@ -58,9 +56,7 @@ HEADERS += \
     randomaccess.h \
     searchpersondialog.h \
     singlerow.h \
-    sqlitedatabase.h \
-    rygl.h \
-    info.h
+    sqlitedatabase.h
 
 FORMS += \
     absencemanagedialog.ui \
@@ -79,9 +75,7 @@ FORMS += \
     personmanagedialog.ui \
     pickresultdiagram.ui \
     searchpersondialog.ui \
-    singlerow.ui \
-    rygl.ui \
-    info.ui
+    singlerow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
