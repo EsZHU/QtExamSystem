@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 
 #include <QApplication>
+#include <QScreen>
 #include <QFile>
 #include <sqlitedatabase.h>
 #include <mainwindow.h>
@@ -12,8 +13,14 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
+
+    auto s = w.screen();
+    auto size = s->size();
     w.resize(1440, 960);
-    w.show();
+    w.move ((size.width() - w.width())/2,
+            (size.height() - w.height())/2
+    );
+    w.showNormal();
 //    sqlDB.SqliteDatabase::initPickNameDBtest();
     // 测试随机选人类
 //    RandomAccess* random;
