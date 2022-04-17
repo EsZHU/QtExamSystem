@@ -38,6 +38,11 @@ QLineEdit *SingleRow::lineEdit()
     return ui->chosenPerEdit;
 }
 
+QPushButton *SingleRow::deptLabel()
+{
+    return ui->deptLabel;
+}
+
 int SingleRow::spinBoxNum()
 {
     return ui->spinBox->value();
@@ -59,18 +64,28 @@ QPushButton *SingleRow::cancelButton()
 bool SingleRow::pushShowSigRow()
 {
     int state = 0;
-    connect(ui->deptLabel, &QPushButton::clicked, [=]() mutable{
-        if(state == 0){
-            ui->hideWidget->show();
-            state = 1;
-        } else if(state ==1){
-            ui->hideWidget->hide();
-            state = 0;
-        }
-    });
+//    connect(ui->deptLabel, &QPushButton::clicked, [=]() mutable{
+//        if(state == 0){
+//            ui->hideWidget->show();
+//            state = 1;
+//        } else if(state ==1){
+//            ui->hideWidget->hide();
+//            state = 0;
+//        }
+//    });
     if(state == 1)
         return true;
     else if(state == 0)
         return false;
+    return false;
 }
+
+void SingleRow::setLabelVisible(bool visible)
+{
+    if(visible)
+        ui->hideWidget->show();
+    else
+        ui->hideWidget->hide();
+}
+
 

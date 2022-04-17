@@ -22,6 +22,7 @@ public:
     void chooseButPress();
     QPushButton* chooseButton();
     QLineEdit *lineEdit();
+    QPushButton* deptLabel();
     int spinBoxNum();
     void setLineEdit(QString str);
 //    QSize QLineEdit::sizeHint() const{
@@ -29,6 +30,7 @@ public:
 //    }
     QPushButton *cancelButton();
     bool pushShowSigRow();
+    void setLabelVisible(bool visible);
 
 private:
     Ui::SingleRow *ui;
