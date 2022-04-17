@@ -35,7 +35,7 @@ void MainWindow::initGUI()
     for(int i = 0; i < m_depts.size(); i++) {
         auto widget = new SingleRow(this->ui->widgetBig);
         widget->move(10, i * 50);
-        widget->pushShowSigRow();
+//        widget->setLabelVisible(true);
 
         connect(widget->chooseButton(), &QPushButton::clicked, widget->lineEdit(), [=](){
             QPair<int, QString> str =  database->getRanPer(widget->spinBoxNum(), i+1, m_pers);
@@ -47,6 +47,7 @@ void MainWindow::initGUI()
             m_readPersons[i] = {};
             refreshSingleRow(i);
         });
+
         singleRows.append(widget);
     }
 
@@ -70,6 +71,13 @@ void MainWindow::initGUI()
                 pickResultVec.push_back({tempDept, deptChoosenPersons.second});
             }
         }
+        // 清除
+        for(const auto& singleRow: singleRows){
+            auto index = singleRows.indexOf(singleRow);
+            singleRow->setLabelVisible(false);
+            m_readPersons[index] = {};
+            refreshSingleRow(index);
+        }
 
         // 新加
         auto pickResultDiagram = new PickResultDiagram();
@@ -78,7 +86,22 @@ void MainWindow::initGUI()
         pickResultDiagram->show();
     });
 
+    for(const auto& singleRow: singleRows){
+        connect(singleRow->deptLabel(), &QPushButton::clicked, [=](){
+            for(const auto& singleRowTmp: singleRows){
+                auto index = singleRows.indexOf(singleRowTmp);
 
+                if(singleRow == singleRowTmp){
+                    singleRowTmp->setLabelVisible(true);
+                } else {
+                    singleRowTmp->setLabelVisible(false);
+
+                    m_readPersons[index] = {};
+                    refreshSingleRow(index);
+                }
+            }
+        });
+    }
 }
 
 void MainWindow::showDept()
