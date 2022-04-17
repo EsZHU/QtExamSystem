@@ -56,7 +56,7 @@ QPushButton *SingleRow::cancelButton()
     return ui->cancelButton;
 }
 
-void SingleRow::pushShowSigRow()
+bool SingleRow::pushShowSigRow()
 {
     int state = 0;
     connect(ui->deptLabel, &QPushButton::clicked, [=]() mutable{
@@ -68,5 +68,9 @@ void SingleRow::pushShowSigRow()
             state = 0;
         }
     });
+    if(state == 1)
+        return true;
+    else if(state == 0)
+        return false;
 }
 

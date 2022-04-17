@@ -28,7 +28,7 @@ public:
 //        return QSize(fontMetrics().horizontalAdvance(text()) + 35, 30);
 //    }
     QPushButton *cancelButton();
-    void pushShowSigRow();
+    bool pushShowSigRow();
 
 private:
     Ui::SingleRow *ui;
