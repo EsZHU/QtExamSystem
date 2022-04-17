@@ -58,8 +58,15 @@ QPushButton *SingleRow::cancelButton()
 
 void SingleRow::pushShowSigRow()
 {
-    connect(ui->deptLabel, &QPushButton::clicked, [=](){
-        ui->hideWidget->show();
+    int state = 0;
+    connect(ui->deptLabel, &QPushButton::clicked, [=]() mutable{
+        if(state == 0){
+            ui->hideWidget->show();
+            state = 1;
+        } else if(state ==1){
+            ui->hideWidget->hide();
+            state = 0;
+        }
     });
 }
 
