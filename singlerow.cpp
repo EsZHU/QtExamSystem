@@ -8,11 +8,12 @@ SingleRow::SingleRow(QWidget *parent) :
     ui->setupUi(this);
 //    setFixedSize(QSize(fontMetrics().horizontalAdvance(text()) + 35, 30));
     database = new SqliteDatabase();
-
+    ui->hideWidget->hide();
 }
 
 SingleRow::~SingleRow()
 {
+//    ui->hideWidget->hide();
     delete ui;
 }
 
@@ -53,5 +54,12 @@ void SingleRow::setLineEdit(QString str)
 QPushButton *SingleRow::cancelButton()
 {
     return ui->cancelButton;
+}
+
+void SingleRow::pushShowSigRow()
+{
+    connect(ui->deptLabel, &QPushButton::clicked, [=](){
+        ui->hideWidget->show();
+    });
 }
 

@@ -35,6 +35,7 @@ void MainWindow::initGUI()
     for(int i = 0; i < m_depts.size(); i++) {
         auto widget = new SingleRow(this->ui->widgetBig);
         widget->move(10, i * 50);
+        widget->pushShowSigRow();
 
         connect(widget->chooseButton(), &QPushButton::clicked, widget->lineEdit(), [=](){
             QPair<int, QString> str =  database->getRanPer(widget->spinBoxNum(), i+1, m_pers);
@@ -91,7 +92,6 @@ void MainWindow::refreshSingleRow(int line)
 {
     auto widget = singleRows[line];
     widget->setLineEdit(m_readPersons[line].second);
-    widget->refresh(line + 1);
 }
 
 void MainWindow::showWorkPerNum()
