@@ -6,14 +6,20 @@ SingleRow::SingleRow(QWidget *parent) :
     ui(new Ui::SingleRow)
 {
     ui->setupUi(this);
-
 //    setFixedSize(QSize(fontMetrics().horizontalAdvance(text()) + 35, 30));
+    database = new SqliteDatabase();
 
 }
 
 SingleRow::~SingleRow()
 {
     delete ui;
+}
+
+void SingleRow::refresh(int deptId)
+{
+    int curDptWorkPerNum = database->getDptPerWorkNum(deptId);
+    ui->perNumLabel->setText(QString::number(curDptWorkPerNum));
 }
 
 void SingleRow::setDeptLabel(QString dept)

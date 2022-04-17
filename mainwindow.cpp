@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     PersonManagement();
     AbsentManageButton();
     DptManageButton();
+    showWorkPerNum();
 }
 
 MainWindow::~MainWindow()
@@ -90,6 +91,16 @@ void MainWindow::refreshSingleRow(int line)
 {
     auto widget = singleRows[line];
     widget->setLineEdit(m_readPersons[line].second);
+    widget->refresh(line + 1);
+}
+
+void MainWindow::showWorkPerNum()
+{
+    auto depts = database->getDeptData();
+    for(int i = 0; i < depts.size(); i++){
+        auto widget = singleRows[i];
+        widget->refresh(i + 1);
+    }
 }
 
 void MainWindow::showHisDialog()

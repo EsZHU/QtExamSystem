@@ -39,6 +39,7 @@ public:
     void showDept();
 
     void refreshSingleRow(int line);
+    void showWorkPerNum();
 
     void showHisDialog();
 

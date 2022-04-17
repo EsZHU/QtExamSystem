@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
+#include "sqlitedatabase.h"
 
 namespace Ui {
 class SingleRow;
@@ -16,6 +17,7 @@ class SingleRow : public QWidget
 public:
     explicit SingleRow(QWidget *parent = nullptr);
     ~SingleRow();
+    void refresh(int deptId);
     void setDeptLabel(QString dept);
     void chooseButPress();
     QPushButton* chooseButton();
@@ -29,6 +31,7 @@ public:
 
 private:
     Ui::SingleRow *ui;
+    SqliteDatabase* database;
 };
 
 #endif // SINGLEROW_H

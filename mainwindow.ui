@@ -37,58 +37,12 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout"/>
    </widget>
-   <widget class="QPushButton" name="checkButton">
-    <property name="geometry">
-     <rect>
-      <x>920</x>
-      <y>820</y>
-      <width>121</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
-QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
-QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
-    </property>
-    <property name="text">
-     <string>确认抽考</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="hisShowButton">
-    <property name="geometry">
-     <rect>
-      <x>580</x>
-      <y>820</y>
-      <width>121</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
-QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
-QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
-    </property>
-    <property name="text">
-     <string>历史记录</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>30</y>
-      <width>711</width>
+      <x>350</x>
+      <y>40</y>
+      <width>871</width>
       <height>31</height>
      </rect>
     </property>
@@ -98,85 +52,109 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
      </font>
     </property>
     <property name="text">
-     <string>    处室                             人数                        操作                                     结果</string>
+     <string>    处室                             人数                        操作                                     结果                                                             可选人数</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="personManageButton">
+   <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>390</x>
       <y>820</y>
-      <width>121</width>
-      <height>31</height>
+      <width>671</width>
+      <height>56</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="absentButton">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
 QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
-    </property>
-    <property name="text">
-     <string>人员管理</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="absentButton">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>820</y>
-      <width>121</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+       </property>
+       <property name="text">
+        <string>请假管理</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="dptManageButton">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
 QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
-    </property>
-    <property name="text">
-     <string>请假管理</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="dptManageButton">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>820</y>
-      <width>121</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+       </property>
+       <property name="text">
+        <string>部门管理</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="personManageButton">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
 QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
-    </property>
-    <property name="text">
-     <string>部门管理</string>
-    </property>
+       </property>
+       <property name="text">
+        <string>人员管理</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="hisShowButton">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
+QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
+       </property>
+       <property name="text">
+        <string>历史记录</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="checkButton">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
+QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
+       </property>
+       <property name="text">
+        <string>确认抽考</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <zorder>checkButton</zorder>
-   <zorder>hisShowButton</zorder>
    <zorder>label</zorder>
    <zorder>widgetBig</zorder>
-   <zorder>personManageButton</zorder>
-   <zorder>absentButton</zorder>
-   <zorder>dptManageButton</zorder>
+   <zorder>widget</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

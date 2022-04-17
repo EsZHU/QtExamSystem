@@ -35,6 +35,7 @@ public:
     QMap<int,QVector<person>> getAbsentPerData(); // 读取人员表返回人员的结构体
     void setPerAbsent(QString perName);
     void setPerWork(QString perName);
+    int getDptPerWorkNum(int deptId);
     QPair<int, QString> getRanPer(int n, int deptId, QMap<int,QVector<person>> perData); // 点击选择获取n人数据
     void writePickHis(QDateTime curTime, int deptId, QString names); // 确认抽考
     QVector<hisRecord> getHisData();

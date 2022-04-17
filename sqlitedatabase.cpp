@@ -180,6 +180,17 @@ void SqliteDatabase::setPerWork(QString perName)
     }
 }
 
+int SqliteDatabase::getDptPerWorkNum(int deptId)
+{
+    QMap<int,QVector<person>> perMap;
+    perMap = getWorkPerData();
+    int curDptWorkNum = 0;
+    for(auto per: perMap[deptId]){
+        curDptWorkNum++;
+    }
+    return curDptWorkNum;
+}
+
 QPair<int, QString> SqliteDatabase::getRanPer(int n, int deptId, QMap<int,QVector<person>> perData)
 {
     QVector<QString> names; // 随机人员数组
