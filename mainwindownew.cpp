@@ -55,11 +55,14 @@ void MainWindowNew::bindLindAndStack()
 
         stackedWidgetDialog = new class stackedWidgetDialog();
 
-//        perNum = m_pers[deptId++].size();
         perNum = m_workPers[deptId].size();
         stackedWidgetDialog->setAvailablePerLabel(perNum);
 
         stackedWidgetDialog->initPerTable(m_workPers, deptId);
+
+        stackedWidgetDialog->chooseRandomPerButton(deptId, m_workPers, perNum);
+        stackedWidgetDialog->cancelRandomPerButton(m_workPers, deptId);
+        stackedWidgetDialog->confirmRanPerButton();
 
         ui->dptStackedWidget->addWidget(stackedWidgetDialog);
         deptId++;

@@ -33,7 +33,7 @@ void SqliteDatabase::initPickNameDBtest()
         qDebug() << "Succeed to connect to PickNameDB.sqlite3.";
     }
 
-//    QSqlQuery sql_query = db.exec("DROP TABLE department");
+    //    QSqlQuery sql_query = db.exec("DROP TABLE department");
 
     /**************************使用QSqlQuery操作数据库**************************/
     QSqlQuery query; // 执行操作类对象
@@ -59,51 +59,51 @@ void SqliteDatabase::initPickNameDBtest()
     }
 
     // 插入数据
-//    query.prepare("insert into department (id, deptName) values (:id, :deptName)");
-//    query.bindValue(":id", "15");
-//    query.bindValue(":deptName", "测试");
-//    if(!query.exec())
-//    {
-//        qDebug() << "Insert failed." << query.lastError();
-//    }
+    //    query.prepare("insert into department (id, deptName) values (:id, :deptName)");
+    //    query.bindValue(":id", "15");
+    //    query.bindValue(":deptName", "测试");
+    //    if(!query.exec())
+    //    {
+    //        qDebug() << "Insert failed." << query.lastError();
+    //    }
 
 
-//    query.bindValue(":id","16");
-//    query.bindValue(":deptName", "测试+");
-//    query.exec();
+    //    query.bindValue(":id","16");
+    //    query.bindValue(":deptName", "测试+");
+    //    query.exec();
 
 
     // 更改表中id=1222 的deptName属性为admin
-//    query.prepare("update department set deptName='admin' where id='1222'");
-//    query.exec();
+    //    query.prepare("update department set deptName='admin' where id='1222'");
+    //    query.exec();
 
     //删除表中 id=1223 的用户信息
-//    query.prepare("delete from department where id='1222'");
-//    query.exec();
-//    query.prepare("delete from department where id='15'");
-//    query.exec();
-//    query.prepare("delete from department where id='16'");
+    //    query.prepare("delete from department where id='1222'");
+    //    query.exec();
+    //    query.prepare("delete from department where id='15'");
+    //    query.exec();
+    //    query.prepare("delete from department where id='16'");
     //    query.exec();
 }
 
 QVector<department> SqliteDatabase::getDeptData()
 {
-     QVector<department> deptVect;
+    QVector<department> deptVect;
 
-     /**************************使用QSqlQuery操作数据库**************************/
-     QSqlQuery query;
+    /**************************使用QSqlQuery操作数据库**************************/
+    QSqlQuery query;
 
-     query.prepare("select * from department");
-     query.exec();
+    query.prepare("select * from department");
+    query.exec();
 
-     while (query.next()) {
-         department dept;
-         dept.id = query.value("id").toInt();
-         dept.deptName = query.value("deptName").toString();
-         deptVect.push_back(dept);
-     }
+    while (query.next()) {
+        department dept;
+        dept.id = query.value("id").toInt();
+        dept.deptName = query.value("deptName").toString();
+        deptVect.push_back(dept);
+    }
 
-     return deptVect;
+    return deptVect;
 }
 
 QMap<int,QVector<person>> SqliteDatabase::getWorkPerData() // 获取人员信息
@@ -192,7 +192,7 @@ int SqliteDatabase::getDptPerWorkNum(int deptId)
     return curDptWorkNum;
 }
 
-QPair<int, QString> SqliteDatabase::getRanPer(int n, int deptId, QMap<int,QVector<person>> perData)
+QPair<int, QString> SqliteDatabase::getRanPerString(int n, int deptId, QMap<int,QVector<person>> perData)
 {
     QVector<QString> names; // 随机人员数组
     QVector<person> pers = perData[deptId]; // 当前处所有人
@@ -200,14 +200,14 @@ QPair<int, QString> SqliteDatabase::getRanPer(int n, int deptId, QMap<int,QVecto
     QPair<int, QString> ranPairMess; // 随机<处室, 人员>信息
 
     // 不能直接用处的人数，需要计算没有请假的人
-//    int lenth;
+    //    int lenth;
     int lenth = pers.size(); // 处的人数
-//    for(auto per: pers){
-//        qDebug() << "lenth";
-//        if(per.absent == 0){
-//            lenth++;
-//        }
-//    }
+    //    for(auto per: pers){
+    //        qDebug() << "lenth";
+    //        if(per.absent == 0){
+    //            lenth++;
+    //        }
+    //    }
 
     // 测试随机选人类
     RandomAccess* random;
@@ -225,11 +225,30 @@ QPair<int, QString> SqliteDatabase::getRanPer(int n, int deptId, QMap<int,QVecto
     return ranPairMess;
 }
 
+QVector<QString> SqliteDatabase::getRanPerVector(int n, int deptId, QMap<int, QVector<person> > perData)
+{
+    QVector<person> pers = perData[deptId]; // 当前处所有人
+    QString ranPerMess = ""; // 随机人员信息
+    QVector<QString> ranPairMess; // 随机<处室, 人员>信息
+
+    int lenth = pers.size(); // 处的人数
+
+    // 测试随机选人类
+    RandomAccess* random;
+    random = new RandomAccess();
+    QSet<int> set = random->getRandom(lenth, n);
+    QSet<int>::iterator it;
+    for(it = set.begin(); it != set.end(); it++) {
+        ranPairMess.push_back(pers[*it].perName);
+    }
+    return ranPairMess;
+}
+
 void SqliteDatabase::writePickHis(QDateTime curTime, int deptId, QString names) // 确认抽考
 {
     // QMap<int, QString> ranData:int deptId; QString names 同一个处室的人
 
-//    QString current_date =curTime.toString("yyyy.MM.dd hh:mm:ss");
+    //    QString current_date =curTime.toString("yyyy.MM.dd hh:mm:ss");
 
     QSqlQuery query;
 
@@ -266,11 +285,11 @@ QVector<hisRecord> SqliteDatabase::getHisData()
         m_hisVect.push_back(dept); // 将查询到的单位数据存储在向量中
     }
 
-//    for(int i = 0; i < m_hisVect.size(); i++) {
-//        qDebug() << m_hisVect[i].curTime << ":" \
-//                 << m_hisVect[i].ranNames<< ":" \
-//                 << m_hisVect[i].deptId   ;
-//    }
+    //    for(int i = 0; i < m_hisVect.size(); i++) {
+    //        qDebug() << m_hisVect[i].curTime << ":" \
+    //                 << m_hisVect[i].ranNames<< ":" \
+    //                 << m_hisVect[i].deptId   ;
+    //    }
 
     return m_hisVect;
 }

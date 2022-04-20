@@ -38,7 +38,7 @@ void MainWindow::initGUI()
 //        widget->setLabelVisible(true);
 
         connect(widget->chooseButton(), &QPushButton::clicked, widget->lineEdit(), [=](){
-            QPair<int, QString> str =  database->getRanPer(widget->spinBoxNum(), i+1, m_pers);
+            QPair<int, QString> str =  database->getRanPerString(widget->spinBoxNum(), i+1, m_pers);
             m_readPersons[i] = str;
             refreshSingleRow(i);
         });

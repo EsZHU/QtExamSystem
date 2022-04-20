@@ -36,7 +36,8 @@ public:
     void setPerAbsent(QString perName);
     void setPerWork(QString perName);
     int getDptPerWorkNum(int deptId);
-    QPair<int, QString> getRanPer(int n, int deptId, QMap<int,QVector<person>> perData); // 点击选择获取n人数据
+    QPair<int, QString> getRanPerString(int n, int deptId, QMap<int,QVector<person>> perData); // 点击选择获取n人数据
+    QVector<QString> getRanPerVector(int n, int deptId, QMap<int,QVector<person>> perData); // 点击选择获取单个人数据
     void writePickHis(QDateTime curTime, int deptId, QString names); // 确认抽考
     QVector<hisRecord> getHisData();
     void hisDelete(QString deleteType);
