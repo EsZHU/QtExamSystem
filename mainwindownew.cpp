@@ -29,7 +29,9 @@ void MainWindowNew::bindLindAndStack()
     // 处室姓名
     int i = 0, deptId = 1;
     int perNum;
+    QString deptName;
     for(auto dept: m_depts){
+        deptName = dept.deptName;
 
         ui->dptListWidget->insertItem(i++, tr(dept.deptName.toStdString().data()));
 
@@ -40,7 +42,7 @@ void MainWindowNew::bindLindAndStack()
 
         stackedWidgetDialog->initPerTable(m_workPers, deptId);
 
-        stackedWidgetDialog->chooseRandomPerButton(deptId, m_workPers, perNum);
+        stackedWidgetDialog->chooseRandomPerButton(deptId, m_workPers, perNum, deptName);
         stackedWidgetDialog->cancelRandomPerButton(m_workPers, deptId);
         stackedWidgetDialog->confirmRanPerButton();
 

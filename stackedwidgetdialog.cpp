@@ -43,35 +43,48 @@ void stackedWidgetDialog::initPerTable(QMap<int,QVector<person>> pers, int deptI
     perTable->horizontalHeader()->setDefaultSectionSize(200);
     perTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     //    perTable->setFixedWidth(ui->perShowWidget->width()); // 不起作用
+    ui->confirmButton->setEnabled(false);
 }
 
 
-void stackedWidgetDialog::chooseRandomPerButton(int deptId, QMap<int,QVector<person>> pers, int perNum)
+void stackedWidgetDialog::chooseRandomPerButton(int deptId, QMap<int,QVector<person>> pers, int perNum, QString deptName)
 {
-    QMap<QString, QDateTime> choosenRanPer;
     connect(ui->chooseButton, &QPushButton::clicked, [=](){
         int ranPerNum = ui->spinBox->value();
-        QStringList strList;
-        strList << "抽取时间" << "抽取结果";
-        perTable->clear();
-        perTable->setRowCount(0);
-        perTable->setColumnCount(2);
-        perTable->setHorizontalHeaderLabels(strList);
-        QVector<QString> strs =  database->getRanPerVector(ranPerNum, deptId, pers);
-        qDebug() << strs  << deptId;
-        // current_date字符串结果为"2016.05.20 12:17:01.445 周五"
-        QDateTime current_date_time =QDateTime::currentDateTime();
-        QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss");
-        int col;
-        for(auto str: strs){
-            col = 0;
-            int row = perTable->rowCount();
-            perTable->insertRow(row);
-            qDebug() << str << current_date_time;
-            perTable->setItem(row, col++, new QTableWidgetItem(current_date));
-            perTable->setItem(row, col++, new QTableWidgetItem(str));
-        }
+        if(ranPerNum != 0){ // 人数不为0 才可以使确认按钮使能
+            QStringList strList;
+            strList << "抽取时间" << "抽取结果";
+            perTable->clear();
+            perTable->setRowCount(0);
+            perTable->setColumnCount(2);
+            perTable->setHorizontalHeaderLabels(strList);
+            QVector<QString> strs =  database->getRanPerVector(ranPerNum, deptId, pers);
 
+            // current_date字符串结果为"2016.05.20 12:17:01.445 周五"
+            QDateTime current_date_time =QDateTime::currentDateTime();
+            QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss");
+
+            QString names;
+            for(auto str: strs){
+                names += ", ";
+                names += str;
+            }
+            m_readPersons.choosenPersons = names;
+            m_readPersons.curTime = current_date_time;
+            m_readPersons.deptId = deptId;
+
+
+            int col;
+            for(auto str: strs){
+                col = 0;
+                int row = perTable->rowCount();
+                perTable->insertRow(row);
+                qDebug() << str << current_date_time;
+                perTable->setItem(row, col++, new QTableWidgetItem(current_date));
+                perTable->setItem(row, col++, new QTableWidgetItem(str));
+            }
+            ui->confirmButton->setEnabled(true);
+        }
     });
 }
 
@@ -79,21 +92,22 @@ void stackedWidgetDialog::cancelRandomPerButton(QMap<int,QVector<person>> pers, 
 {
     connect(ui->cancelButton, &QPushButton::clicked, [=](){
         initPerTable(pers, deptId);
+        ui->confirmButton->setEnabled(false);
+        m_readPersons = {};
     });
 }
 
 void stackedWidgetDialog::confirmRanPerButton()
 {
-    // 您确认抽取“张xx，张xx”吗？确定后将无法修改
     connect(ui->confirmButton, &QPushButton::clicked, [=](){
         // 如果此时没有选择 不能确认抽取
         ConfirmPickDialog* comPickDlg = new ConfirmPickDialog();
         comPickDlg->setWindowModality(Qt::ApplicationModal);
         comPickDlg->show();
 
-
+        // 您确认抽取“张xx，张xx”吗？确定后将无法修改
         comPickDlg->confirmPick([=](){
-
+            database->writePickHis(m_readPersons.curTime, m_readPersons.deptId, m_readPersons.choosenPersons);
             ui->chooseButton->setEnabled(false);
             ui->cancelButton->setEnabled(false);
             ui->confirmButton->setEnabled(false);
