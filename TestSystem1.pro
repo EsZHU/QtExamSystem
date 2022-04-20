@@ -26,12 +26,14 @@ SOURCES += \
     historyshow.cpp \
     main.cpp \
     mainwindow.cpp \
+    mainwindownew.cpp \
     personmanagedialog.cpp \
     pickresultdiagram.cpp \
     randomaccess.cpp \
     searchpersondialog.cpp \
     singlerow.cpp \
-    sqlitedatabase.cpp
+    sqlitedatabase.cpp \
+    stackedwidgetdialog.cpp
 
 HEADERS += \
     CustomTabStyle.h \
@@ -51,12 +53,14 @@ HEADERS += \
     eachrow.h \
     historyshow.h \
     mainwindow.h \
+    mainwindownew.h \
     personmanagedialog.h \
     pickresultdiagram.h \
     randomaccess.h \
     searchpersondialog.h \
     singlerow.h \
-    sqlitedatabase.h
+    sqlitedatabase.h \
+    stackedwidgetdialog.h
 
 FORMS += \
     absencemanagedialog.ui \
@@ -72,10 +76,12 @@ FORMS += \
     dptmanagedialog.ui \
     historyshow.ui \
     mainwindow.ui \
+    mainwindownew.ui \
     personmanagedialog.ui \
     pickresultdiagram.ui \
     searchpersondialog.ui \
-    singlerow.ui
+    singlerow.ui \
+    stackedwidgetdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

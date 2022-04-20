@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-
+#include "mainwindownew.h"
 #include <QApplication>
 #include <QScreen>
 #include <QFile>
@@ -12,7 +12,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+//    MainWindow w;
+    MainWindowNew w;
 
     auto s = w.screen();
     auto size = s->size();

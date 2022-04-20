@@ -121,6 +121,7 @@ QMap<int,QVector<person>> SqliteDatabase::getWorkPerData() // 获取人员信息
             per.id = query.value("id").toInt();
             per.deptId = query.value("deptId").toInt();
             per.perName = query.value("perName").toString();
+            per.absent = query.value("absent").toInt();
 
             perMap[per.deptId].push_back(per);
         } else if(query.value("absent").toInt() == 1){
