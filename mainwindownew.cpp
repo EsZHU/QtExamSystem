@@ -11,6 +11,7 @@ MainWindowNew::MainWindowNew(QWidget *parent) :
     database = new SqliteDatabase();
     getData();
     bindLindAndStack();
+    initMenu();
 }
 
 MainWindowNew::~MainWindowNew()
@@ -33,7 +34,8 @@ void MainWindowNew::bindLindAndStack()
     for(auto dept: m_depts){
         deptName = dept.deptName;
 
-        ui->dptListWidget->insertItem(i++, tr(dept.deptName.toStdString().data()));
+        ui->dptListWidget->insertItem(i, tr(("    "+dept.deptName.toStdString()).data()));
+        auto currentItem = ui->dptListWidget->item(i++);
 
         stackedWidgetDialog = new class stackedWidgetDialog();
 
@@ -44,7 +46,11 @@ void MainWindowNew::bindLindAndStack()
 
         stackedWidgetDialog->chooseRandomPerButton(deptId, m_workPers, perNum, deptName);
         stackedWidgetDialog->cancelRandomPerButton(m_workPers, deptId);
-        stackedWidgetDialog->confirmRanPerButton();
+        stackedWidgetDialog->confirmRanPerButton([=](){
+            //            currentItem->setBackground(QColor(Qt::darkGreen));
+            //            currentItem->setForeground(QColor(Qt::white));
+            currentItem->setText(("√  "+dept.deptName.toStdString()).data());
+        });
 
         ui->dptStackedWidget->addWidget(stackedWidgetDialog);
         deptId++;
@@ -58,4 +64,47 @@ void MainWindowNew::bindLindAndStack()
     mainLayout->setStretchFactor(ui->dptStackedWidget,3);
 
     connect(ui->dptListWidget,SIGNAL(currentRowChanged(int)),ui->dptStackedWidget,SLOT(setCurrentIndex(int)));
+}
+
+void MainWindowNew::initMenu()
+{
+    //    https://doc.qt.io/qt-5/qtwidgets-mainwindows-application-example.html
+    QMenu *guanli = menuBar()->addMenu(tr("&管理"));
+
+    QAction *newActDptManage = new QAction(tr("&部门管理"), this);
+    connect(newActDptManage, &QAction::triggered, [=](){
+        DptManageDialog* dptManangeDlg = new DptManageDialog();
+        dptManangeDlg->show();
+        dptManangeDlg->setWindowModality(Qt::ApplicationModal);
+    });
+    guanli->addAction(newActDptManage);
+
+    QAction *newActPerManage = new QAction(tr("&人员管理"), this);
+    connect(newActPerManage, &QAction::triggered, [=](){
+        PersonManageDialog* perManageDialog = new PersonManageDialog();
+        perManageDialog->show();
+        perManageDialog->setWindowModality(Qt::ApplicationModal);
+    });
+    guanli->addAction(newActPerManage);
+
+    QAction *newActAbsenceManage = new QAction(tr("&请假管理"), this);
+    connect(newActAbsenceManage, &QAction::triggered, [=](){
+        AbsenceManageDialog* absManageDialog = new AbsenceManageDialog();
+        absManageDialog->show();
+        absManageDialog->setWindowModality(Qt::ApplicationModal);
+    });
+    guanli->addAction(newActAbsenceManage);
+
+    QMenu *lishi = menuBar()->addMenu(tr("&历史"));
+
+    QAction *newActHistoryManage = new QAction(tr("&历史记录"), this);
+    connect(newActHistoryManage, &QAction::triggered, [=](){
+        HistoryShow* historyShowDialog = new HistoryShow();
+        m_his = database->getHisData();
+        //        hisDiagram->refresh(m_his, m_depts);
+        historyShowDialog->refresh(m_his, m_depts);
+        historyShowDialog->show();
+        historyShowDialog->setWindowModality(Qt::ApplicationModal);
+    });
+    lishi->addAction(newActHistoryManage);
 }

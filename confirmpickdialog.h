@@ -17,7 +17,7 @@ public:
     ~ConfirmPickDialog();
     bool confirmPick(std::function<int> func);
 
-    bool confirmPick(std::function<void ()> func);
+    bool confirmPick(std::function<void ()> func, QString text);
 private:
     Ui::ConfirmPickDialog *ui;
     int confirm;

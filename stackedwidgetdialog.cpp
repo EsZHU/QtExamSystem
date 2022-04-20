@@ -31,12 +31,14 @@ void stackedWidgetDialog::initPerTable(QMap<int,QVector<person>> pers, int deptI
     perTable->setRowCount(0);
     perTable->setColumnCount(1);
     perTable->setHorizontalHeaderLabels(strList);
+    perTable->horizontalHeader()->setFont(QFont("song", 18));
     int row;
     for(auto per : pers[deptId]){
         row = perTable->rowCount();
         perTable->insertRow(row);
         perTable->setItem(row, 0, new QTableWidgetItem(per.perName));
         perTable->item(row,0)->setTextAlignment(Qt::AlignCenter);
+        perTable->item(row,0)->setFont(QFont("song", 18));
     }
     perTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     perTable->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中的方式
@@ -58,6 +60,7 @@ void stackedWidgetDialog::chooseRandomPerButton(int deptId, QMap<int,QVector<per
             perTable->setRowCount(0);
             perTable->setColumnCount(2);
             perTable->setHorizontalHeaderLabels(strList);
+            perTable->horizontalHeader()->setFont(QFont("song", 18));
             QVector<QString> strs =  database->getRanPerVector(ranPerNum, deptId, pers);
 
             // current_date字符串结果为"2016.05.20 12:17:01.445 周五"
@@ -65,14 +68,19 @@ void stackedWidgetDialog::chooseRandomPerButton(int deptId, QMap<int,QVector<per
             QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss");
 
             QString names;
+            bool flag = false;
             for(auto str: strs){
-                names += ", ";
-                names += str;
+                if(!flag){
+                    names += str;
+                    flag = true;
+                } else {
+                    names += ", ";
+                    names += str;
+                }
             }
             m_readPersons.choosenPersons = names;
             m_readPersons.curTime = current_date_time;
             m_readPersons.deptId = deptId;
-
 
             int col;
             for(auto str: strs){
@@ -80,8 +88,10 @@ void stackedWidgetDialog::chooseRandomPerButton(int deptId, QMap<int,QVector<per
                 int row = perTable->rowCount();
                 perTable->insertRow(row);
                 qDebug() << str << current_date_time;
-                perTable->setItem(row, col++, new QTableWidgetItem(current_date));
-                perTable->setItem(row, col++, new QTableWidgetItem(str));
+                perTable->setItem(row, col, new QTableWidgetItem(current_date));
+                perTable->item(row,col++)->setFont(QFont("song", 18));
+                perTable->setItem(row, col, new QTableWidgetItem(str));
+                perTable->item(row,col++)->setFont(QFont("song", 18));
             }
             ui->confirmButton->setEnabled(true);
         }
@@ -97,7 +107,7 @@ void stackedWidgetDialog::cancelRandomPerButton(QMap<int,QVector<person>> pers, 
     });
 }
 
-void stackedWidgetDialog::confirmRanPerButton()
+void stackedWidgetDialog::confirmRanPerButton(std::function<void()> cb)
 {
     connect(ui->confirmButton, &QPushButton::clicked, [=](){
         // 如果此时没有选择 不能确认抽取
@@ -111,7 +121,10 @@ void stackedWidgetDialog::confirmRanPerButton()
             ui->chooseButton->setEnabled(false);
             ui->cancelButton->setEnabled(false);
             ui->confirmButton->setEnabled(false);
-        });
+
+            cb();
+        }, m_readPersons.choosenPersons);
+
     });
 }
 

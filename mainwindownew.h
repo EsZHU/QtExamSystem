@@ -6,6 +6,14 @@
 #include <sqlitedatabase.h>
 #include "defs.h"
 #include "stackedwidgetdialog.h"
+#include <QColorDialog>
+#include <QMenu>
+#include <QMenuBar>
+#include "dptmanagedialog.h"
+#include <QToolBar>
+#include "personmanagedialog.h"
+#include "absencemanagedialog.h"
+#include "historyshow.h"
 
 namespace Ui {
 class MainWindowNew;
@@ -20,6 +28,7 @@ public:
     ~MainWindowNew();
     void getData();
     void bindLindAndStack();
+    void initMenu();
 
 private:
     Ui::MainWindowNew *ui;
@@ -27,6 +36,7 @@ private:
     QVector<department> m_depts;
     QMap<int,QVector<person>> m_workPers;
     stackedWidgetDialog* stackedWidgetDialog;
+    QVector<hisRecord> m_his;
 };
 
 #endif // MAINWINDOWNEW_H

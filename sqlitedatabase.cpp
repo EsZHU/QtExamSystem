@@ -252,7 +252,7 @@ void SqliteDatabase::writePickHis(QDateTime curTime, int deptId, QString names) 
 
     QSqlQuery query;
 
-    qDebug() <<"test" << deptId << ":" << names;
+//    qDebug() <<"test" << deptId << ":" << names;
 
     query.prepare("insert into pickHistory (curTime, ranNames, deptId) "
                   "values (:curTime, :ranNames, :deptId)"); // id自增，不管

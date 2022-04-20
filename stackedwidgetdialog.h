@@ -23,7 +23,7 @@ public:
     void initPerTable(QMap<int,QVector<person>> pers, int deptId);
     void chooseRandomPerButton(int deptId, QMap<int,QVector<person>> pers, int perNum, QString deptName);
     void cancelRandomPerButton(QMap<int,QVector<person>> pers, int deptId);
-    void confirmRanPerButton();
+    void confirmRanPerButton(std::function<void()> cb);
     int returnSpinBoxNum();
     bool ableToChoose();
 
