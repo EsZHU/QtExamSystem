@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>321</width>
+    <width>332</width>
     <height>101</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>220</x>
      <y>60</y>
-     <width>90</width>
+     <width>101</width>
      <height>27</height>
     </rect>
    </property>
@@ -41,7 +41,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
     <rect>
      <x>117</x>
      <y>60</y>
-     <width>89</width>
+     <width>101</width>
      <height>27</height>
     </rect>
    </property>
@@ -64,7 +64,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
     <rect>
      <x>13</x>
      <y>60</y>
-     <width>90</width>
+     <width>101</width>
      <height>27</height>
     </rect>
    </property>
@@ -87,7 +87,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
     <rect>
      <x>20</x>
      <y>10</y>
-     <width>171</width>
+     <width>211</width>
      <height>31</height>
     </rect>
    </property>

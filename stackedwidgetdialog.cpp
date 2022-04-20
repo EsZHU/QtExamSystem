@@ -42,7 +42,7 @@ void stackedWidgetDialog::initPerTable(QMap<int,QVector<person>> pers, int deptI
     }
     perTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     perTable->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中的方式
-    perTable->horizontalHeader()->setDefaultSectionSize(200);
+    perTable->horizontalHeader()->setDefaultSectionSize(400);
     perTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     //    perTable->setFixedWidth(ui->perShowWidget->width()); // 不起作用
     ui->confirmButton->setEnabled(false);
@@ -82,6 +82,7 @@ void stackedWidgetDialog::chooseRandomPerButton(int deptId, QMap<int,QVector<per
             m_readPersons.curTime = current_date_time;
             m_readPersons.deptId = deptId;
 
+            perTable->horizontalHeader()->setDefaultSectionSize(400);
             int col;
             for(auto str: strs){
                 col = 0;
@@ -89,8 +90,10 @@ void stackedWidgetDialog::chooseRandomPerButton(int deptId, QMap<int,QVector<per
                 perTable->insertRow(row);
                 qDebug() << str << current_date_time;
                 perTable->setItem(row, col, new QTableWidgetItem(current_date));
+                perTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
                 perTable->item(row,col++)->setFont(QFont("song", 18));
                 perTable->setItem(row, col, new QTableWidgetItem(str));
+                perTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
                 perTable->item(row,col++)->setFont(QFont("song", 18));
             }
             ui->confirmButton->setEnabled(true);
@@ -111,6 +114,7 @@ void stackedWidgetDialog::confirmRanPerButton(std::function<void()> cb)
 {
     connect(ui->confirmButton, &QPushButton::clicked, [=](){
         // 如果此时没有选择 不能确认抽取
+        qDebug() << "cnm!";
         ConfirmPickDialog* comPickDlg = new ConfirmPickDialog();
         comPickDlg->setWindowModality(Qt::ApplicationModal);
         comPickDlg->show();
