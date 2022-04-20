@@ -6,6 +6,7 @@
 #include "defs.h"
 #include <QHeaderView>
 #include "sqlitedatabase.h"
+#include "confirmpickdialog.h"
 
 namespace Ui {
 class stackedWidgetDialog;

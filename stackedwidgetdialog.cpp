@@ -48,9 +48,9 @@ void stackedWidgetDialog::initPerTable(QMap<int,QVector<person>> pers, int deptI
 
 void stackedWidgetDialog::chooseRandomPerButton(int deptId, QMap<int,QVector<person>> pers, int perNum)
 {
+    QMap<QString, QDateTime> choosenRanPer;
     connect(ui->chooseButton, &QPushButton::clicked, [=](){
         int ranPerNum = ui->spinBox->value();
-
         QStringList strList;
         strList << "抽取时间" << "抽取结果";
         perTable->clear();
@@ -87,9 +87,17 @@ void stackedWidgetDialog::confirmRanPerButton()
     // 您确认抽取“张xx，张xx”吗？确定后将无法修改
     connect(ui->confirmButton, &QPushButton::clicked, [=](){
         // 如果此时没有选择 不能确认抽取
-        ui->chooseButton->setEnabled(false);
-        ui->cancelButton->setEnabled(false);
-        ui->confirmButton->setEnabled(false);
+        ConfirmPickDialog* comPickDlg = new ConfirmPickDialog();
+        comPickDlg->setWindowModality(Qt::ApplicationModal);
+        comPickDlg->show();
+
+
+        comPickDlg->confirmPick([=](){
+
+            ui->chooseButton->setEnabled(false);
+            ui->cancelButton->setEnabled(false);
+            ui->confirmButton->setEnabled(false);
+        });
     });
 }
 
