@@ -114,7 +114,6 @@ void stackedWidgetDialog::confirmRanPerButton(std::function<void()> cb)
 {
     connect(ui->confirmButton, &QPushButton::clicked, [=](){
         // 如果此时没有选择 不能确认抽取
-        qDebug() << "cnm!";
         ConfirmPickDialog* comPickDlg = new ConfirmPickDialog();
         comPickDlg->setWindowModality(Qt::ApplicationModal);
         comPickDlg->show();
