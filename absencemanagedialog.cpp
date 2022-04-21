@@ -80,6 +80,7 @@ void AbsenceManageDialog::confirmAbsentButton()
                 for(auto per: m_workPers[i]){
                     if(perName == per.perName){ // 找到需要请假的人
                         database->setPerAbsent(perName);
+                        m_workPers = database->getWorkPerData();
                         ui->hintLabel->setText("【" + perName + "】成功请假");
                         find = 1;
                     }

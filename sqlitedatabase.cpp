@@ -228,6 +228,9 @@ QPair<int, QString> SqliteDatabase::getRanPerString(int n, int deptId, QMap<int,
 QVector<QString> SqliteDatabase::getRanPerVector(int n, int deptId, QMap<int, QVector<person> > perData)
 {
     QVector<person> pers = perData[deptId]; // 当前处所有人
+    for(auto per: pers){
+        qDebug() << per.absent << per.perName;
+    }
     QString ranPerMess = ""; // 随机人员信息
     QVector<QString> ranPairMess; // 随机<处室, 人员>信息
 

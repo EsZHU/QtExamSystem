@@ -19,6 +19,7 @@ MainWindowNew::MainWindowNew(QWidget *parent) :
     initResultShowTable();
     choosePickButton();
     cancelPickButton();
+    isSurePickButton();
 
     ui->dptListWidget->setFocus();
     ui->dptListWidget->setCurrentRow(0);
@@ -37,6 +38,8 @@ void MainWindowNew::getData()
 
 void MainWindowNew::initResultShowTable()
 {
+    showResultTable->setEditTriggers(QTableWidget::NoEditTriggers);
+
     QStringList strList;
     strList << "抽取时间" << "抽取处室" << "抽取人名";
     showResultTable->clear();
@@ -158,11 +161,15 @@ void MainWindowNew::initMenu()
 void MainWindowNew::choosePickButton()
 {
     connect(ui->chooseButton, &QPushButton::clicked, [=](){
+        m_workPers = database->getWorkPerData();
         if(!~ui->dptListWidget->currentRow()) return;
         int deptId = ui->dptListWidget->currentRow() + 1;
         int ranPerNum = ui->spinBox->value();
         if(ranPerNum != 0){ // 人数不为0 才可以使确认按钮使能
             QVector<QString> strs =  database->getRanPerVector(ranPerNum, deptId, m_workPers);
+            for(auto per: m_workPers[deptId]){
+                qDebug() << per.absent << per.perName;
+            }
 
             // current_date字符串结果为"2016.05.20 12:17:01.445 周五"
             QDateTime current_date_time =QDateTime::currentDateTime();
@@ -186,7 +193,6 @@ void MainWindowNew::choosePickButton()
             for(auto dept: m_depts){
                 if(dept.id == deptId){
                     m_readPersons.deptName = dept.deptName;
-//                    qDebug() << m_readPersons.deptName;
                 }
             }
 
@@ -242,6 +248,19 @@ void MainWindowNew::cancelPickButton()
 
 void MainWindowNew::isSurePickButton()
 {
+    connect(ui->confirmButton, &QPushButton::clicked, [=](){
+        if(m_readPersonsMap.empty()) return;
+
+        QVector<selectRecord> pickResultVec;
+
+        for(const auto& deptChoosenPersons: m_readPersonsMap) {
+            database->writePickHis(deptChoosenPersons.curTime, deptChoosenPersons.deptId, deptChoosenPersons.choosenPersons);
+        }
+
+        ui->chooseButton->setEnabled(false);
+        ui->cancelButton->setEnabled(false);
+        ui->confirmButton->setEnabled(false);
+    });
 
 }
 
@@ -270,6 +289,7 @@ void MainWindowNew::refreshTable()
 void MainWindowNew::on_dptListWidget_currentRowChanged(int currentRow)
 {
     if(!~currentRow) return;
+    m_workPers = database->getWorkPerData();
     int deptId = ui->dptListWidget->currentRow() + 1;
     auto maxPerson = m_workPers[deptId].size();
 
