@@ -18,6 +18,7 @@ SOURCES += \
     changeperwarning.cpp \
     confirmhisdeletedialog.cpp \
     confirmpickdialog.cpp \
+    confirmsthdialog.cpp \
     customtabbar.cpp \
     deldptdialog.cpp \
     deletepersondialog.cpp \
@@ -46,6 +47,7 @@ HEADERS += \
     changeperwarning.h \
     confirmhisdeletedialog.h \
     confirmpickdialog.h \
+    confirmsthdialog.h \
     customtabbar.h \
     defs.h \
     deldptdialog.h \
@@ -73,6 +75,7 @@ FORMS += \
     changeperwarning.ui \
     confirmhisdeletedialog.ui \
     confirmpickdialog.ui \
+    confirmsthdialog.ui \
     deldptdialog.ui \
     deletepersondialog.ui \
     deletesuccessdialog.ui \

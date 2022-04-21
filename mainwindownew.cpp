@@ -10,8 +10,18 @@ MainWindowNew::MainWindowNew(QWidget *parent) :
     this->setWindowTitle("中共河南省委机构编制委员会办公室随机抽人系统");
     database = new SqliteDatabase();
     getData();
-    bindLindAndStack();
+
+    refreshDptListShow();
+    //    bindLindAndStack();
     initMenu();
+    showResultTable = new QTableWidget(ui->resultShowFrame);
+    showResultTable->resize(ui->resultShowFrame->width(), ui->resultShowFrame->height());
+    initResultShowTable();
+    choosePickButton();
+    cancelPickButton();
+
+    ui->dptListWidget->setFocus();
+    ui->dptListWidget->setCurrentRow(0);
 }
 
 MainWindowNew::~MainWindowNew()
@@ -23,6 +33,42 @@ void MainWindowNew::getData()
 {
     m_depts = database->getDeptData();
     m_workPers = database->getWorkPerData();
+}
+
+void MainWindowNew::initResultShowTable()
+{
+    QStringList strList;
+    strList << "抽取时间" << "抽取处室" << "抽取人名";
+    showResultTable->clear();
+    showResultTable->horizontalHeader()->setDefaultSectionSize(300);
+    showResultTable->setRowCount(0);
+    showResultTable->setColumnCount(3);
+    showResultTable->setHorizontalHeaderLabels(strList);
+    showResultTable->horizontalHeader()->setFont(QFont("song", 18));
+}
+
+void MainWindowNew::refreshDptListShow()
+{
+    auto currentIndex = ui->dptListWidget->currentRow();
+
+    ui->dptListWidget->clear();
+    ui->dptListWidget->setCurrentRow(0);
+    // 刷新左边处室
+    int i = 0;
+
+    QString deptName;
+    for(auto dept: m_depts){
+        deptName = dept.deptName;
+        auto is_picked = m_readPersonsMap.find(dept.id) != m_readPersonsMap.end();
+        ui->dptListWidget->insertItem(i++,
+                                      tr(((is_picked
+                                           ? "√  "
+                                           : "    ") + dept.deptName.toStdString())
+                                         .data()));
+    }
+
+    ui->dptListWidget->setFocus();
+    ui->dptListWidget->setCurrentRow(currentIndex);
 }
 
 void MainWindowNew::bindLindAndStack()
@@ -108,3 +154,127 @@ void MainWindowNew::initMenu()
     });
     lishi->addAction(newActHistoryManage);
 }
+
+void MainWindowNew::choosePickButton()
+{
+    connect(ui->chooseButton, &QPushButton::clicked, [=](){
+        if(!~ui->dptListWidget->currentRow()) return;
+        int deptId = ui->dptListWidget->currentRow() + 1;
+        int ranPerNum = ui->spinBox->value();
+        if(ranPerNum != 0){ // 人数不为0 才可以使确认按钮使能
+            QVector<QString> strs =  database->getRanPerVector(ranPerNum, deptId, m_workPers);
+
+            // current_date字符串结果为"2016.05.20 12:17:01.445 周五"
+            QDateTime current_date_time =QDateTime::currentDateTime();
+            QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss");
+
+            QString names;
+            bool flag = false;
+            for(auto str: strs){
+                if(!flag){
+                    names += str;
+                    flag = true;
+                } else {
+                    names += ", ";
+                    names += str;
+                }
+            }
+            m_readPersons.choosenPersons = names;
+            m_readPersons.curTime = current_date_time;
+            m_readPersons.deptId = deptId;
+
+            for(auto dept: m_depts){
+                if(dept.id == deptId){
+                    m_readPersons.deptName = dept.deptName;
+//                    qDebug() << m_readPersons.deptName;
+                }
+            }
+
+            auto add_one_record = [=](){
+                m_readPersonsMap[deptId].choosenPersons = names;
+                m_readPersonsMap[deptId].deptId = deptId;
+                m_readPersonsMap[deptId].curTime = current_date_time;
+
+                for(auto dept: m_depts){
+                    if(dept.id == deptId){
+                        m_readPersonsMap[deptId].deptName = dept.deptName;
+                    }
+                }
+                refreshTable();
+                refreshDptListShow();
+            };
+
+            if(m_readPersonsMap.find(deptId) != m_readPersonsMap.end()){
+                // 已经抽取过这个处室的人
+                ConfirmSthDialog* confirmCoverDialog = new ConfirmSthDialog([=](){
+                    add_one_record();
+                });
+                confirmCoverDialog->show();
+                confirmCoverDialog->setWindowModality(Qt::ApplicationModal);
+                confirmCoverDialog->setLabelText("已经抽取过 您确定要覆盖？");
+                confirmCoverDialog->setWindowTitle("提示弹窗");
+            } else { // 没有抽过这个处室的人
+                add_one_record();
+            }
+        }
+    });
+}
+
+void MainWindowNew::cancelPickButton()
+{
+    connect(ui->cancelButton, &QPushButton::clicked, [=](){
+        int deptId = ui->dptListWidget->currentRow() + 1;
+        qDebug() << deptId;
+        if(m_readPersonsMap.find(deptId) != m_readPersonsMap.end()){
+            // 已经抽取过这个处室的人
+            ConfirmSthDialog* confirmCoverDialog = new ConfirmSthDialog([=](){
+                m_readPersonsMap.remove(deptId);
+                refreshTable();
+                refreshDptListShow();
+            });
+            confirmCoverDialog->show();
+            confirmCoverDialog->setWindowModality(Qt::ApplicationModal);
+            confirmCoverDialog->setLabelText("您确定要取消这个处室的抽选结果吗？");
+            confirmCoverDialog->setWindowTitle("提示弹窗");
+        }
+    });
+}
+
+void MainWindowNew::isSurePickButton()
+{
+
+}
+
+void MainWindowNew::refreshTable()
+{
+    showResultTable->clearContents();
+    showResultTable->setRowCount(0);
+
+    for(const auto& pers: m_readPersonsMap){
+        int col = 0;
+        int row = showResultTable->rowCount();
+        showResultTable->insertRow(row);
+        showResultTable->setItem(row, col, new QTableWidgetItem(pers.curTime.toString("yyyy.MM.dd hh:mm:ss")));
+        showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
+        showResultTable->item(row,col++)->setFont(QFont("song", 18));
+        showResultTable->setItem(row, col, new QTableWidgetItem(pers.deptName));
+        showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
+        showResultTable->item(row,col++)->setFont(QFont("song", 18));
+        showResultTable->setItem(row, col, new QTableWidgetItem(pers.choosenPersons));
+        showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
+        showResultTable->item(row,col++)->setFont(QFont("song", 18));
+        //            ui->confirmButton->setEnabled(true);
+    }
+}
+
+void MainWindowNew::on_dptListWidget_currentRowChanged(int currentRow)
+{
+    if(!~currentRow) return;
+    int deptId = ui->dptListWidget->currentRow() + 1;
+    auto maxPerson = m_workPers[deptId].size();
+
+    ui->spinBox->setMaximum(maxPerson);
+    ui->availablePerLabel->setText("可选 "+QString::number(maxPerson)+" 人");
+
+}
+

@@ -24,6 +24,7 @@ struct newSelectRecord {
     int deptId;
     QString choosenPersons;
     QDateTime curTime;
+    QString deptName;
 };
 
 struct hisRecord {
