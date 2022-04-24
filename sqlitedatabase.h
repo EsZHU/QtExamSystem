@@ -33,6 +33,7 @@ public:
     QVector<department> getDeptData(); // 读取处表返回处的结构体
     QMap<int,QVector<person>> getWorkPerData(); // 读取人员表返回人员的结构体
     QMap<int,QVector<person>> getAbsentPerData(); // 读取人员表返回人员的结构体
+    QMap<int,QVector<person>> getEveryPerData();
     void setPerAbsent(QString perName);
     void setPerWork(QString perName);
     int getDptPerWorkNum(int deptId);

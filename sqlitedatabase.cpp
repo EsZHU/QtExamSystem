@@ -157,6 +157,29 @@ QMap<int, QVector<person> > SqliteDatabase::getAbsentPerData()
     return perMap;
 }
 
+QMap<int, QVector<person> > SqliteDatabase::getEveryPerData()
+{
+    QMap<int,QVector<person>> perMap;
+
+    QSqlQuery query;
+
+    query.prepare("select * from person");
+    query.exec();
+
+    while (query.next()) {
+        person per;
+        per.id = query.value("id").toInt();
+        per.deptId = query.value("deptId").toInt();
+        per.perName = query.value("perName").toString();
+        per.absent = query.value("absent").toInt();
+        qDebug() << "absent" << per.absent;
+
+        perMap[per.deptId].push_back(per);
+    }
+
+    return perMap;
+}
+
 void SqliteDatabase::setPerAbsent(QString perName)
 {
     QSqlQuery query;
@@ -255,7 +278,7 @@ void SqliteDatabase::writePickHis(QDateTime curTime, int deptId, QString names) 
 
     QSqlQuery query;
 
-//    qDebug() <<"test" << deptId << ":" << names;
+    //    qDebug() <<"test" << deptId << ":" << names;
 
     query.prepare("insert into pickHistory (curTime, ranNames, deptId) "
                   "values (:curTime, :ranNames, :deptId)"); // id自增，不管

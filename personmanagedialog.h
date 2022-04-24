@@ -11,6 +11,7 @@
 #include "deletepersondialog.h"
 #include "changepersondialog.h"
 #include "searchpersondialog.h"
+#include <QComboBox>
 
 namespace Ui {
 class PersonManageDialog;
@@ -30,11 +31,13 @@ public:
     void deletePersonButton();
     void changePersonButton();
     void searchPersonButton();
+    void submitStatePage();
 
 private:
     Ui::PersonManageDialog *ui;
     QMap<int,QVector<person>> m_pers;
     SqliteDatabase* database;
+    QVector<QString> stateType;
 };
 
 #endif // PERSONMANAGEDIALOG_H

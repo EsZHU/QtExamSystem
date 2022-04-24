@@ -25,12 +25,12 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="closeButton">
+  <widget class="QPushButton" name="submitButton">
    <property name="geometry">
     <rect>
-     <x>530</x>
+     <x>520</x>
      <y>480</y>
-     <width>71</width>
+     <width>81</width>
      <height>21</height>
     </rect>
    </property>
@@ -40,7 +40,7 @@ QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
    </property>
    <property name="text">
-    <string>确认</string>
+    <string>提交修改</string>
    </property>
   </widget>
   <widget class="QTabWidget" name="tabWidget">
@@ -158,6 +158,24 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="closeButton">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>480</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
+QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
+   </property>
+   <property name="text">
+    <string>关闭窗口</string>
+   </property>
   </widget>
  </widget>
  <resources/>

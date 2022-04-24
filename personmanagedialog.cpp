@@ -8,6 +8,9 @@ PersonManageDialog::PersonManageDialog(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle("人员管理界面");
     connect(ui->closeButton, &QPushButton::clicked, [=](){this->close();});
+    connect(ui->submitButton, &QPushButton::clicked, [=](){
+        submitStatePage();
+    });
     getData();
     setTabWidgetValue();
     database = new SqliteDatabase();
@@ -60,18 +63,29 @@ void PersonManageDialog::setTabWidgetValue()
         firstTB->setRowCount(0);
     firstTB->insertColumn(1);
     QStringList headList;
-    headList.push_back("名字");
-    firstTB->setColumnCount(1);
+    headList << "名字" << "状态";
+    firstTB->setColumnCount(2);
     firstTB->setHorizontalHeaderLabels(headList);
+    firstTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
     headList.append("");
 
-    qDebug() << m_pers[1].first().perName;
     for (auto &firstPer : m_pers[1]) {
+        int col = 0;
         int row = firstTB->rowCount();
         firstTB->insertRow(row);
         QTableWidgetItem *firstPerName=new QTableWidgetItem();//创建一个Item
         firstPerName->setText(firstPer.perName);//设置内容
-        firstTB->setItem(row,0,firstPerName);//把这个Item加到第一行第二列中
+        firstTB->setItem(row,col++,firstPerName);//把这个Item加到第一行第二列中
+
+        QComboBox *classBox = new QComboBox;
+        classBox->addItem("在岗");
+        classBox->addItem("请假");
+        classBox->addItem("休假");
+        classBox->addItem("离职");
+        classBox->addItem("病假");
+        firstTB->setCellWidget(row, col++, classBox);
+        QString currentState = stateType[firstPer.absent];
+        classBox->setCurrentText(currentState);
     }
 
     if(nullptr != secondTB)
@@ -79,6 +93,7 @@ void PersonManageDialog::setTabWidgetValue()
     secondTB->insertColumn(1);
     secondTB->setColumnCount(1);
     secondTB->setHorizontalHeaderLabels(headList);
+    secondTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (auto &secondPer : m_pers[2]) {
         int row = secondTB->rowCount();
@@ -93,6 +108,8 @@ void PersonManageDialog::setTabWidgetValue()
     thirdTB->insertColumn(1);
     thirdTB->setColumnCount(1);
     thirdTB->setHorizontalHeaderLabels(headList);
+    thirdTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
 
     for (auto &thirdPer : m_pers[3]) {
         int row = thirdTB->rowCount();
@@ -107,6 +124,7 @@ void PersonManageDialog::setTabWidgetValue()
     forthTB->insertColumn(1);
     forthTB->setColumnCount(1);
     forthTB->setHorizontalHeaderLabels(headList);
+    forthTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (auto &forthPer : m_pers[4]) {
         int row = forthTB->rowCount();
@@ -121,6 +139,7 @@ void PersonManageDialog::setTabWidgetValue()
     fifthTB->insertColumn(1);
     fifthTB->setColumnCount(1);
     fifthTB->setHorizontalHeaderLabels(headList);
+    fifthTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (auto &fifthPer : m_pers[5]) {
         int row = fifthTB->rowCount();
@@ -135,6 +154,7 @@ void PersonManageDialog::setTabWidgetValue()
     sixthTB->insertColumn(1);
     sixthTB->setColumnCount(1);
     sixthTB->setHorizontalHeaderLabels(headList);
+    sixthTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (auto &sixthPer : m_pers[6]) {
         int row = sixthTB->rowCount();
@@ -149,6 +169,7 @@ void PersonManageDialog::setTabWidgetValue()
     seventhTB->insertColumn(1);
     seventhTB->setColumnCount(1);
     seventhTB->setHorizontalHeaderLabels(headList);
+    seventhTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (auto &seventhPer : m_pers[7]) {
         int row = seventhTB->rowCount();
@@ -163,6 +184,7 @@ void PersonManageDialog::setTabWidgetValue()
     eightTB->insertColumn(1);
     eightTB->setColumnCount(1);
     eightTB->setHorizontalHeaderLabels(headList);
+    eightTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (auto &eightPer : m_pers[8]) {
         int row = eightTB->rowCount();
@@ -177,6 +199,7 @@ void PersonManageDialog::setTabWidgetValue()
     ninthTB->insertColumn(1);
     ninthTB->setColumnCount(1);
     ninthTB->setHorizontalHeaderLabels(headList);
+    ninthTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (auto &ninthPer : m_pers[9]) {
         int row = ninthTB->rowCount();
@@ -191,6 +214,7 @@ void PersonManageDialog::setTabWidgetValue()
     tenthTB->insertColumn(1);
     tenthTB->setColumnCount(1);
     tenthTB->setHorizontalHeaderLabels(headList);
+    tenthTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (auto &tenthPer : m_pers[10]) {
         int row = tenthTB->rowCount();
@@ -205,6 +229,7 @@ void PersonManageDialog::setTabWidgetValue()
     eleventhTB->insertColumn(1);
     eleventhTB->setColumnCount(1);
     eleventhTB->setHorizontalHeaderLabels(headList);
+    eleventhTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (auto &eleventhPer : m_pers[11]) {
         int row = eleventhTB->rowCount();
@@ -219,6 +244,7 @@ void PersonManageDialog::setTabWidgetValue()
     twelfthTB->insertColumn(1);
     twelfthTB->setColumnCount(1);
     twelfthTB->setHorizontalHeaderLabels(headList);
+    twelfthTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (auto &twelfthPer : m_pers[12]) {
         int row = twelfthTB->rowCount();
@@ -234,6 +260,7 @@ void PersonManageDialog::setTabWidgetValue()
     thirteenthTB->insertColumn(1);
     thirteenthTB->setColumnCount(1);
     thirteenthTB->setHorizontalHeaderLabels(headList);
+    thirteenthTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (auto &thirteenthPer : m_pers[13]) {
         int row = thirteenthTB->rowCount();
@@ -248,6 +275,7 @@ void PersonManageDialog::setTabWidgetValue()
     forteenthTB->insertColumn(1);
     forteenthTB->setColumnCount(1);
     forteenthTB->setHorizontalHeaderLabels(headList);
+    forteenthTB->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (auto &forteenthPer : m_pers[14]) {
         int row = forteenthTB->rowCount();
@@ -261,7 +289,12 @@ void PersonManageDialog::setTabWidgetValue()
 
 void PersonManageDialog::getData()
 {
-    m_pers = database->getWorkPerData();
+    m_pers = database->getEveryPerData();
+    stateType.push_back("在岗");
+    stateType.push_back("请假");
+    stateType.push_back("休假");
+    stateType.push_back("离职");
+    stateType.push_back("病假");
 }
 
 void PersonManageDialog::addPersonButton()
@@ -280,7 +313,7 @@ void PersonManageDialog::deletePersonButton()
         delPerDlg->setWindowModality(Qt::ApplicationModal);
         delPerDlg->show();
 
-//        setTabWidgetValue();
+        //        setTabWidgetValue();
     });
 }
 
@@ -300,4 +333,9 @@ void PersonManageDialog::searchPersonButton()
         searchPerDlg->setWindowModality(Qt::ApplicationModal);
         searchPerDlg->show();
     });
+}
+
+void PersonManageDialog::submitStatePage()
+{
+    qDebug() << "submit";
 }
