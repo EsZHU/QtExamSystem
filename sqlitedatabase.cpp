@@ -172,7 +172,6 @@ QMap<int, QVector<person> > SqliteDatabase::getEveryPerData()
         per.deptId = query.value("deptId").toInt();
         per.perName = query.value("perName").toString();
         per.absent = query.value("absent").toInt();
-        qDebug() << "absent" << per.absent;
 
         perMap[per.deptId].push_back(per);
     }
