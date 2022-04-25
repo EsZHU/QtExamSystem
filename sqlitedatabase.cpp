@@ -185,7 +185,13 @@ void SqliteDatabase::writeSqlPerState(QMap<int,QVector<person>> perMap)
 
     for(auto curDeptPers: perMap){
         for(auto per: curDeptPers){
-//            qDebug() << per.perName << per.deptId << per.absent << per.id;
+            qDebug() << per.perName << per.deptId << per.absent << per.id;
+            query.prepare("update person set absent = :absent where id = :id");
+            query.bindValue(":absent", per.absent);
+            query.bindValue(":id", per.id);
+            if(!query.exec()){
+                qDebug() << "ChangeData failed." << query.lastError();
+            }
         }
     }
     // 更改表中id=1222 的deptName属性为admin
