@@ -179,6 +179,20 @@ QMap<int, QVector<person> > SqliteDatabase::getEveryPerData()
     return perMap;
 }
 
+void SqliteDatabase::writeSqlPerState(QMap<int,QVector<person>> perMap)
+{
+    QSqlQuery query;
+
+    for(auto curDeptPers: perMap){
+        for(auto per: curDeptPers){
+//            qDebug() << per.perName << per.deptId << per.absent << per.id;
+        }
+    }
+    // 更改表中id=1222 的deptName属性为admin
+    //    query.prepare("update department set deptName='admin' where id='1222'");
+    //    query.exec();
+}
+
 void SqliteDatabase::setPerAbsent(QString perName)
 {
     QSqlQuery query;

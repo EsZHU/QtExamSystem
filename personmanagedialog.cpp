@@ -10,10 +10,10 @@ PersonManageDialog::PersonManageDialog(QWidget *parent) :
     connect(ui->closeButton, &QPushButton::clicked, [=](){this->close();});
     connect(ui->submitButton, &QPushButton::clicked, [=](){
         submitStatePage();
+
     });
     getData();
     newSetTableWidgetValue();
-//    setTabWidgetValue();
     database = new SqliteDatabase();
     addPersonButton();
     deletePersonButton();
@@ -96,8 +96,6 @@ void PersonManageDialog::deletePersonButton()
         DeletePersonDialog* delPerDlg = new DeletePersonDialog();
         delPerDlg->setWindowModality(Qt::ApplicationModal);
         delPerDlg->show();
-
-        //        setTabWidgetValue();
     });
 }
 
@@ -121,5 +119,20 @@ void PersonManageDialog::searchPersonButton()
 
 void PersonManageDialog::submitStatePage()
 {
-
+//    QVector<QTableWidget*> personShowTable;
+    int deptId = 1;
+    QString stateType;
+    QVector<QTableWidget*>::iterator iter;
+//    for(iter)
+    for(iter = personShowTable.begin(); iter != personShowTable.end(); iter++){
+        qDebug() << deptId;
+    }
+//    for(auto &table: personShowTable){ // 遍历每一个表格/一个处室一个表
+//        qDebug() << deptId;
+//        for(int i = 0; i < table->rowCount(); i++){ // 遍历每一行的状态量/重写m_pers的absent值
+//            stateType = table->cellWidget(i, 1)->windowIconText();
+//            qDebug() << stateType;
+//        }
+//    }
+    database->writeSqlPerState(m_pers);
 }
