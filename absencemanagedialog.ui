@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="confirmBack">
+  <widget class="QPushButton" name="confirmDelete">
    <property name="geometry">
     <rect>
      <x>480</x>
@@ -28,7 +28,7 @@ QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
    </property>
    <property name="text">
-    <string>确认销假</string>
+    <string>确认减少</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -36,7 +36,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
     <rect>
      <x>10</x>
      <y>75</y>
-     <width>265</width>
+     <width>331</width>
      <height>31</height>
     </rect>
    </property>
@@ -65,7 +65,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
        </font>
       </property>
       <property name="text">
-       <string>姓名</string>
+       <string>方式</string>
       </property>
      </widget>
     </item>
@@ -111,7 +111,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
     <rect>
      <x>20</x>
      <y>45</y>
-     <width>41</width>
+     <width>71</width>
      <height>20</height>
     </rect>
    </property>
@@ -121,15 +121,15 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
     </font>
    </property>
    <property name="text">
-    <string>请假</string>
+    <string>添加方式</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>350</x>
      <y>10</y>
-     <width>221</width>
+     <width>161</width>
      <height>20</height>
     </rect>
    </property>
@@ -139,7 +139,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
     </font>
    </property>
    <property name="text">
-    <string>请假列表</string>
+    <string>方式列表</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget_2">
@@ -147,7 +147,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
     <rect>
      <x>10</x>
      <y>150</y>
-     <width>265</width>
+     <width>331</width>
      <height>31</height>
     </rect>
    </property>
@@ -176,7 +176,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
        </font>
       </property>
       <property name="text">
-       <string>姓名</string>
+       <string>方式</string>
       </property>
      </widget>
     </item>
@@ -222,7 +222,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
     <rect>
      <x>20</x>
      <y>120</y>
-     <width>41</width>
+     <width>71</width>
      <height>20</height>
     </rect>
    </property>
@@ -232,20 +232,20 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
     </font>
    </property>
    <property name="text">
-    <string>销假</string>
+    <string>减少方式</string>
    </property>
   </widget>
   <widget class="QWidget" name="absenceTableWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>350</x>
      <y>40</y>
-     <width>341</width>
+     <width>281</width>
      <height>161</height>
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="confirmAbsent">
+  <widget class="QPushButton" name="confirmAdd">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -260,15 +260,15 @@ QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
    </property>
    <property name="text">
-    <string>确认请假</string>
+    <string>确认添加</string>
    </property>
   </widget>
   <widget class="QLabel" name="hintLabel">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>90</x>
      <y>40</y>
-     <width>211</width>
+     <width>251</width>
      <height>31</height>
     </rect>
    </property>
@@ -284,9 +284,9 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
   <widget class="QLabel" name="hintLabelTwo">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>90</x>
      <y>120</y>
-     <width>211</width>
+     <width>251</width>
      <height>21</height>
     </rect>
    </property>

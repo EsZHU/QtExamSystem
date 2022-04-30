@@ -6,12 +6,16 @@ AbsenceManageDialog::AbsenceManageDialog(QWidget *parent) :
     ui(new Ui::AbsenceManageDialog)
 {
     ui->setupUi(this);
-    this->setWindowTitle("请假管理页面");
+    this->setWindowTitle("请假方式管理页面");
     database = new SqliteDatabase();
     getData();
     refresh();
-    confirmAbsentButton();
-    confirmBackButton();
+    connect(ui->confirmAdd, &QPushButton::clicked, [=](){
+        confirmAdd();
+    });
+    connect(ui->confirmDelete, &QPushButton::clicked, [=](){
+        confirmDelete();
+    });
 }
 
 AbsenceManageDialog::~AbsenceManageDialog()
@@ -24,99 +28,97 @@ void AbsenceManageDialog::getData()
     m_absPers = database->getAbsentPerData();
     m_depts = database->getDeptData();
     m_workPers = database->getWorkPerData();
+    m_state = database->getState();
+    m_allPers = database->getEveryPerData();
 }
 
 void AbsenceManageDialog::refresh()
 {
-//    ui->widget_5->hide(); // 暂时不想做成员和处室的适配
-//    ui->widget_6->hide(); // 暂时不想做成员和处室的适配
-    QTableWidget* absPerTable = new QTableWidget(ui->absenceTableWidget);
-    absPerTable->resize(ui->absenceTableWidget->width(), ui->absenceTableWidget->height());
-    absPerTable->setColumnCount(2); //设置列数为3
+    QTableWidget* stateTable = new QTableWidget(ui->absenceTableWidget);
+    stateTable->resize(ui->absenceTableWidget->width(), ui->absenceTableWidget->height());
+    stateTable->setColumnCount(1); //设置列数为1
     QStringList header;
-//    header << "人名" << "处室" << "请假原因";
-    header << "人名" << "处室";
-    absPerTable->setHorizontalHeaderLabels(header);
+    header << "请假方式";
+    stateTable->setHorizontalHeaderLabels(header);
 
-    QVector<person> absPer;
+    QVector<QString> stateVec;
 
-    for(int i = 1; i <= m_depts.size(); i++){
-        for(auto per: m_absPers[i]){
-            absPer.push_back(per);
-        }
+    for(auto state: m_state){
+        stateVec.push_back(state);
     }
 
     int col;
     int row = 0;
 
-    for(const auto &per : absPer){
+    for(const auto &state : stateVec){
         col = 0;
-        absPerTable->insertRow(row); // 之前0的位置是row，倒序显示历史记录，现在正序
-        absPerTable->setItem(row, col++, new QTableWidgetItem(per.perName));
-        for(auto dept: m_depts){
-            if(dept.id == per.deptId){
-                QString deptName = dept.deptName;
-                absPerTable->setItem(row, col++, new QTableWidgetItem(deptName));
-            }
-        }
-//        absPerTable->setItem(0, col++, new QTableWidgetItem(per.absent));
-//        qDebug() << per.absent;
-
+        stateTable->insertRow(row); // 之前0的位置是row，倒序显示历史记录，现在正序
+        stateTable->setItem(row, col++, new QTableWidgetItem(state));
         row++;
     }
-    absPerTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    absPerTable->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中的方式
-    absPerTable->resizeColumnsToContents();
+    stateTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    stateTable->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中的方式
+    stateTable->resizeColumnsToContents();
 }
 
-void AbsenceManageDialog::confirmAbsentButton()
+void AbsenceManageDialog::confirmAdd()
 {
-    connect(ui->confirmAbsent, &QPushButton::clicked, [=](){
-        int find = 0;
-        QString perName = ui->askLeaveNameLabel->text();
-//        QString deptName = ui->askLeaveDepNameComboBox->currentText();
-        if(perName != ""){
-            for(int i = 1; i <= m_depts.size(); i++){
-                for(auto per: m_workPers[i]){
-                    if(perName == per.perName){ // 找到需要请假的人
-                        database->setPerAbsent(perName);
-                        m_workPers = database->getWorkPerData();
-                        ui->hintLabel->setText("【" + perName + "】成功请假");
-                        find = 1;
-                    }
-                }
+    int exist = 0;
+    QString addName = ui->askLeaveNameLabel->text();
+    if(addName != ""){
+        for(auto state: m_state){
+            if(state == addName){
+                exist = 1;
+                ui->hintLabel->setText("已存在！重新输入");
             }
-            if(find == 0){
-                // 您所输入的人不存在或已请假
-                ui->hintLabel->setText("您所输入的人不存在或已请假");
-            }
-        } else if(perName == ""){
-                ui->hintLabel->setText("输入栏不能为空");
         }
-    });
+        if(exist == 0){
+            database->manageAddState(addName);
+        }
+    } else if(addName == ""){
+        ui->hintLabel->setText("输入栏不能为空");
+    }
 }
 
-void AbsenceManageDialog::confirmBackButton()
+void AbsenceManageDialog::confirmDelete()
 {
-    connect(ui->confirmBack, &QPushButton::clicked, [=](){
-        int find = 0;
-        QString perName = ui->askBackNameLabel->text();
-        if(perName != ""){
-            for(int i = 1; i <= m_depts.size(); i++){
-                for(auto per: m_absPers[i]){
-                    if(perName == per.perName){ // 找到需要销假的人
-                        database->setPerWork(perName);
-                        ui->hintLabelTwo->setText("【" + perName + "】成功销假");
-                        find = 1;
+    int exist = 0;
+    int stateNum, i = 0, ableDel = 1;
+    QString delName = ui->askBackNameLabel->text();
+    for(auto state: m_state){
+        i++;
+        if(state == delName){
+            qDebug() << state <<delName;
+            stateNum = m_state.key(state);
+            break;
+        }
+    }
+    qDebug() <<delName << stateNum;
+    if(delName != ""){
+        for(auto state: m_state){
+            if(state == delName){
+                exist = 1;
+                // 遍历所有人，看看是否使用当前要删的状态，如果在用，就不允许删除
+                for(int j = 1; j <= m_depts.size(); j++){
+                    if(!ableDel)
+                        break;
+                    for(auto per: m_allPers[j]){
+                        if(!ableDel) break;
+                        if(per.absent == stateNum){ // 不让
+                            ableDel = 0;
+                            ui->hintLabelTwo->setText("不能删除当前状态");
+                            break;
+                        }
                     }
                 }
+                if(ableDel)
+                    database->manageDeleteState(delName);
             }
-            if(find == 0){
-                // 您所输入的人不存在或已销假
-                ui->hintLabelTwo->setText("您所输入的人不存在或已销假");
-            }
-        } else if(perName == ""){
-                ui->hintLabelTwo->setText("输入栏不能为空");
         }
-    });
+        if(exist == 0){
+            ui->hintLabelTwo->setText("不存在！重新输入");
+        }
+    } else if(delName == ""){
+        ui->hintLabel->setText("输入栏不能为空");
+    }
 }

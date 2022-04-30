@@ -136,13 +136,21 @@ void MainWindowNew::initMenu()
     });
     guanli->addAction(newActPerManage);
 
-    QAction *newActAbsenceManage = new QAction(tr("&请假管理"), this);
-    connect(newActAbsenceManage, &QAction::triggered, [=](){
+//    QAction *newActAbsenceManage = new QAction(tr("&请假管理"), this);
+//    connect(newActAbsenceManage, &QAction::triggered, [=](){
+//        AbsenceManageDialog* absManageDialog = new AbsenceManageDialog();
+//        absManageDialog->show();
+//        absManageDialog->setWindowModality(Qt::ApplicationModal);
+//    });
+//    guanli->addAction(newActAbsenceManage);
+
+    QAction *newActStateManage = new QAction(tr("&请假方式管理"), this);
+    connect(newActStateManage, &QAction::triggered, [=](){
         AbsenceManageDialog* absManageDialog = new AbsenceManageDialog();
         absManageDialog->show();
         absManageDialog->setWindowModality(Qt::ApplicationModal);
     });
-    guanli->addAction(newActAbsenceManage);
+    guanli->addAction(newActStateManage);
 
     QMenu *lishi = menuBar()->addMenu(tr("&历史"));
 

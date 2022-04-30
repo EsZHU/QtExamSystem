@@ -24,7 +24,7 @@ class PersonManageDialog : public QWidget
 public:
     explicit PersonManageDialog(QWidget *parent = nullptr);
     ~PersonManageDialog();
-    void stateManageMethod();
+//    void stateManageMethod();
     void newSetTableWidgetValue();
     void setTabWidgetValue();
     void getData();
@@ -44,6 +44,7 @@ private:
     QVector<QString> tabTitleVec;
     QVector<QTableWidget*> personShowTable;
     QStringList headList;
+    QMap<int, QString> m_state;
 };
 
 #endif // PERSONMANAGEDIALOG_H

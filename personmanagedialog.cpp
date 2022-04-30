@@ -7,16 +7,6 @@ PersonManageDialog::PersonManageDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("人员管理界面");
-    ui->lineEdit->setText("在岗");
-    ui->lineEdit_2->setText("请假");
-    ui->lineEdit_3->setText("休假");
-    ui->lineEdit_4->setText("离职");
-    ui->lineEdit_5->setText("病假");
-    stateManageMethod();
-    connect(ui->changeButton, &QPushButton::clicked, [=](){
-        stateManageMethod();
-        newSetTableWidgetValue();
-    });
     connect(ui->closeButton, &QPushButton::clicked, [=](){this->close();});
     connect(ui->submitButton, &QPushButton::clicked, [=](){
         qDebug() << "start test";
@@ -34,15 +24,6 @@ PersonManageDialog::PersonManageDialog(QWidget *parent) :
 PersonManageDialog::~PersonManageDialog()
 {
     delete ui;
-}
-
-void PersonManageDialog::stateManageMethod()
-{
-    stateType.push_back(ui->lineEdit->text());
-    stateType.push_back(ui->lineEdit_2->text());
-    stateType.push_back(ui->lineEdit_3->text());
-    stateType.push_back(ui->lineEdit_4->text());
-    stateType.push_back(ui->lineEdit_5->text());
 }
 
 void PersonManageDialog::newSetTableWidgetValue()
@@ -70,14 +51,12 @@ void PersonManageDialog::newSetTableWidgetValue()
             table->setItem(row,col++,firstPerName);//把这个Item加到第一行第二列中
 
             QComboBox *classBox = new QComboBox;
-            int num = 0;
-            classBox->addItem(stateType[num++]);
-            classBox->addItem(stateType[num++]);
-            classBox->addItem(stateType[num++]);
-            classBox->addItem(stateType[num++]);
-            classBox->addItem(stateType[num++]);
+            for(auto state: m_state){
+                qDebug() << state;
+                classBox->addItem(state);
+            }
             table->setCellWidget(row, col++, classBox);
-            QString currentState = stateType[per.absent];
+            QString currentState = m_state[per.absent];
             classBox->setCurrentText(currentState);
         }
 
@@ -91,11 +70,7 @@ void PersonManageDialog::getData()
 {
     m_pers = database->getEveryPerData();
     m_depts = database->getDeptData();
-//    stateType.push_back("在岗");
-//    stateType.push_back("请假");
-//    stateType.push_back("休假");
-//    stateType.push_back("离职");
-//    stateType.push_back("病假");
+    m_state = database->getState();
     for(auto dept: m_depts){
         tabTitleVec.push_back(dept.deptName);
     }
@@ -144,18 +119,18 @@ void PersonManageDialog::submitStatePage()
     for(auto &table: personShowTable){ // 遍历每一个表格/一个处室一个表
         for(int i = 0; i < table->rowCount(); i++){ // 遍历每一行的状态量/重写m_pers的absent值
             auto combox = reinterpret_cast<QComboBox*>(table->cellWidget(i, 1));
-            stateType = combox->currentIndex();
-//            qDebug() << deptId << i;
+            int count = 0;
+            for(auto state: m_state){
+                count++;
+                if(state == combox->currentText()){
+                    stateType = m_state.key(state);
+                    break;
+                }
+            }
             m_pers[deptId][i].absent = stateType;
         }
         deptId++;
     }
 
-    int dept = 1;
-//    for(auto per : m_pers){
-//        for(auto p: per){
-//            qDebug() << p.perName << p.absent;
-//        }
-//    }
     database->writeSqlPerState(m_pers);
 }

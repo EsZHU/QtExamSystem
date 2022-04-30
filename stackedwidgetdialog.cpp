@@ -6,7 +6,6 @@ stackedWidgetDialog::stackedWidgetDialog(QWidget *parent) :
     ui(new Ui::stackedWidgetDialog)
 {
     ui->setupUi(this);
-    //    ui->chooseButton->setEnabled(false);
     database = new SqliteDatabase();
     perTable = new QTableWidget(ui->perShowWidget);
     perTable->resize(ui->perShowWidget->width(), ui->perShowWidget->height());
@@ -44,7 +43,6 @@ void stackedWidgetDialog::initPerTable(QMap<int,QVector<person>> pers, int deptI
     perTable->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中的方式
     perTable->horizontalHeader()->setDefaultSectionSize(400);
     perTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    //    perTable->setFixedWidth(ui->perShowWidget->width()); // 不起作用
     ui->confirmButton->setEnabled(false);
 }
 

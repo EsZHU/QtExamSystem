@@ -38,5 +38,10 @@ struct hisDetScope {
     QString scope;
 };
 
+struct state{
+    int id;
+    QString stateName;
+};
+
 
 #endif // DEFS_H

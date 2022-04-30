@@ -179,6 +179,26 @@ QMap<int, QVector<person> > SqliteDatabase::getEveryPerData()
     return perMap;
 }
 
+QMap<int, QString> SqliteDatabase::getState()
+{
+    QMap<int, QString> stateMap;
+
+    QSqlQuery query;
+
+    query.prepare("select * from stateManage");
+    query.exec();
+
+    while(query.next()){
+        state curState;
+        curState.id = query.value("id").toInt();
+        curState.stateName = query.value("absent").toString();
+
+        stateMap[curState.id].push_back(curState.stateName);
+    }
+
+    return stateMap;
+}
+
 void SqliteDatabase::writeSqlPerState(QMap<int,QVector<person>> perMap)
 {
     QSqlQuery query;
@@ -407,6 +427,17 @@ void SqliteDatabase::manageAddPerson(QString addName, int deptId)
     }
 }
 
+void SqliteDatabase::manageAddState(QString addName)
+{
+    QSqlQuery query;
+
+    query.prepare("insert into stateManage (absent) values (:absent)");
+    query.bindValue(":absent", addName);
+    if(!query.exec()){
+        qDebug() << "manageAddState failed" << query.lastError();
+    }
+}
+
 bool SqliteDatabase::manageDeletePerson(QString delName, int deptId)
 {
     QSqlQuery query;
@@ -418,6 +449,17 @@ bool SqliteDatabase::manageDeletePerson(QString delName, int deptId)
         return true;
     }
     return false;
+}
+
+void SqliteDatabase::manageDeleteState(QString delName)
+{
+    QSqlQuery query;
+
+    query.prepare("delete from stateManage where absent = :absent");
+    query.bindValue(":absent", delName);
+    if(!query.exec()){
+        qDebug() << "manageDeleteState failed" << query.lastError();
+    }
 }
 
 void SqliteDatabase::manageChangePerson(QString beforeName, int beforeDeptId, QString afterName, int afterDeptId)

@@ -34,6 +34,7 @@ public:
     QMap<int,QVector<person>> getWorkPerData(); // 读取人员表返回人员的结构体
     QMap<int,QVector<person>> getAbsentPerData(); // 读取人员表返回人员的结构体
     QMap<int,QVector<person>> getEveryPerData();
+    QMap<int, QString> getState();
     void writeSqlPerState(QMap<int,QVector<person>> perMap);
     void setPerAbsent(QString perName);
     void setPerWork(QString perName);
@@ -44,7 +45,9 @@ public:
     QVector<hisRecord> getHisData();
     void hisDelete(QString deleteType);
     void manageAddPerson(QString addName, int deptId);
+    void manageAddState(QString addName);
     bool manageDeletePerson(QString delName, int deptId);
+    void manageDeleteState(QString delName);
     void manageChangePerson(QString beforeName, int beforeDeptId, QString afterName, int afterDeptId);
     int manageSearchPerson(QString searchName);
     bool manageExist(QString nameS, int deptId);
