@@ -34,7 +34,7 @@ void AbsenceManageDialog::getData()
 
 void AbsenceManageDialog::refresh()
 {
-    QTableWidget* stateTable = new QTableWidget(ui->absenceTableWidget);
+    stateTable = new QTableWidget(ui->absenceTableWidget);
     stateTable->resize(ui->absenceTableWidget->width(), ui->absenceTableWidget->height());
     stateTable->setColumnCount(1); //设置列数为1
     QStringList header;
@@ -82,43 +82,40 @@ void AbsenceManageDialog::confirmAdd()
 
 void AbsenceManageDialog::confirmDelete()
 {
-    int exist = 0;
-    int stateNum, i = 0, ableDel = 1;
-    QString delName = ui->askBackNameLabel->text();
+    int stateNum, ableDel = 1;
+    QString delName;
+    int rowIndex = stateTable->currentRow();
+    delName = stateTable->item(rowIndex, 0)->text();
+
     for(auto state: m_state){
-        i++;
         if(state == delName){
-            qDebug() << state <<delName;
             stateNum = m_state.key(state);
             break;
         }
     }
-    qDebug() <<delName << stateNum;
-    if(delName != ""){
-        for(auto state: m_state){
-            if(state == delName){
-                exist = 1;
-                // 遍历所有人，看看是否使用当前要删的状态，如果在用，就不允许删除
-                for(int j = 1; j <= m_depts.size(); j++){
-                    if(!ableDel)
+
+    for(auto state: m_state){
+        if(state == delName){
+            // 遍历所有人，看看是否使用当前要删的状态，如果在用，就不允许删除
+            for(int j = 1; j <= m_depts.size(); j++){
+                if(!ableDel)
+                    break;
+                for(auto per: m_allPers[j]){
+                    if(!ableDel) break;
+                    if(per.absent == stateNum){ // 不让
+                        ableDel = 0;
                         break;
-                    for(auto per: m_allPers[j]){
-                        if(!ableDel) break;
-                        if(per.absent == stateNum){ // 不让
-                            ableDel = 0;
-                            ui->hintLabelTwo->setText("不能删除当前状态");
-                            break;
-                        }
                     }
                 }
-                if(ableDel)
-                    database->manageDeleteState(delName);
+            }
+            if(ableDel){
+                if (rowIndex!=-1)
+                {
+                    stateTable->removeRow(rowIndex);
+                }
+                database->manageDeleteState(delName);
             }
         }
-        if(exist == 0){
-            ui->hintLabelTwo->setText("不存在！重新输入");
-        }
-    } else if(delName == ""){
-        ui->hintLabel->setText("输入栏不能为空");
     }
+
 }

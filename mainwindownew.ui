@@ -200,65 +200,7 @@ QPushButton:disabled{background-color:rgb(191, 190, 192);border-style: inset;}</
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">QSpinBox {
-	background:transparent;
-
-	/*
-	border: 0px solid gray;
-	border-radius: 6px;*/
-	
-}
-
-/*spinbox 抬起样式*/
-QSpinBox::up-button {
-	subcontrol-position:right;
-	height: 29px;
-	width: 29px;
-	/*overflow-x: hidden;
-	border-radius: 0px 6px 6px 0px;
-	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(200, 200, 200, 255), stop:1 rgba(255, 255, 255, 255))*/
-	/*image: url(:/Qss/Qss/spinBox右箭头.png);*/
-	image: url(:/Qss/Qss/spinBoxRightArrowUnchosen.png);
-}
-QSpinBox::down-button {
-	subcontrol-position:left;
-	height: 29px;
-	width: 29px;
-	/*border-radius: 6px 0px 0px 6px;
-	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(200, 200, 200, 255), stop:1 rgba(255, 255, 255, 255))*/
-	/*image: url(:/Qss/Qss/spinBox左箭头.png);*/
-	image: url(:/Qss/Qss/spinBoxLeftArrowUnchosen.png);
-}
-
-QSpinBox::up-button:hover{
-	subcontrol-position:right;
-	height: 29px;
-	width: 29px;
-	image: url(:/Qss/Qss/spinBoxRightButtonMiddle.png);
-}
-
-QSpinBox::down-button:hover{
-	subcontrol-position:left;
-	height: 29px;
-	width: 29px;
-	image: url(:/Qss/Qss/spinBoxLeftButtonMiddle.png);
-}
-
-/*按钮按下样式*/
-QSpinBox::up-button:pressed{
-	subcontrol-position:right;
-	height: 29px;
-	width: 29px;
-	image: url(:/Qss/Qss/spinBoxRightArrowChosen.png);
-}
- 
-QSpinBox::down-button:pressed{
-	subcontrol-position:left;
-	height: 29px;
-	width: 29px;
-	image: url(:/Qss/Qss/spinBoxLeftArrowChosen.png);
-}
-</string>
+      <string notr="true"/>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -291,7 +233,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}
 QPushButton:disabled{background-color:rgb(191, 190, 192);border-style: inset;}</string>
      </property>
      <property name="text">
-      <string>点选</string>
+      <string>抽取</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_2">
@@ -309,7 +251,7 @@ QPushButton:disabled{background-color:rgb(191, 190, 192);border-style: inset;}</
       </font>
      </property>
      <property name="text">
-      <string>需要抽取</string>
+      <string>抽取人数</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

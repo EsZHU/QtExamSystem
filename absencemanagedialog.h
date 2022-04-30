@@ -32,6 +32,7 @@ private:
     QVector<department> m_depts;
     SqliteDatabase* database;
     QMap<int, QString> m_state;
+    QTableWidget* stateTable;
 };
 
 #endif // ABSENCEMANAGEDIALOG_H

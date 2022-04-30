@@ -41,7 +41,7 @@ void MainWindowNew::initResultShowTable()
     showResultTable->setEditTriggers(QTableWidget::NoEditTriggers);
 
     QStringList strList;
-    strList << "抽取时间" << "抽取处室" << "抽取人名";
+    strList << "抽取时间" << "抽取处室" << "抽取人员";
     showResultTable->clear();
     showResultTable->horizontalHeader()->setDefaultSectionSize(300);
     showResultTable->setRowCount(0);
@@ -144,7 +144,7 @@ void MainWindowNew::initMenu()
 //    });
 //    guanli->addAction(newActAbsenceManage);
 
-    QAction *newActStateManage = new QAction(tr("&请假方式管理"), this);
+    QAction *newActStateManage = new QAction(tr("&人员状态管理"), this);
     connect(newActStateManage, &QAction::triggered, [=](){
         AbsenceManageDialog* absManageDialog = new AbsenceManageDialog();
         absManageDialog->show();
