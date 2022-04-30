@@ -136,14 +136,6 @@ void MainWindowNew::initMenu()
     });
     guanli->addAction(newActPerManage);
 
-//    QAction *newActAbsenceManage = new QAction(tr("&请假管理"), this);
-//    connect(newActAbsenceManage, &QAction::triggered, [=](){
-//        AbsenceManageDialog* absManageDialog = new AbsenceManageDialog();
-//        absManageDialog->show();
-//        absManageDialog->setWindowModality(Qt::ApplicationModal);
-//    });
-//    guanli->addAction(newActAbsenceManage);
-
     QAction *newActStateManage = new QAction(tr("&人员状态管理"), this);
     connect(newActStateManage, &QAction::triggered, [=](){
         AbsenceManageDialog* absManageDialog = new AbsenceManageDialog();
@@ -290,7 +282,6 @@ void MainWindowNew::refreshTable()
         showResultTable->setItem(row, col, new QTableWidgetItem(pers.choosenPersons));
         showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
         showResultTable->item(row,col++)->setFont(QFont("song", 18));
-        //            ui->confirmButton->setEnabled(true);
     }
 }
 
@@ -300,6 +291,11 @@ void MainWindowNew::on_dptListWidget_currentRowChanged(int currentRow)
     m_workPers = database->getWorkPerData();
     int deptId = ui->dptListWidget->currentRow() + 1;
     auto maxPerson = m_workPers[deptId].size();
+    if(maxPerson == 1 || maxPerson == 2 || maxPerson ==3){
+        ui->spinBox->setValue(1);
+    } else {
+        ui->spinBox->setValue(3);
+    }
 
     ui->spinBox->setMaximum(maxPerson);
     ui->availablePerLabel->setText("可选 "+QString::number(maxPerson)+" 人");

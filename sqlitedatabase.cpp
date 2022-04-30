@@ -116,7 +116,7 @@ QMap<int,QVector<person>> SqliteDatabase::getWorkPerData() // 获取人员信息
     query.exec();
 
     while (query.next()) {
-        if(query.value("absent").toInt() == 0){ // absent=0 不缺席
+        if(query.value("absent").toInt() == 1){ // absent=1 在岗
             person per;
             per.id = query.value("id").toInt();
             per.deptId = query.value("deptId").toInt();
@@ -132,7 +132,7 @@ QMap<int,QVector<person>> SqliteDatabase::getWorkPerData() // 获取人员信息
     return perMap;
 }
 
-QMap<int, QVector<person> > SqliteDatabase::getAbsentPerData()
+QMap<int, QVector<person> > SqliteDatabase::getAbsentPerData() // !!改
 {
     QMap<int,QVector<person>> perMap;
 
@@ -142,14 +142,14 @@ QMap<int, QVector<person> > SqliteDatabase::getAbsentPerData()
     query.exec();
 
     while (query.next()) {
-        if(query.value("absent").toInt() == 1){ // absent=1 缺席
+        if(query.value("absent").toInt() > 1){ // absent>1 缺席
             person per;
             per.id = query.value("id").toInt();
             per.deptId = query.value("deptId").toInt();
             per.perName = query.value("perName").toString();
 
             perMap[per.deptId].push_back(per);
-        } else if(query.value("absent").toInt() == 0){
+        } else if(query.value("absent").toInt() == 1){
             continue;
         }
     }
