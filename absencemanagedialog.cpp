@@ -69,34 +69,16 @@ void AbsenceManageDialog::refresh()
     stateTable->resizeColumnsToContents();
 }
 
-//void AbsenceManageDialog::confirmAdd()
-//{
-//    int exist = 0;
-//    QString addName = ui->askLeaveNameLabel->text();
-//    if(addName != ""){
-//        for(auto state: m_state){
-//            if(state == addName){
-//                exist = 1;
-//                ui->hintLabel->setText("已存在！重新输入");
-//            }
-//        }
-//        if(exist == 0){
-//            database->manageAddState(addName);
-//        }
-//    } else if(addName == ""){
-//        ui->hintLabel->setText("输入栏不能为空");
-//    }
-//}
-
 void AbsenceManageDialog::addState()
 {
     m_state = database->getState();
     QString testName;
     int exist = 0;
 
-    StateEditDialog* stateEditDialog = new StateEditDialog();
+    StateEditDialog* stateEditDialog = new StateEditDialog("添加状态页面", [=](QString content){
+        qDebug() << content;
+    });
     stateEditDialog->show();
-    stateEditDialog->setWindowTitle("添加状态页面");
 
     testName = "测试添加";
 
@@ -188,11 +170,10 @@ void AbsenceManageDialog::editState()
         }
 
         if(ableEdit){
-            StateEditDialog* stateEditDialog = new StateEditDialog();
+            StateEditDialog* stateEditDialog = new StateEditDialog("编辑状态页面", editName, [=](QString content){
+                qDebug() << content;
+            });
             stateEditDialog->show();
-            stateEditDialog->setWindowTitle("编辑状态页面");
-
-            stateEditDialog->setEditLine(editName);
 
             afterName = "测试";
             stateTable->setItem(rowIndex, 0, new QTableWidgetItem(afterName));

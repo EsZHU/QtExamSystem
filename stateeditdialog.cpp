@@ -10,7 +10,21 @@ StateEditDialog::StateEditDialog(QWidget *parent) :
     connect(ui->cancelButton, &QPushButton::clicked, [=](){
         this->close();
     });
+    connect(ui->saveButton, &QPushButton::clicked, [=](){
+        this->cb(ui->lineEdit->text());
+
+        this->close();
+    });
 }
+
+StateEditDialog::StateEditDialog(QString windowTitle, QString editName, FUNC_TYPE cb): StateEditDialog()
+{
+    this->setWindowTitle(windowTitle);
+    ui->lineEdit->setText(editName);
+    this->cb = cb;
+}
+
+StateEditDialog::StateEditDialog(QString windowTitle, FUNC_TYPE cb):StateEditDialog(windowTitle, "", cb){}
 
 StateEditDialog::~StateEditDialog()
 {
