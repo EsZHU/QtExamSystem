@@ -44,4 +44,6 @@ struct state{
 };
 
 
+typedef std::function<void ()> VOID_FUNC_TYPE;
+
 #endif // DEFS_H

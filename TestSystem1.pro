@@ -11,7 +11,6 @@ CONFIG += c++11
 
 SOURCES += \
     absencemanagedialog.cpp \
-    adddptdialog.cpp \
     addpersondialog.cpp \
     changedptdialog.cpp \
     changepersondialog.cpp \
@@ -20,7 +19,6 @@ SOURCES += \
     confirmpickdialog.cpp \
     confirmsthdialog.cpp \
     customtabbar.cpp \
-    deldptdialog.cpp \
     deletepersondialog.cpp \
     deletesuccessdialog.cpp \
     dptmanagedialog.cpp \
@@ -41,7 +39,6 @@ SOURCES += \
 HEADERS += \
     CustomTabStyle.h \
     absencemanagedialog.h \
-    adddptdialog.h \
     addpersondialog.h \
     changedptdialog.h \
     changepersondialog.h \
@@ -51,7 +48,6 @@ HEADERS += \
     confirmsthdialog.h \
     customtabbar.h \
     defs.h \
-    deldptdialog.h \
     deletepersondialog.h \
     deletesuccessdialog.h \
     dptmanagedialog.h \
@@ -70,7 +66,6 @@ HEADERS += \
 
 FORMS += \
     absencemanagedialog.ui \
-    adddptdialog.ui \
     addpersondialog.ui \
     changedptdialog.ui \
     changepersondialog.ui \
@@ -78,7 +73,6 @@ FORMS += \
     confirmhisdeletedialog.ui \
     confirmpickdialog.ui \
     confirmsthdialog.ui \
-    deldptdialog.ui \
     deletepersondialog.ui \
     deletesuccessdialog.ui \
     dptmanagedialog.ui \

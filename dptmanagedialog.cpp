@@ -12,15 +12,9 @@ DptManageDialog::DptManageDialog(QWidget *parent) :
     this->setWindowTitle("部门管理页面");
     connect(ui->addDptButton, &QPushButton::clicked, [=](){
         addDept();
-        //        addDptDialog = new AddDptDialog();
-        //        addDptDialog->setWindowModality(Qt::ApplicationModal);
-        //        addDptDialog->show();
     });
     connect(ui->deleteDptButton, &QPushButton::clicked, [=](){
         deleteDept();
-        //        delDptDialog = new DelDptDialog();
-        //        delDptDialog->setWindowModality(Qt::ApplicationModal);
-        //        delDptDialog->show();
     });
     connect(ui->changeDptButton, &QPushButton::clicked, [=](){
         editDept();
@@ -74,29 +68,27 @@ void DptManageDialog::addDept()
 
     StateEditDialog* stateEditDialog = new StateEditDialog("添加部门页面", [&](QString content){
             int exist = 0;
-            //        qDebug() << content;
-            //        qDebug() << "addName" << content;
             if(content != ""){
-            for(auto dept: m_depts){
-            if(dept.deptName == content){
-            exist = 1;
-            qDebug() << "已存在";
-            // ui->hintLabel->setText("已存在！重新输入");
-}
-}
-            if(exist == 0){
-            int addRow = ui->tableWidget->rowCount();
-            ui->tableWidget->insertRow(addRow);//添加一行
-            ui->tableWidget->setItem(addRow, 0, new QTableWidgetItem(content));
-            ui->tableWidget->item(addRow,0)->setTextAlignment(Qt::AlignCenter);
-            ui->tableWidget->item(addRow, 0)->setFont(QFont("song", 18));
-            database->manageAddDept(content);
-}
-} else if(content == ""){
-            qDebug() << "不能为空";
-            // ui->hintLabel->setText("输入栏不能为空");
-}
-});
+                for(auto dept: m_depts){
+                    if(dept.deptName == content){
+                        exist = 1;
+                        qDebug() << "已存在"; // 做提示框？
+                        // ui->hintLabel->setText("已存在！重新输入");
+                    }
+                }
+                if(exist == 0){
+                    int addRow = ui->tableWidget->rowCount();
+                    ui->tableWidget->insertRow(addRow);//添加一行
+                    ui->tableWidget->setItem(addRow, 0, new QTableWidgetItem(content));
+                    ui->tableWidget->item(addRow,0)->setTextAlignment(Qt::AlignCenter);
+                    ui->tableWidget->item(addRow, 0)->setFont(QFont("song", 18));
+                    database->manageAddDept(content);
+                }
+            } else if(content == ""){
+                qDebug() << "不能为空"; // 做提示框？
+                // ui->hintLabel->setText("输入栏不能为空");
+            }
+    });
     stateEditDialog->show();
 }
 

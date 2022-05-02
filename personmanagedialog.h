@@ -36,6 +36,9 @@ public:
     void searchPersonButton();
     void submitStatePage();
 
+    void initWidget();
+    void refreshWidget();
+
 private:
     Ui::PersonManageDialog *ui;
     QMap<int,QVector<person>> m_pers;
@@ -43,7 +46,7 @@ private:
     SqliteDatabase* database;
     QVector<QString> stateType;
     QVector<QString> tabTitleVec;
-    QVector<QTableWidget*> personShowTable;
+    QMap<int, QTableWidget*> personShowTable;
     QStringList headList;
     QMap<int, QString> m_state;
 };
