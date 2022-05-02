@@ -37,9 +37,6 @@ void AbsenceManageDialog::getData()
 
 void AbsenceManageDialog::refresh()
 {
-//    ui->tableWidget = new QTableWidget(ui->absenceTableWidget);
-//    ui->tableWidget->resize(ui->absenceTableWidget->width(), ui->absenceTableWidget->height());
-
     ui->tableWidget->setColumnCount(1); //设置列数为1
     QStringList header;
     header << "请假方式";
@@ -73,7 +70,6 @@ void AbsenceManageDialog::refresh()
 void AbsenceManageDialog::addState()
 {
     m_state = database->getState();
-
 
     StateEditDialog* stateEditDialog = new StateEditDialog("添加状态页面", [&](QString content){
         int exist = 0;
@@ -153,7 +149,7 @@ void AbsenceManageDialog::editState()
 {
     m_state = database->getState();
     if(ui->tableWidget->currentRow() != -1){ // 没有选中时=-1
-        QString editName, afterName;
+        QString editName;
         int rowIndex = ui->tableWidget->currentRow(), stateNum, ableEdit = 1;
         editName = ui->tableWidget->item(rowIndex, 0)->text();
 
@@ -171,13 +167,12 @@ void AbsenceManageDialog::editState()
         if(ableEdit){
             StateEditDialog* stateEditDialog = new StateEditDialog("编辑状态页面", editName, [&, rowIndex, editName](QString content) mutable{
                 // qDebug() << "content" << content;
-                afterName = content;
                 // qDebug() << "afterName" << afterName << "rowIndex" << rowIndex << "editName" << editName;
-                ui->tableWidget->setItem(rowIndex, 0, new QTableWidgetItem(afterName));
+                ui->tableWidget->setItem(rowIndex, 0, new QTableWidgetItem(content));
                 ui->tableWidget->item(rowIndex,0)->setTextAlignment(Qt::AlignCenter);
                 ui->tableWidget->item(rowIndex, 0)->setFont(QFont("song", 18));
 
-                database->manageEditState(editName, afterName);
+                database->manageEditState(editName, content);
 
             });
             stateEditDialog->show();

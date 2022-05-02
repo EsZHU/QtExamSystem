@@ -525,6 +525,7 @@ bool SqliteDatabase::manageExist(QString nameS, int deptId)
 
 bool SqliteDatabase::manageAddDept(QString deptName)
 {
+//    qDebug() << "deptName" << deptName;
     QSqlQuery query;
     int exist = 0;
 
@@ -538,7 +539,7 @@ bool SqliteDatabase::manageAddDept(QString deptName)
     }
 
     if(!exist){
-        query.prepare("insert into department where deptName = :deptName");
+        query.prepare("insert into department (deptName) values (:deptName)");
         query.bindValue(":deptName", deptName);
         if(!query.exec())
         {
