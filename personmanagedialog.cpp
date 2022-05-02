@@ -28,7 +28,7 @@ PersonManageDialog::~PersonManageDialog()
 
 void PersonManageDialog::newSetTableWidgetValue()
 {
-//    QVector<QTableWidget*> personShowTable;
+    //    QVector<QTableWidget*> personShowTable;
     for(auto dept: m_depts){
         QTableWidget* table = new QTableWidget(ui->tabWidget);
 
@@ -40,6 +40,7 @@ void PersonManageDialog::newSetTableWidgetValue()
         table->setColumnCount(2);
         table->setHorizontalHeaderLabels(headList);
         table->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
         headList.append("");
 
         for (auto &per : m_pers[dept.id]) {
@@ -48,11 +49,12 @@ void PersonManageDialog::newSetTableWidgetValue()
             table->insertRow(row);
             QTableWidgetItem *firstPerName=new QTableWidgetItem();//创建一个Item
             firstPerName->setText(per.perName);//设置内容
-            table->setItem(row,col++,firstPerName);//把这个Item加到第一行第二列中
+            table->setItem(row,col,firstPerName);//把这个Item加到第一行第二列中
+            table->item(row,col)->setTextAlignment(Qt::AlignCenter);
+            table->item(row,col++)->setFont(QFont("song", 18));
 
             QComboBox *classBox = new QComboBox;
             for(auto state: m_state){
-                qDebug() << state;
                 classBox->addItem(state);
             }
             table->setCellWidget(row, col++, classBox);

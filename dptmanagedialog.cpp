@@ -50,7 +50,7 @@ void DptManageDialog::refresh()
     ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
 
     for(auto dept: m_depts){
-        qDebug() << dept.deptName;
+//        qDebug() << dept.deptName;
         deptVec.push_back(dept.deptName);
     }
 
@@ -80,7 +80,7 @@ void DptManageDialog::addDept()
             for(auto dept: m_depts){
             if(dept.deptName == content){
             exist = 1;
-            qDebug() << "一存在";
+            qDebug() << "已存在";
             // ui->hintLabel->setText("已存在！重新输入");
 }
 }
@@ -159,8 +159,8 @@ void DptManageDialog::editDept()
         }
 
         StateEditDialog* stateEditDialog = new StateEditDialog("编辑部门页面", editName, [&, rowIndex, editName](QString content) mutable{
-             qDebug() << "content" << content;
-             qDebug() << "content" << content << "rowIndex" << rowIndex << "editName" << editName;
+//             qDebug() << "content" << content;
+//             qDebug() << "content" << content << "rowIndex" << rowIndex << "editName" << editName;
             ui->tableWidget->setItem(rowIndex, 0, new QTableWidgetItem(content));
             ui->tableWidget->item(rowIndex,0)->setTextAlignment(Qt::AlignCenter);
             ui->tableWidget->item(rowIndex, 0)->setFont(QFont("song", 18));

@@ -12,6 +12,7 @@
 #include "changepersondialog.h"
 #include "searchpersondialog.h"
 #include <QComboBox>
+#include <QHeaderView>
 
 namespace Ui {
 class PersonManageDialog;

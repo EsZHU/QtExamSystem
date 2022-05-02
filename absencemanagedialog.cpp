@@ -73,13 +73,13 @@ void AbsenceManageDialog::addState()
 
     StateEditDialog* stateEditDialog = new StateEditDialog("添加状态页面", [&](QString content){
         int exist = 0;
-        qDebug() << content;
-        qDebug() << "addName" << content;
+//        qDebug() << content;
+//        qDebug() << "addName" << content;
         if(content != ""){
             for(auto state: m_state){
                 if(state == content){
                     exist = 1;
-                    qDebug() << "一存在";
+                    qDebug() << "已存在";
                     //                ui->hintLabel->setText("已存在！重新输入");
                 }
             }

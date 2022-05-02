@@ -15,7 +15,7 @@ public:
         QSize s = QProxyStyle::sizeFromContents(type, option, size, widget);
         if (type == QStyle::CT_TabBarTab) {
             s.transpose();
-            s.rwidth() = 180;// 设置每个tabBar中item的大小
+            s.rwidth() = 280;// 设置每个tabBar中item的大小
             s.rheight() = 30;
         }
         return s;
@@ -58,10 +58,9 @@ public:
                 option.setAlignment(Qt::AlignCenter);
                 option.setWrapMode(option.WrapAnywhere);
 
-//                painter->setFont(QFont("楷体", 10, QFont::Bold));
+                painter->setFont(QFont("楷体", 18, QFont::Bold));
                 painter->setPen(0xffffff);
                 painter->drawText(allRect, tab->text, option);
-//                qDebug() << tab->text;
                 return;
             }
         }
