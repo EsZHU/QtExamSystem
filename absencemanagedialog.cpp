@@ -11,13 +11,17 @@ AbsenceManageDialog::AbsenceManageDialog(QWidget *parent) :
     getData();
     refresh();
     connect(ui->addButton, &QPushButton::clicked, [=](){
-        confirmAdd();
+        //        confirmAdd();
+        addState();
     });
     connect(ui->deleteButton, &QPushButton::clicked, [=](){
-        confirmDelete();
+        deleteState();
     });
     connect(ui->editButton, &QPushButton::clicked, [=](){
-
+        editState();
+    });
+    connect(ui->saveButton, &QPushButton::clicked, [=](){
+        saveState();
     });
 }
 
@@ -39,24 +43,29 @@ void AbsenceManageDialog::refresh()
 {
     stateTable = new QTableWidget(ui->absenceTableWidget);
     stateTable->resize(ui->absenceTableWidget->width(), ui->absenceTableWidget->height());
+
     stateTable->setColumnCount(1); //设置列数为1
     QStringList header;
     header << "请假方式";
     stateTable->setHorizontalHeaderLabels(header);
 
-    QVector<QString> stateVec;
+    stateTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    stateTable->horizontalHeader()->setFont(QFont("song", 18));
+    stateTable->setSelectionMode(QAbstractItemView::SingleSelection);
+
+//    QVector<QString> stateVec;
 
     for(auto state: m_state){
         stateVec.push_back(state);
     }
 
-    int col;
     int row = 0;
 
     for(const auto &state : stateVec){
-        col = 0;
         stateTable->insertRow(row); // 之前0的位置是row，倒序显示历史记录，现在正序
-        stateTable->setItem(row, col++, new QTableWidgetItem(state));
+        stateTable->setItem(row, 0, new QTableWidgetItem(state));
+        stateTable->item(row,0)->setTextAlignment(Qt::AlignCenter);
+        stateTable->item(row,0)->setFont(QFont("song", 18));
         row++;
     }
     stateTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -83,10 +92,26 @@ void AbsenceManageDialog::confirmAdd()
     }
 }
 
-void AbsenceManageDialog::confirmDelete()
+void AbsenceManageDialog::addState()
 {
-//    qDebug() << stateTable->currentRow();
-    if(stateTable->currentRow() != -1){ // 没有选中时=-1
+    deleteAble = 0;
+    int addRow = stateTable->rowCount();
+    stateTable->insertRow(addRow);//添加一行
+    stateTable->setCurrentCell(addRow, 0);
+
+//    QTableWidgetItem* item = stateTable->item(addRow,0); //获取每行第1列的单元格指针
+//    item->setFlags(Qt::ItemIsEditable);//设置改item可修改
+
+    stateTable->setEditTriggers(QAbstractItemView::DoubleClicked);
+//    stateTable->item(addRow,0)->setTextAlignment(Qt::AlignCenter);
+//    stateTable->item(addRow, 0)->setFont(QFont("song", 18));
+
+}
+
+void AbsenceManageDialog::deleteState()
+{
+//    qDebug() << "currentRow" << stateTable->currentRow() << "deleteAble" << deleteAble;
+    if(stateTable->currentRow() != -1 && deleteAble){ // 没有选中时=-1
         int stateNum, ableDel = 1;
         QString delName;
         int rowIndex = stateTable->currentRow();
@@ -128,4 +153,26 @@ void AbsenceManageDialog::confirmDelete()
             }
         }
     }
+}
+
+void AbsenceManageDialog::editState()
+{
+    deleteAble = 0;
+    //    //# 设置QTableWidget可编辑
+    //    ui->tableWidget->setEditTriggers(QAbstractItemView::CurrentChanged);
+    //    //# 遍历表格的每一行
+    //    for(int i=0; i<ui->tableWidget->columnCount()-1; i++)
+    //    {
+    //        QTableWidgetItem* item = ui->tableWidget->item(i,1); //获取每行第1列的单元格指针
+    //        item->setFlags(Qt::ItemIsEnabled);//设置改item不可修改；
+    //    }
+    //    //    item->setFlags(Qt::ItemIsEnabled） 表格单元item不可编辑
+    //    //    item->setFlags(Qt::ItemIsEditable)   表格单元item可编辑
+}
+
+void AbsenceManageDialog::saveState()
+{
+    // 满足要求后
+    stateTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    deleteAble = 1;
 }

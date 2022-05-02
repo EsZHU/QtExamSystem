@@ -21,7 +21,10 @@ public:
     void getData();
     void refresh();
     void confirmAdd();
-    void confirmDelete();
+    void addState();
+    void deleteState();
+    void editState();
+    void saveState();
 //    void confirmAbsentButton();
 //    void confirmBackButton();
 
@@ -34,6 +37,8 @@ private:
     SqliteDatabase* database;
     QMap<int, QString> m_state;
     QTableWidget* stateTable;
+    int deleteAble = 1;
+    QVector<QString> stateVec;
 };
 
 #endif // ABSENCEMANAGEDIALOG_H
