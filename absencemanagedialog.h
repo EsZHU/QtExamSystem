@@ -5,6 +5,7 @@
 #include <QTableWidget>
 #include "defs.h"
 #include "sqlitedatabase.h"
+#include <QHeaderView>
 
 namespace Ui {
 class AbsenceManageDialog;

@@ -10,11 +10,14 @@ AbsenceManageDialog::AbsenceManageDialog(QWidget *parent) :
     database = new SqliteDatabase();
     getData();
     refresh();
-    connect(ui->confirmAdd, &QPushButton::clicked, [=](){
+    connect(ui->addButton, &QPushButton::clicked, [=](){
         confirmAdd();
     });
-    connect(ui->confirmDelete, &QPushButton::clicked, [=](){
+    connect(ui->deleteButton, &QPushButton::clicked, [=](){
         confirmDelete();
+    });
+    connect(ui->editButton, &QPushButton::clicked, [=](){
+
     });
 }
 
@@ -82,40 +85,47 @@ void AbsenceManageDialog::confirmAdd()
 
 void AbsenceManageDialog::confirmDelete()
 {
-    int stateNum, ableDel = 1;
-    QString delName;
-    int rowIndex = stateTable->currentRow();
-    delName = stateTable->item(rowIndex, 0)->text();
+//    qDebug() << stateTable->currentRow();
+    if(stateTable->currentRow() != -1){ // 没有选中时=-1
+        int stateNum, ableDel = 1;
+        QString delName;
+        int rowIndex = stateTable->currentRow();
+        delName = stateTable->item(rowIndex, 0)->text();
 
-    for(auto state: m_state){
-        if(state == delName){
-            stateNum = m_state.key(state);
-            break;
+        for(auto state: m_state){
+            if(state == delName){
+                stateNum = m_state.key(state);
+                break;
+            }
         }
-    }
 
-    for(auto state: m_state){
-        if(state == delName){
-            // 遍历所有人，看看是否使用当前要删的状态，如果在用，就不允许删除
-            for(int j = 1; j <= m_depts.size(); j++){
-                if(!ableDel)
-                    break;
-                for(auto per: m_allPers[j]){
-                    if(!ableDel) break;
-                    if(per.absent == stateNum){ // 不让
-                        ableDel = 0;
+        if(stateNum == 1 || stateNum == 2){ // 在岗和请假不允许删除
+            ableDel = 0;
+            //        qDebug() << "在岗和请假不允许删";
+        }
+
+        for(auto state: m_state){
+            if(state == delName){
+                // 遍历所有人，看看是否使用当前要删的状态，如果在用，就不允许删除
+                for(int j = 1; j <= m_depts.size(); j++){
+                    if(!ableDel)
                         break;
+                    for(auto per: m_allPers[j]){
+                        if(!ableDel) break;
+                        if(per.absent == stateNum){ // 不让
+                            ableDel = 0;
+                            break;
+                        }
                     }
                 }
-            }
-            if(ableDel){
-                if (rowIndex!=-1)
-                {
-                    stateTable->removeRow(rowIndex);
+                if(ableDel){
+                    if (rowIndex!=-1)
+                    {
+                        stateTable->removeRow(rowIndex);
+                    }
+                    database->manageDeleteState(delName);
                 }
-                database->manageDeleteState(delName);
             }
         }
     }
-
 }

@@ -43,11 +43,15 @@ void MainWindowNew::initResultShowTable()
     QStringList strList;
     strList << "抽取时间" << "抽取处室" << "抽取人员";
     showResultTable->clear();
-    showResultTable->horizontalHeader()->setDefaultSectionSize(300);
+
+
+
+    showResultTable->horizontalHeader()->setDefaultSectionSize(250);
     showResultTable->setRowCount(0);
     showResultTable->setColumnCount(3);
     showResultTable->setHorizontalHeaderLabels(strList);
     showResultTable->horizontalHeader()->setFont(QFont("song", 18));
+    showResultTable->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);  // 第 i 列自适应内容宽度
 }
 
 void MainWindowNew::refreshDptListShow()
@@ -168,7 +172,7 @@ void MainWindowNew::choosePickButton()
         if(ranPerNum != 0){ // 人数不为0 才可以使确认按钮使能
             QVector<QString> strs =  database->getRanPerVector(ranPerNum, deptId, m_workPers);
             for(auto per: m_workPers[deptId]){
-                qDebug() << per.absent << per.perName;
+//                qDebug() << per.absent << per.perName;
             }
 
             // current_date字符串结果为"2016.05.20 12:17:01.445 周五"
@@ -230,7 +234,7 @@ void MainWindowNew::cancelPickButton()
 {
     connect(ui->cancelButton, &QPushButton::clicked, [=](){
         int deptId = ui->dptListWidget->currentRow() + 1;
-        qDebug() << deptId;
+//        qDebug() << deptId;
         if(m_readPersonsMap.find(deptId) != m_readPersonsMap.end()){
             // 已经抽取过这个处室的人
             ConfirmSthDialog* confirmCoverDialog = new ConfirmSthDialog([=](){
@@ -291,8 +295,10 @@ void MainWindowNew::on_dptListWidget_currentRowChanged(int currentRow)
     m_workPers = database->getWorkPerData();
     int deptId = ui->dptListWidget->currentRow() + 1;
     auto maxPerson = m_workPers[deptId].size();
-    if(maxPerson == 1 || maxPerson == 2 || maxPerson ==3){
+    if(maxPerson == 1 || maxPerson == 2){
         ui->spinBox->setValue(1);
+    } else if(maxPerson ==3){
+        ui->spinBox->setValue(2);
     } else {
         ui->spinBox->setValue(3);
     }
