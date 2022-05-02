@@ -11,7 +11,6 @@ AbsenceManageDialog::AbsenceManageDialog(QWidget *parent) :
     getData();
     refresh();
     connect(ui->addButton, &QPushButton::clicked, [=](){
-        //        confirmAdd();
         addState();
     });
     connect(ui->deleteButton, &QPushButton::clicked, [=](){
@@ -19,9 +18,6 @@ AbsenceManageDialog::AbsenceManageDialog(QWidget *parent) :
     });
     connect(ui->editButton, &QPushButton::clicked, [=](){
         editState();
-    });
-    connect(ui->saveButton, &QPushButton::clicked, [=](){
-        saveState();
     });
 }
 
@@ -53,7 +49,7 @@ void AbsenceManageDialog::refresh()
     stateTable->horizontalHeader()->setFont(QFont("song", 18));
     stateTable->setSelectionMode(QAbstractItemView::SingleSelection);
 
-//    QVector<QString> stateVec;
+    //    QVector<QString> stateVec;
 
     for(auto state: m_state){
         stateVec.push_back(state);
@@ -73,45 +69,63 @@ void AbsenceManageDialog::refresh()
     stateTable->resizeColumnsToContents();
 }
 
-void AbsenceManageDialog::confirmAdd()
-{
-    int exist = 0;
-    QString addName = ui->askLeaveNameLabel->text();
-    if(addName != ""){
-        for(auto state: m_state){
-            if(state == addName){
-                exist = 1;
-                ui->hintLabel->setText("已存在！重新输入");
-            }
-        }
-        if(exist == 0){
-            database->manageAddState(addName);
-        }
-    } else if(addName == ""){
-        ui->hintLabel->setText("输入栏不能为空");
-    }
-}
+//void AbsenceManageDialog::confirmAdd()
+//{
+//    int exist = 0;
+//    QString addName = ui->askLeaveNameLabel->text();
+//    if(addName != ""){
+//        for(auto state: m_state){
+//            if(state == addName){
+//                exist = 1;
+//                ui->hintLabel->setText("已存在！重新输入");
+//            }
+//        }
+//        if(exist == 0){
+//            database->manageAddState(addName);
+//        }
+//    } else if(addName == ""){
+//        ui->hintLabel->setText("输入栏不能为空");
+//    }
+//}
 
 void AbsenceManageDialog::addState()
 {
-    deleteAble = 0;
-    int addRow = stateTable->rowCount();
-    stateTable->insertRow(addRow);//添加一行
-    stateTable->setCurrentCell(addRow, 0);
+    m_state = database->getState();
+    QString testName;
+    int exist = 0;
 
-//    QTableWidgetItem* item = stateTable->item(addRow,0); //获取每行第1列的单元格指针
-//    item->setFlags(Qt::ItemIsEditable);//设置改item可修改
+    StateEditDialog* stateEditDialog = new StateEditDialog();
+    stateEditDialog->show();
+    stateEditDialog->setWindowTitle("添加状态页面");
 
-    stateTable->setEditTriggers(QAbstractItemView::DoubleClicked);
-//    stateTable->item(addRow,0)->setTextAlignment(Qt::AlignCenter);
-//    stateTable->item(addRow, 0)->setFont(QFont("song", 18));
+    testName = "测试添加";
 
+    if(testName != ""){
+        for(auto state: m_state){
+            if(state == testName){
+                exist = 1;
+                qDebug() << "一存在";
+                //                ui->hintLabel->setText("已存在！重新输入");
+            }
+        }
+        if(exist == 0){
+            int addRow = stateTable->rowCount();
+            stateTable->insertRow(addRow);//添加一行
+            stateTable->setItem(addRow, 0, new QTableWidgetItem(testName));
+            stateTable->item(addRow,0)->setTextAlignment(Qt::AlignCenter);
+            stateTable->item(addRow, 0)->setFont(QFont("song", 18));
+            database->manageAddState(testName);
+        }
+    } else if(testName == ""){
+        qDebug() << "不能为空";
+        //        ui->hintLabel->setText("输入栏不能为空");
+    }
 }
 
 void AbsenceManageDialog::deleteState()
 {
-//    qDebug() << "currentRow" << stateTable->currentRow() << "deleteAble" << deleteAble;
-    if(stateTable->currentRow() != -1 && deleteAble){ // 没有选中时=-1
+    m_state = database->getState();
+    if(stateTable->currentRow() != -1){ // 没有选中时=-1
         int stateNum, ableDel = 1;
         QString delName;
         int rowIndex = stateTable->currentRow();
@@ -126,7 +140,6 @@ void AbsenceManageDialog::deleteState()
 
         if(stateNum == 1 || stateNum == 2){ // 在岗和请假不允许删除
             ableDel = 0;
-            //        qDebug() << "在岗和请假不允许删";
         }
 
         for(auto state: m_state){
@@ -157,22 +170,37 @@ void AbsenceManageDialog::deleteState()
 
 void AbsenceManageDialog::editState()
 {
-    deleteAble = 0;
-    //    //# 设置QTableWidget可编辑
-    //    ui->tableWidget->setEditTriggers(QAbstractItemView::CurrentChanged);
-    //    //# 遍历表格的每一行
-    //    for(int i=0; i<ui->tableWidget->columnCount()-1; i++)
-    //    {
-    //        QTableWidgetItem* item = ui->tableWidget->item(i,1); //获取每行第1列的单元格指针
-    //        item->setFlags(Qt::ItemIsEnabled);//设置改item不可修改；
-    //    }
-    //    //    item->setFlags(Qt::ItemIsEnabled） 表格单元item不可编辑
-    //    //    item->setFlags(Qt::ItemIsEditable)   表格单元item可编辑
-}
+    m_state = database->getState();
+    if(stateTable->currentRow() != -1){ // 没有选中时=-1
+        QString editName, afterName;
+        int rowIndex = stateTable->currentRow(), stateNum, ableEdit = 1;
+        editName = stateTable->item(rowIndex, 0)->text();
 
-void AbsenceManageDialog::saveState()
-{
-    // 满足要求后
-    stateTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    deleteAble = 1;
+        for(auto state: m_state){
+            if(state == editName){
+                stateNum = m_state.key(state);
+                break;
+            }
+        }
+
+        if(stateNum == 1 || stateNum == 2){ // 在岗和请假不允许
+            ableEdit = 0;
+        }
+
+        if(ableEdit){
+            StateEditDialog* stateEditDialog = new StateEditDialog();
+            stateEditDialog->show();
+            stateEditDialog->setWindowTitle("编辑状态页面");
+
+            stateEditDialog->setEditLine(editName);
+
+            afterName = "测试";
+            stateTable->setItem(rowIndex, 0, new QTableWidgetItem(afterName));
+            stateTable->item(rowIndex,0)->setTextAlignment(Qt::AlignCenter);
+            stateTable->item(rowIndex, 0)->setFont(QFont("song", 18));
+
+            database->manageEditState(editName, afterName);
+
+        }
+    }
 }

@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>440</x>
-     <y>250</y>
+     <y>280</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -42,12 +42,12 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
      <x>10</x>
      <y>10</y>
      <width>161</width>
-     <height>20</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>18</pointsize>
     </font>
    </property>
    <property name="text">
@@ -68,7 +68,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
    <property name="geometry">
     <rect>
      <x>440</x>
-     <y>90</y>
+     <y>120</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -91,7 +91,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
    <property name="geometry">
     <rect>
      <x>440</x>
-     <y>170</y>
+     <y>200</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -108,140 +108,6 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
    </property>
    <property name="text">
     <string>编辑</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="saveButton">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>330</y>
-     <width>111</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>18</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
-QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
-QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
-   </property>
-   <property name="text">
-    <string>保存</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>360</y>
-     <width>71</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>添加状态</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>425</y>
-     <width>251</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_8">
-    <item>
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Fixed</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>12</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_4">
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>人员状态</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <spacer name="leftHorizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Fixed</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>5</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="askLeaveNameLabel"/>
-    </item>
-    <item>
-     <spacer name="rightHorizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Fixed</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>15</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QLabel" name="hintLabel">
-   <property name="geometry">
-    <rect>
-     <x>390</x>
-     <y>350</y>
-     <width>251</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string/>
    </property>
   </widget>
  </widget>

@@ -46,8 +46,9 @@ public:
     void hisDelete(QString deleteType);
     void manageAddPerson(QString addName, int deptId);
     void manageAddState(QString addName);
-    bool manageDeletePerson(QString delName, int deptId);
+    void manageEditState(QString beforeName, QString afterName);
     void manageDeleteState(QString delName);
+    bool manageDeletePerson(QString delName, int deptId);
     void manageChangePerson(QString beforeName, int beforeDeptId, QString afterName, int afterDeptId);
     int manageSearchPerson(QString searchName);
     bool manageExist(QString nameS, int deptId);

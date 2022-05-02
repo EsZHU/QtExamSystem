@@ -35,7 +35,8 @@ SOURCES += \
     searchpersondialog.cpp \
     singlerow.cpp \
     sqlitedatabase.cpp \
-    stackedwidgetdialog.cpp
+    stackedwidgetdialog.cpp \
+    stateeditdialog.cpp
 
 HEADERS += \
     CustomTabStyle.h \
@@ -64,7 +65,8 @@ HEADERS += \
     searchpersondialog.h \
     singlerow.h \
     sqlitedatabase.h \
-    stackedwidgetdialog.h
+    stackedwidgetdialog.h \
+    stateeditdialog.h
 
 FORMS += \
     absencemanagedialog.ui \
@@ -87,7 +89,8 @@ FORMS += \
     pickresultdiagram.ui \
     searchpersondialog.ui \
     singlerow.ui \
-    stackedwidgetdialog.ui
+    stackedwidgetdialog.ui \
+    stateeditdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

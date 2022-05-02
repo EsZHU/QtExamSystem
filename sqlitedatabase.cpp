@@ -53,10 +53,10 @@ void SqliteDatabase::initPickNameDBtest()
         deptVect.push_back(dept); // 将查询到的单位数据存储在向量中
     }
 
-    for(int i = 0; i < deptVect.size(); i++) {
-        qDebug() << deptVect[i].id << ":" \
-                 << deptVect[i].deptName;
-    }
+//    for(int i = 0; i < deptVect.size(); i++) {
+//        qDebug() << deptVect[i].id << ":" \
+//                 << deptVect[i].deptName;
+//    }
 
     // 插入数据
     //    query.prepare("insert into department (id, deptName) values (:id, :deptName)");
@@ -205,7 +205,7 @@ void SqliteDatabase::writeSqlPerState(QMap<int,QVector<person>> perMap)
 
     for(auto curDeptPers: perMap){
         for(auto per: curDeptPers){
-            qDebug() << per.perName << per.deptId << per.absent << per.id;
+//            qDebug() << per.perName << per.deptId << per.absent << per.id;
             query.prepare("update person set absent = :absent where id = :id");
             query.bindValue(":absent", per.absent);
             query.bindValue(":id", per.id);
@@ -290,9 +290,9 @@ QPair<int, QString> SqliteDatabase::getRanPerString(int n, int deptId, QMap<int,
 QVector<QString> SqliteDatabase::getRanPerVector(int n, int deptId, QMap<int, QVector<person> > perData)
 {
     QVector<person> pers = perData[deptId]; // 当前处所有人
-    for(auto per: pers){
-        qDebug() << per.absent << per.perName;
-    }
+//    for(auto per: pers){
+//        qDebug() << per.absent << per.perName;
+//    }
     QString ranPerMess = ""; // 随机人员信息
     QVector<QString> ranPairMess; // 随机<处室, 人员>信息
 
@@ -438,6 +438,33 @@ void SqliteDatabase::manageAddState(QString addName)
     }
 }
 
+void SqliteDatabase::manageEditState(QString beforeName, QString afterName)
+{
+    QSqlQuery query;
+    QMap<int, QString> stateMap;
+    int id;
+
+    stateMap = getState();
+
+    for(auto state: stateMap){
+        if(state == beforeName){
+            id = stateMap.key(state);
+//            qDebug() << "id" << id;
+            break;
+        }
+    }
+
+
+    query.prepare("update stateManage set absent = :absent where id = :id");
+    query.bindValue(":absent", afterName);
+    query.bindValue(":id", id);
+    if(!query.exec())
+    {
+        qDebug() << "Delete failed." << query.lastError();
+    }
+
+}
+
 bool SqliteDatabase::manageDeletePerson(QString delName, int deptId)
 {
     QSqlQuery query;
@@ -489,7 +516,7 @@ bool SqliteDatabase::manageExist(QString nameS, int deptId)
     query.exec();
     query.next();
     int chartDeptId = query.value("deptId").toInt();
-    qDebug() << chartDeptId << "chartDeptId" << deptId << "deptId";
+//    qDebug() << chartDeptId << "chartDeptId" << deptId << "deptId";
     if(chartDeptId == deptId){
         return true;
     }

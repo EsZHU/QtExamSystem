@@ -6,6 +6,7 @@
 #include "defs.h"
 #include "sqlitedatabase.h"
 #include <QHeaderView>
+#include "stateeditdialog.h"
 
 namespace Ui {
 class AbsenceManageDialog;
@@ -20,7 +21,7 @@ public:
     ~AbsenceManageDialog();
     void getData();
     void refresh();
-    void confirmAdd();
+//    void confirmAdd();
     void addState();
     void deleteState();
     void editState();
