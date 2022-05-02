@@ -6,110 +6,84 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>681</width>
-    <height>460</height>
+    <width>530</width>
+    <height>340</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="deleteButton">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>280</y>
-     <width>111</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>18</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+  <layout class="QGridLayout" name="gridLayout" rowstretch="0,1,0" columnstretch="0,0,0">
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="label_7">
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>人员状态列表</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="addButton">
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
 QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
-   </property>
-   <property name="text">
-    <string>删除</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>161</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>18</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>人员状态列表</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="absenceTableWidget" native="true">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>40</y>
-     <width>280</width>
-     <height>410</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="addButton">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>120</y>
-     <width>111</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>18</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+     </property>
+     <property name="text">
+      <string>添加</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="editButton">
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
 QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
-   </property>
-   <property name="text">
-    <string>添加</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="editButton">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>200</y>
-     <width>111</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>18</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+     </property>
+     <property name="text">
+      <string>编辑</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="deleteButton">
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
 QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
-   </property>
-   <property name="text">
-    <string>编辑</string>
-   </property>
-  </widget>
+     </property>
+     <property name="text">
+      <string>删除</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QWidget" name="absenceTableWidget" native="true"/>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

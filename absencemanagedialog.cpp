@@ -72,36 +72,34 @@ void AbsenceManageDialog::refresh()
 void AbsenceManageDialog::addState()
 {
     m_state = database->getState();
-    QString testName;
-    int exist = 0;
 
-    StateEditDialog* stateEditDialog = new StateEditDialog("添加状态页面", [=](QString content){
+
+    StateEditDialog* stateEditDialog = new StateEditDialog("添加状态页面", [&](QString content){
+        int exist = 0;
         qDebug() << content;
+        qDebug() << "addName" << content;
+        if(content != ""){
+            for(auto state: m_state){
+                if(state == content){
+                    exist = 1;
+                    qDebug() << "一存在";
+                    //                ui->hintLabel->setText("已存在！重新输入");
+                }
+            }
+            if(exist == 0){
+                int addRow = stateTable->rowCount();
+                stateTable->insertRow(addRow);//添加一行
+                stateTable->setItem(addRow, 0, new QTableWidgetItem(content));
+                stateTable->item(addRow,0)->setTextAlignment(Qt::AlignCenter);
+                stateTable->item(addRow, 0)->setFont(QFont("song", 18));
+                database->manageAddState(content);
+            }
+        } else if(content == ""){
+            qDebug() << "不能为空";
+            //        ui->hintLabel->setText("输入栏不能为空");
+        }
     });
     stateEditDialog->show();
-
-    testName = "测试添加";
-
-    if(testName != ""){
-        for(auto state: m_state){
-            if(state == testName){
-                exist = 1;
-                qDebug() << "一存在";
-                //                ui->hintLabel->setText("已存在！重新输入");
-            }
-        }
-        if(exist == 0){
-            int addRow = stateTable->rowCount();
-            stateTable->insertRow(addRow);//添加一行
-            stateTable->setItem(addRow, 0, new QTableWidgetItem(testName));
-            stateTable->item(addRow,0)->setTextAlignment(Qt::AlignCenter);
-            stateTable->item(addRow, 0)->setFont(QFont("song", 18));
-            database->manageAddState(testName);
-        }
-    } else if(testName == ""){
-        qDebug() << "不能为空";
-        //        ui->hintLabel->setText("输入栏不能为空");
-    }
 }
 
 void AbsenceManageDialog::deleteState()
@@ -170,18 +168,18 @@ void AbsenceManageDialog::editState()
         }
 
         if(ableEdit){
-            StateEditDialog* stateEditDialog = new StateEditDialog("编辑状态页面", editName, [=](QString content){
-                qDebug() << content;
+            StateEditDialog* stateEditDialog = new StateEditDialog("编辑状态页面", editName, [&, rowIndex, editName](QString content) mutable{
+                // qDebug() << "content" << content;
+                afterName = content;
+                // qDebug() << "afterName" << afterName << "rowIndex" << rowIndex << "editName" << editName;
+                stateTable->setItem(rowIndex, 0, new QTableWidgetItem(afterName));
+                stateTable->item(rowIndex,0)->setTextAlignment(Qt::AlignCenter);
+                stateTable->item(rowIndex, 0)->setFont(QFont("song", 18));
+
+                database->manageEditState(editName, afterName);
+
             });
             stateEditDialog->show();
-
-            afterName = "测试";
-            stateTable->setItem(rowIndex, 0, new QTableWidgetItem(afterName));
-            stateTable->item(rowIndex,0)->setTextAlignment(Qt::AlignCenter);
-            stateTable->item(rowIndex, 0)->setFont(QFont("song", 18));
-
-            database->manageEditState(editName, afterName);
-
         }
     }
 }
