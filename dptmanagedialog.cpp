@@ -18,9 +18,6 @@ DptManageDialog::DptManageDialog(QWidget *parent) :
     });
     connect(ui->changeDptButton, &QPushButton::clicked, [=](){
         editDept();
-        //        changeDptDialog = new ChangeDptDialog();
-        //        changeDptDialog->setWindowModality(Qt::ApplicationModal);
-        //        changeDptDialog->show();
     });
     refresh();
 }
@@ -124,11 +121,19 @@ void DptManageDialog::deleteDept()
                     }
                 }
                 if(ableDel){
-                    if (rowIndex!=-1)
-                    {
-                        ui->tableWidget->removeRow(rowIndex);
-                    }
-                    database->manageDelDept(delName);
+                    // 弹窗，确认按钮后再删除
+                    ConfirmSthDialog* confirmDeleteDialog = new ConfirmSthDialog([=](){
+                        // 删除
+                        if (rowIndex!=-1)
+                        {
+                            ui->tableWidget->removeRow(rowIndex);
+                        }
+                        database->manageDelDept(delName);
+                    });
+                    confirmDeleteDialog->show();
+                    confirmDeleteDialog->setWindowModality(Qt::ApplicationModal);
+                    confirmDeleteDialog->setLabelText("删除后不可恢复，您确认删除？");
+                    confirmDeleteDialog->setWindowTitle("提示弹窗");
                 }
             }
         }
@@ -151,8 +156,6 @@ void DptManageDialog::editDept()
         }
 
         StateEditDialog* stateEditDialog = new StateEditDialog("编辑部门页面", editName, [&, rowIndex, editName](QString content) mutable{
-//             qDebug() << "content" << content;
-//             qDebug() << "content" << content << "rowIndex" << rowIndex << "editName" << editName;
             ui->tableWidget->setItem(rowIndex, 0, new QTableWidgetItem(content));
             ui->tableWidget->item(rowIndex,0)->setTextAlignment(Qt::AlignCenter);
             ui->tableWidget->item(rowIndex, 0)->setFont(QFont("song", 18));

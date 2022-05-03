@@ -134,11 +134,17 @@ void AbsenceManageDialog::deleteState()
                     }
                 }
                 if(ableDel){
-                    if (rowIndex!=-1)
-                    {
-                        ui->tableWidget->removeRow(rowIndex);
-                    }
-                    database->manageDeleteState(delName);
+                    ConfirmSthDialog* confirmDeleteDialog = new ConfirmSthDialog([=](){
+                        if (rowIndex!=-1)
+                        {
+                            ui->tableWidget->removeRow(rowIndex);
+                        }
+                        database->manageDeleteState(delName);
+                    });
+                    confirmDeleteDialog->show();
+                    confirmDeleteDialog->setWindowModality(Qt::ApplicationModal);
+                    confirmDeleteDialog->setLabelText("删除后不可恢复，您确认删除？");
+                    confirmDeleteDialog->setWindowTitle("提示弹窗");
                 }
             }
         }

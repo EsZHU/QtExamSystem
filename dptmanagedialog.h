@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "sqlitedatabase.h"
 #include "stateeditdialog.h"
+#include "confirmsthdialog.h"
 
 namespace Ui {
 class DptManageDialog;

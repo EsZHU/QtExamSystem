@@ -13,7 +13,7 @@ PersonManageDialog::PersonManageDialog(QWidget *parent) :
         submitStatePage();
     });
     getData();
-//    newSetTableWidgetValue();
+    //    newSetTableWidgetValue();
     initWidget();
     refreshWidget();
     selectFirstPerson(getDeptId(0));
@@ -43,44 +43,7 @@ PersonManageDialog::~PersonManageDialog()
 
 void PersonManageDialog::newSetTableWidgetValue()
 {
-    //    QVector<QTableWidget*> personShowTable;
-//    for(auto dept: m_depts){
-//        QTableWidget* table = new QTableWidget(ui->tabWidget);
 
-//        if(nullptr != table)
-//            table->setRowCount(0);
-//        table->insertColumn(2);
-
-//        headList << "名字" << "状态";
-//        table->setColumnCount(2);
-//        table->setHorizontalHeaderLabels(headList);
-//        table->setEditTriggers(QAbstractItemView::NoEditTriggers);
-//        table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-//        headList.append("");
-
-//        for (auto &per : m_pers[dept.id]) {
-//            int col = 0;
-//            int row = table->rowCount();
-//            table->insertRow(row);
-//            QTableWidgetItem *firstPerName=new QTableWidgetItem();//创建一个Item
-//            firstPerName->setText(per.perName);//设置内容
-//            table->setItem(row,col,firstPerName);//把这个Item加到第一行第二列中
-//            table->item(row,col)->setTextAlignment(Qt::AlignCenter);
-//            table->item(row,col++)->setFont(QFont("song", 18));
-
-//            QComboBox *classBox = new QComboBox;
-//            for(auto state: m_state){
-//                classBox->addItem(state);
-//            }
-//            table->setCellWidget(row, col++, classBox);
-//            QString currentState = m_state[per.absent];
-//            classBox->setCurrentText(currentState);
-//        }
-
-//        personShowTable.push_back(table); // 表格初始化
-//        ui->tabWidget->addTab(table, tabTitleVec[dept.id-1]); // 处室初始化
-//    }
-//    ui->tabWidget->tabBar()->setStyle(new CustomTabStyle);
 }
 
 
@@ -109,8 +72,6 @@ void PersonManageDialog::addPersonButton()
 
 void PersonManageDialog::deletePersonButton()
 {
-//    if()
-//    DeletePersonDialog* delPerDlg = new DeletePersonDialog();
     int curDeptNumMinus = ui->tabWidget->currentIndex();
     int deptId = getDeptId(curDeptNumMinus);
 
@@ -118,24 +79,30 @@ void PersonManageDialog::deletePersonButton()
     auto currentRow = table->currentRow();
     qDebug() << currentRow;
     if(currentRow != -1){
-        auto pers = m_pers[deptId];
-    //    qDebug() << table->rowCount();
-        auto per = pers[currentRow];
-        qDebug() << per.perName<<per.absent<<per.deptId<<per.id;
+        ConfirmSthDialog* confirmDeleteDialog = new ConfirmSthDialog([=](){
+            auto pers = m_pers[deptId];
+            //    qDebug() << table->rowCount();
+            auto per = pers[currentRow];
+            //        qDebug() << per.perName<<per.absent<<per.deptId<<per.id;
 
-        if(database->manageDeletePerson(per.id, deptId)){
-            getData();
-            refreshWidget();
-        }
+            if(database->manageDeletePerson(per.id, deptId)){
+                getData();
+                refreshWidget();
+            }
+        });
+        confirmDeleteDialog->show();
+        confirmDeleteDialog->setWindowModality(Qt::ApplicationModal);
+        confirmDeleteDialog->setLabelText("删除后不可恢复，您确认删除？");
+        confirmDeleteDialog->setWindowTitle("提示弹窗");
     }
 }
 
 void PersonManageDialog::changePersonButton()
 {
     int curDeptNum = ui->tabWidget->currentIndex() + 1;
-//    ChangePersonDialog* changePerDlg = new ChangePersonDialog();
-//    changePerDlg->setWindowModality(Qt::ApplicationModal);
-//    changePerDlg->show();
+    //    ChangePersonDialog* changePerDlg = new ChangePersonDialog();
+    //    changePerDlg->setWindowModality(Qt::ApplicationModal);
+    //    changePerDlg->show();
 }
 
 void PersonManageDialog::searchPersonButton()

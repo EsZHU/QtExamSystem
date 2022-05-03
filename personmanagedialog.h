@@ -11,6 +11,7 @@
 #include "searchpersondialog.h"
 #include <QComboBox>
 #include <QHeaderView>
+#include "confirmsthdialog.h"
 
 namespace Ui {
 class PersonManageDialog;
