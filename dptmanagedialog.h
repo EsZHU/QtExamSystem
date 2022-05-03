@@ -2,7 +2,6 @@
 #define DPTMANAGEDIALOG_H
 
 #include <QWidget>
-#include "changedptdialog.h"
 #include "sqlitedatabase.h"
 #include "stateeditdialog.h"
 
@@ -24,7 +23,6 @@ public:
 
 private:
     Ui::DptManageDialog *ui;
-    ChangeDptDialog* changeDptDialog;
     QVector<department> m_depts;
     QVector<QString> deptVec;
     SqliteDatabase* database;

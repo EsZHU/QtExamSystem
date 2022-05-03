@@ -8,8 +8,6 @@
 #include "defs.h"
 #include "sqlitedatabase.h"
 #include "addpersondialog.h"
-#include "deletepersondialog.h"
-#include "changepersondialog.h"
 #include "searchpersondialog.h"
 #include <QComboBox>
 #include <QHeaderView>

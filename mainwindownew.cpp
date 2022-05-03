@@ -14,8 +14,8 @@ MainWindowNew::MainWindowNew(QWidget *parent) :
     refreshDptListShow();
     //    bindLindAndStack();
     initMenu();
-    showResultTable = new QTableWidget(ui->resultShowFrame);
-    showResultTable->resize(ui->resultShowFrame->width(), ui->resultShowFrame->height());
+//    ui->showResultTable = new QTableWidget(ui->resultShowFrame);
+//    ui->showResultTable->resize(ui->resultShowFrame->width(), ui->resultShowFrame->height());
     initResultShowTable();
     choosePickButton();
     cancelPickButton();
@@ -38,20 +38,20 @@ void MainWindowNew::getData()
 
 void MainWindowNew::initResultShowTable()
 {
-    showResultTable->setEditTriggers(QTableWidget::NoEditTriggers);
+    ui->showResultTable->setEditTriggers(QTableWidget::NoEditTriggers);
 
     QStringList strList;
     strList << "抽取时间" << "抽取处室" << "抽取人员";
-    showResultTable->clear();
+    ui->showResultTable->clear();
 
 
 
-    showResultTable->horizontalHeader()->setDefaultSectionSize(250);
-    showResultTable->setRowCount(0);
-    showResultTable->setColumnCount(3);
-    showResultTable->setHorizontalHeaderLabels(strList);
-    showResultTable->horizontalHeader()->setFont(QFont("song", 18));
-    showResultTable->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);  // 第 i 列自适应内容宽度
+    ui->showResultTable->horizontalHeader()->setDefaultSectionSize(250);
+    ui->showResultTable->setRowCount(0);
+    ui->showResultTable->setColumnCount(3);
+    ui->showResultTable->setHorizontalHeaderLabels(strList);
+    ui->showResultTable->horizontalHeader()->setFont(QFont("song", 24));
+    ui->showResultTable->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);  // 第 i 列自适应内容宽度
 }
 
 void MainWindowNew::refreshDptListShow()
@@ -105,18 +105,18 @@ void MainWindowNew::bindLindAndStack()
             currentItem->setText(("√  "+dept.deptName.toStdString()).data());
         });
 
-        ui->dptStackedWidget->addWidget(stackedWidgetDialog);
+//        ui->dptStackedWidget->addWidget(stackedWidgetDialog);
         deptId++;
     }
 
     QHBoxLayout *mainLayout=new QHBoxLayout(this);//进行布局
     mainLayout->setSpacing(5);//设定各个控件之间的距离为5
     mainLayout->addWidget(ui->dptListWidget);
-    mainLayout->addWidget(ui->dptStackedWidget,0,Qt::AlignHCenter);
+//    mainLayout->addWidget(ui->dptStackedWidget,0,Qt::AlignHCenter);
     mainLayout->setStretchFactor(ui->dptListWidget,1);//设定可伸缩控件
-    mainLayout->setStretchFactor(ui->dptStackedWidget,3);
+//    mainLayout->setStretchFactor(ui->dptStackedWidget,3);
 
-    connect(ui->dptListWidget,SIGNAL(currentRowChanged(int)),ui->dptStackedWidget,SLOT(setCurrentIndex(int)));
+//    connect(ui->dptListWidget,SIGNAL(currentRowChanged(int)),ui->dptStackedWidget,SLOT(setCurrentIndex(int)));
 }
 
 void MainWindowNew::initMenu()
@@ -270,22 +270,22 @@ void MainWindowNew::isSurePickButton()
 
 void MainWindowNew::refreshTable()
 {
-    showResultTable->clearContents();
-    showResultTable->setRowCount(0);
+    ui->showResultTable->clearContents();
+    ui->showResultTable->setRowCount(0);
 
     for(const auto& pers: m_readPersonsMap){
         int col = 0;
-        int row = showResultTable->rowCount();
-        showResultTable->insertRow(row);
-        showResultTable->setItem(row, col, new QTableWidgetItem(pers.curTime.toString("yyyy.MM.dd hh:mm:ss")));
-        showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
-        showResultTable->item(row,col++)->setFont(QFont("song", 18));
-        showResultTable->setItem(row, col, new QTableWidgetItem(pers.deptName));
-        showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
-        showResultTable->item(row,col++)->setFont(QFont("song", 18));
-        showResultTable->setItem(row, col, new QTableWidgetItem(pers.choosenPersons));
-        showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
-        showResultTable->item(row,col++)->setFont(QFont("song", 18));
+        int row = ui->showResultTable->rowCount();
+        ui->showResultTable->insertRow(row);
+        ui->showResultTable->setItem(row, col, new QTableWidgetItem(pers.curTime.toString("yyyy.MM.dd hh:mm:ss")));
+        ui->showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
+        ui->showResultTable->item(row,col++)->setFont(QFont("song", 24));
+        ui->showResultTable->setItem(row, col, new QTableWidgetItem(pers.deptName));
+        ui->showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
+        ui->showResultTable->item(row,col++)->setFont(QFont("song", 24));
+        ui->showResultTable->setItem(row, col, new QTableWidgetItem(pers.choosenPersons));
+        ui->showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
+        ui->showResultTable->item(row,col++)->setFont(QFont("song", 24));
     }
 }
 

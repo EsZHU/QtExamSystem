@@ -47,7 +47,7 @@ private:
     QMap<int,QVector<person>> m_workPers;
     stackedWidgetDialog* stackedWidgetDialog;
     QVector<hisRecord> m_his;
-    QTableWidget* showResultTable;
+//    QTableWidget* showResultTable;
     newSelectRecord m_readPersons;
     QMap<int, newSelectRecord> m_readPersonsMap;
 

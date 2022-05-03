@@ -112,19 +112,19 @@ void stackedWidgetDialog::confirmRanPerButton(std::function<void()> cb)
 {
     connect(ui->confirmButton, &QPushButton::clicked, [=](){
         // 如果此时没有选择 不能确认抽取
-        ConfirmPickDialog* comPickDlg = new ConfirmPickDialog();
-        comPickDlg->setWindowModality(Qt::ApplicationModal);
-        comPickDlg->show();
+//        ConfirmPickDialog* comPickDlg = new ConfirmPickDialog();
+//        comPickDlg->setWindowModality(Qt::ApplicationModal);
+//        comPickDlg->show();
 
         // 您确认抽取“张xx，张xx”吗？确定后将无法修改
-        comPickDlg->confirmPick([=](){
-            database->writePickHis(m_readPersons.curTime, m_readPersons.deptId, m_readPersons.choosenPersons);
-            ui->chooseButton->setEnabled(false);
-            ui->cancelButton->setEnabled(false);
-            ui->confirmButton->setEnabled(false);
+//        comPickDlg->confirmPick([=](){
+//            database->writePickHis(m_readPersons.curTime, m_readPersons.deptId, m_readPersons.choosenPersons);
+//            ui->chooseButton->setEnabled(false);
+//            ui->cancelButton->setEnabled(false);
+//            ui->confirmButton->setEnabled(false);
 
-            cb();
-        }, m_readPersons.choosenPersons);
+//            cb();
+//        }, m_readPersons.choosenPersons);
 
     });
 }
