@@ -48,10 +48,10 @@ public:
     void manageAddState(QString addName);
     void manageEditState(QString beforeName, QString afterName);
     void manageDeleteState(QString delName);
-    bool manageDeletePerson(QString delName, int deptId);
+    bool manageDeletePerson(int perId, int deptId);
     void manageChangePerson(QString beforeName, int beforeDeptId, QString afterName, int afterDeptId);
     int manageSearchPerson(QString searchName);
-    bool manageExist(QString nameS, int deptId);
+    bool manageExist(int perId, int deptId);
     bool manageAddDept(QString deptName);
     bool manageDelDept(QString deptName);
     int manageChangingDept(QString beName, QString afName);

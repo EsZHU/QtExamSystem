@@ -51,9 +51,9 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
-QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
-QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
+      <string notr="true">QPushButton{background-color: rgb(255, 41, 0);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;color: white;}
+QPushButton:hover{background-color:rgb(232, 15, 0); color: white;}
+QPushButton:pressed{background-color:rgb(140, 14, 0);border-style: inset;color:white}</string>
      </property>
      <property name="text">
       <string>删除</string>

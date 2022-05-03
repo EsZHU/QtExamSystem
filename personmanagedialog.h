@@ -49,6 +49,9 @@ private:
     QMap<int, QTableWidget*> personShowTable;
     QStringList headList;
     QMap<int, QString> m_state;
+
+    int getDeptId(int index);
+    void selectFirstPerson(int deptId);
 };
 
 #endif // PERSONMANAGEDIALOG_H

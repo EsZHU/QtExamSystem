@@ -465,13 +465,13 @@ void SqliteDatabase::manageEditState(QString beforeName, QString afterName)
 
 }
 
-bool SqliteDatabase::manageDeletePerson(QString delName, int deptId)
+bool SqliteDatabase::manageDeletePerson(int perId, int deptId)
 {
     QSqlQuery query;
 
-    if(manageExist(delName, deptId)){
-        query.prepare("delete from person where perName = :perName");
-        query.bindValue(":perName", delName);
+    if(manageExist(perId, deptId)){
+        query.prepare("delete from person where id = :perId");
+        query.bindValue(":perId", perId);
         query.exec();
         return true;
     }
@@ -506,13 +506,13 @@ int SqliteDatabase::manageSearchPerson(QString searchName)
     return chartDeptId;
 }
 
-bool SqliteDatabase::manageExist(QString nameS, int deptId)
+bool SqliteDatabase::manageExist(int perId, int deptId)
 {
     QSqlQuery query;
 
     // 首先查看对应部门有没有这个人
-    query.prepare("select * from person where perName = :perName");
-    query.bindValue(":perName", nameS);
+    query.prepare("select * from person where id = :perId");
+    query.bindValue(":perId", perId);
     query.exec();
     query.next();
     int chartDeptId = query.value("deptId").toInt();

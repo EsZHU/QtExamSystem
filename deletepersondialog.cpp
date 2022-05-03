@@ -24,6 +24,7 @@ void DeletePersonDialog::deletePersonButton()
 {
     connect(ui->saveBtn, &QPushButton::clicked, [=](){
         QString delName = ui->perNameComboBox->currentText();
+        int delId = 1;
         QString delDeptName = ".";
             m_depts = database->getDeptData();
             int delDeptId;
@@ -31,7 +32,7 @@ void DeletePersonDialog::deletePersonButton()
                 if(dept.deptName == delDeptName)
                     delDeptId = dept.id;
 
-            bool delSuc = database->manageDeletePerson(delName, delDeptId);
+            bool delSuc = database->manageDeletePerson(delId, delDeptId);
 
             if(delSuc){ // 删除成功
                 delDlg->showManageDeleteSuccess(delName, delDeptName);

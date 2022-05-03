@@ -6,7 +6,7 @@ AbsenceManageDialog::AbsenceManageDialog(QWidget *parent) :
     ui(new Ui::AbsenceManageDialog)
 {
     ui->setupUi(this);
-    this->setWindowTitle("请假方式管理页面");
+    this->setWindowTitle("人员状态管理页面");
     database = new SqliteDatabase();
     getData();
     refresh();
@@ -39,7 +39,7 @@ void AbsenceManageDialog::refresh()
 {
     ui->tableWidget->setColumnCount(1); //设置列数为1
     QStringList header;
-    header << "请假方式";
+    header << "人员状态";
     ui->tableWidget->setHorizontalHeaderLabels(header);
     ui->tableWidget->verticalHeader()->setVisible(false);
 

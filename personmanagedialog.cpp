@@ -16,6 +16,7 @@ PersonManageDialog::PersonManageDialog(QWidget *parent) :
 //    newSetTableWidgetValue();
     initWidget();
     refreshWidget();
+    selectFirstPerson(getDeptId(0));
 
     database = new SqliteDatabase();
     connect(ui->addPersonButton, &QPushButton::clicked, [=](){
@@ -29,6 +30,9 @@ PersonManageDialog::PersonManageDialog(QWidget *parent) :
     });
     connect(ui->searchPersonButton, &QPushButton::clicked, [=](){
         searchPersonButton();
+    });
+    connect(ui->tabWidget, &QTabWidget::currentChanged, [=](int index){
+        selectFirstPerson(getDeptId(index));
     });
 }
 
@@ -105,8 +109,25 @@ void PersonManageDialog::addPersonButton()
 
 void PersonManageDialog::deletePersonButton()
 {
-    DeletePersonDialog* delPerDlg = new DeletePersonDialog();
+//    if()
+//    DeletePersonDialog* delPerDlg = new DeletePersonDialog();
+    int curDeptNumMinus = ui->tabWidget->currentIndex();
+    int deptId = getDeptId(curDeptNumMinus);
 
+    auto table = personShowTable[deptId];
+    auto currentRow = table->currentRow();
+    qDebug() << currentRow;
+    if(currentRow != -1){
+        auto pers = m_pers[deptId];
+    //    qDebug() << table->rowCount();
+        auto per = pers[currentRow];
+        qDebug() << per.perName<<per.absent<<per.deptId<<per.id;
+
+        if(database->manageDeletePerson(per.id, deptId)){
+            getData();
+            refreshWidget();
+        }
+    }
 }
 
 void PersonManageDialog::changePersonButton()
@@ -161,6 +182,8 @@ void PersonManageDialog::initWidget()
         table->setHorizontalHeaderLabels(headList);
         table->setEditTriggers(QAbstractItemView::NoEditTriggers);
         table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+        table->setFocus();
+        table->setCurrentCell(0, 0);
 
         personShowTable[dept.id] = table; // 表格初始化
         ui->tabWidget->addTab(table, tabTitleVec[dept.id-1]); // 处室初始化
@@ -193,4 +216,24 @@ void PersonManageDialog::refreshWidget()
             classBox->setCurrentText(currentState);
         }
     }
+}
+
+int PersonManageDialog::getDeptId(int index)
+{
+    int deptId = -1;
+    QString curDeptName = ui->tabWidget->tabBar()->tabText(index);
+    for(auto dept: m_depts){
+        if(dept.deptName == curDeptName){
+            deptId = dept.id;
+            break;
+        }
+    }
+    return deptId;
+}
+
+void PersonManageDialog::selectFirstPerson(int deptId)
+{
+    auto table = personShowTable[deptId];
+    table->setFocus();
+    table->setCurrentCell(0, 0);
 }

@@ -22,6 +22,7 @@ void ChangePersonDialog::changePersonButton()
 {
     connect(ui->saveBtn, &QPushButton::clicked, [=](){
         QString beforeName = ui->nameLabelBefore->text();
+        int beforePerId = 1;
         QString beforeDept = ui->depNameComboBoxBefore->currentText();
         QString afterName = ui->nameLabelAfter->text();
         QString afterDept = ui->depNameComboBoxAfter->currentText();
@@ -40,13 +41,13 @@ void ChangePersonDialog::changePersonButton()
                     afDeptId = dept.id;
             }
 
-            if(!database->manageExist(beforeName, beDeptId)) { // 待修改名不合法
+            if(!database->manageExist(beforePerId, beDeptId)) { // 待修改名不合法
                 delDlg->setWindowModality(Qt::ApplicationModal);
                 delDlg->showManageChangeFail(beforeName, beforeDept);
                 delDlg->show();
             } else { // 待修改名合法
                 // 先删除待修改
-                database->manageDeletePerson(beforeName, beDeptId);
+                database->manageDeletePerson(beforePerId, beDeptId);
                 // 再增加新加的
                 database->manageAddPerson(afterName, afDeptId);
                 // 成功弹窗
