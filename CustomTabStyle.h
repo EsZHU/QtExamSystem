@@ -33,7 +33,7 @@ public:
                 if (tab->state & QStyle::State_Selected) {
                     //save用以保护坐标，restore用来退出状态
                     painter->save();
-                    painter->setBrush(QBrush(0x004ea1));
+                    painter->setBrush(QBrush(0xd48c8d));
                     //矩形
                     //painter->drawRect(allRect.adjusted(0, 0, 0, 0));
                     //带有弧线矩形
@@ -43,14 +43,14 @@ public:
 //                hover状态
                 else if(tab->state & QStyle::State_MouseOver){
                     painter->save();
-                    painter->setBrush(QBrush(0x004ea1));
+                    painter->setBrush(QBrush(0xd48c8d));
                     painter->drawRoundedRect(allRect, 0, 0);
                     painter->restore();
                 }
                 else
                 {
                     painter->save();
-                    painter->setBrush(QBrush(0x78aadc));
+                    painter->setBrush(QBrush(0xbe383b));
                     painter->drawRoundedRect(allRect, 0, 0);
                     painter->restore();
                 }

@@ -33,6 +33,9 @@
        <pointsize>16</pointsize>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QHeaderView::section {background-color: rgb(190, 56, 59);color: white;}</string>
+     </property>
     </widget>
    </item>
    <item row="0" column="4">
@@ -62,7 +65,7 @@
         <property name="maximumSize">
          <size>
           <width>100</width>
-          <height>16777215</height>
+          <height>28</height>
          </size>
         </property>
         <property name="font">
@@ -76,7 +79,7 @@ QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
         </property>
         <property name="text">
-         <string>增加处室</string>
+         <string>增加</string>
         </property>
        </widget>
       </item>
@@ -85,13 +88,13 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
         <property name="minimumSize">
          <size>
           <width>100</width>
-          <height>0</height>
+          <height>28</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>100</width>
-          <height>16777215</height>
+          <height>28</height>
          </size>
         </property>
         <property name="font">
@@ -105,7 +108,7 @@ QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
 QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
         </property>
         <property name="text">
-         <string>修改处室</string>
+         <string>修改</string>
         </property>
        </widget>
       </item>
@@ -114,13 +117,13 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
         <property name="minimumSize">
          <size>
           <width>100</width>
-          <height>0</height>
+          <height>28</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>100</width>
-          <height>16777215</height>
+          <height>28</height>
          </size>
         </property>
         <property name="font">
@@ -129,12 +132,12 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton{background-color: rgb(255, 41, 0);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;color: white;}
-QPushButton:hover{background-color:rgb(232, 15, 0); color: white;}
-QPushButton:pressed{background-color:rgb(140, 14, 0);border-style: inset;color:white}</string>
+         <string notr="true">QPushButton{background-color: rgb(190, 56, 59);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;color: white;}
+QPushButton:hover{background-color:rgb(225, 34, 22); color: white;}
+QPushButton:pressed{background-color:rgb(128, 7, 28);border-style: inset;color:white}</string>
         </property>
         <property name="text">
-         <string>删除处室</string>
+         <string>删除</string>
         </property>
        </widget>
       </item>
