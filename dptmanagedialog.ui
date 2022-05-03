@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>554</width>
+    <width>550</width>
     <height>540</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>16777215</width>
+    <width>550</width>
     <height>16777215</height>
    </size>
   </property>
@@ -30,7 +30,7 @@
     <widget class="QTableWidget" name="tableWidget">
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
     </widget>
@@ -52,35 +52,6 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="changeDptButton">
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
-QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
-QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
-        </property>
-        <property name="text">
-         <string>修改处室</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="addDptButton">
         <property name="minimumSize">
          <size>
@@ -96,7 +67,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
         </property>
         <property name="font">
          <font>
-          <pointsize>18</pointsize>
+          <pointsize>14</pointsize>
          </font>
         </property>
         <property name="styleSheet">
@@ -106,6 +77,35 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
         </property>
         <property name="text">
          <string>增加处室</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="changeDptButton">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{background-color: rgb(243, 243, 243);border:0.5px groove gray;border-radius:7px;padding:2px 4px;border-style: outset;}
+QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}
+QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</string>
+        </property>
+        <property name="text">
+         <string>修改处室</string>
         </property>
        </widget>
       </item>
@@ -125,7 +125,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
         </property>
         <property name="font">
          <font>
-          <pointsize>18</pointsize>
+          <pointsize>14</pointsize>
          </font>
         </property>
         <property name="styleSheet">

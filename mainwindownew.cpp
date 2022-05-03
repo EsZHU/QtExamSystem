@@ -2,6 +2,8 @@
 #include "ui_mainwindownew.h"
 #include "defs.h"
 
+#define DEFALUT_FONT QFont("song", 18)
+
 MainWindowNew::MainWindowNew(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindowNew)
@@ -50,7 +52,9 @@ void MainWindowNew::initResultShowTable()
     ui->showResultTable->setRowCount(0);
     ui->showResultTable->setColumnCount(3);
     ui->showResultTable->setHorizontalHeaderLabels(strList);
-    ui->showResultTable->horizontalHeader()->setFont(QFont("song", 24));
+    ui->showResultTable->horizontalHeader()->setFont(DEFALUT_FONT);
+    ui->showResultTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);  // 第 i 列自适应内容宽度
+    ui->showResultTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);  // 第 i 列自适应内容宽度
     ui->showResultTable->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);  // 第 i 列自适应内容宽度
 }
 
@@ -273,19 +277,21 @@ void MainWindowNew::refreshTable()
     ui->showResultTable->clearContents();
     ui->showResultTable->setRowCount(0);
 
+    auto font = DEFALUT_FONT;
+
     for(const auto& pers: m_readPersonsMap){
         int col = 0;
         int row = ui->showResultTable->rowCount();
         ui->showResultTable->insertRow(row);
         ui->showResultTable->setItem(row, col, new QTableWidgetItem(pers.curTime.toString("yyyy.MM.dd hh:mm:ss")));
         ui->showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
-        ui->showResultTable->item(row,col++)->setFont(QFont("song", 24));
+        ui->showResultTable->item(row,col++)->setFont(font);
         ui->showResultTable->setItem(row, col, new QTableWidgetItem(pers.deptName));
         ui->showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
-        ui->showResultTable->item(row,col++)->setFont(QFont("song", 24));
+        ui->showResultTable->item(row,col++)->setFont(font);
         ui->showResultTable->setItem(row, col, new QTableWidgetItem(pers.choosenPersons));
         ui->showResultTable->item(row,col)->setTextAlignment(Qt::AlignCenter);
-        ui->showResultTable->item(row,col++)->setFont(QFont("song", 24));
+        ui->showResultTable->item(row,col++)->setFont(font);
     }
 }
 

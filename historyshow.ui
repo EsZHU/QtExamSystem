@@ -31,7 +31,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0">
+  <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0">
    <item row="0" column="0" colspan="2">
     <widget class="QWidget" name="widget_2" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout">
@@ -45,7 +45,7 @@
         </property>
         <property name="font">
          <font>
-          <pointsize>18</pointsize>
+          <pointsize>16</pointsize>
          </font>
         </property>
         <property name="text">
@@ -57,7 +57,7 @@
        <widget class="QComboBox" name="comboBox">
         <property name="font">
          <font>
-          <pointsize>18</pointsize>
+          <pointsize>16</pointsize>
          </font>
         </property>
         <item>
@@ -109,7 +109,7 @@
         </property>
         <property name="font">
          <font>
-          <pointsize>18</pointsize>
+          <pointsize>14</pointsize>
          </font>
         </property>
         <property name="styleSheet">
@@ -129,7 +129,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
     <widget class="QTableWidget" name="tableWidget">
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
     </widget>
@@ -150,7 +150,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="styleSheet">

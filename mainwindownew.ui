@@ -43,7 +43,7 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>24</pointsize>
+        <pointsize>18</pointsize>
        </font>
       </property>
       <property name="mouseTracking">
@@ -73,7 +73,7 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>24</pointsize>
+        <pointsize>18</pointsize>
        </font>
       </property>
       <property name="frameShape">
@@ -99,19 +99,19 @@
         <widget class="QPushButton" name="confirmButton">
          <property name="minimumSize">
           <size>
-           <width>100</width>
-           <height>32</height>
+           <width>140</width>
+           <height>36</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>110</width>
-           <height>32</height>
+           <width>140</width>
+           <height>36</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>24</pointsize>
+           <pointsize>18</pointsize>
           </font>
          </property>
          <property name="styleSheet">
@@ -126,7 +126,13 @@ QPushButton:disabled{background-color:rgb(191, 190, 192);border-style: inset;}</
         </widget>
        </item>
        <item row="1" column="0" colspan="4">
-        <widget class="QTableWidget" name="showResultTable"/>
+        <widget class="QTableWidget" name="showResultTable">
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+        </widget>
        </item>
        <item row="0" column="0" colspan="4">
         <widget class="QWidget" name="widget" native="true">
@@ -136,24 +142,29 @@ QPushButton:disabled{background-color:rgb(191, 190, 192);border-style: inset;}</
            <height>50</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
          <widget class="QLabel" name="label_2">
           <property name="geometry">
            <rect>
-            <x>80</x>
-            <y>10</y>
-            <width>100</width>
+            <x>49</x>
+            <y>8</y>
+            <width>131</width>
             <height>32</height>
            </rect>
           </property>
           <property name="maximumSize">
            <size>
-            <width>100</width>
+            <width>200</width>
             <height>16777215</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <pointsize>24</pointsize>
+            <pointsize>18</pointsize>
            </font>
           </property>
           <property name="text">
@@ -180,7 +191,7 @@ QPushButton:disabled{background-color:rgb(191, 190, 192);border-style: inset;}</
           </property>
           <property name="font">
            <font>
-            <pointsize>24</pointsize>
+            <pointsize>18</pointsize>
            </font>
           </property>
           <property name="styleSheet">
@@ -256,7 +267,7 @@ image: url(:/Qss/Qss/spinBoxLeftArrowChosen.png);
           <property name="geometry">
            <rect>
             <x>290</x>
-            <y>10</y>
+            <y>8</y>
             <width>30</width>
             <height>32</height>
            </rect>
@@ -269,7 +280,7 @@ image: url(:/Qss/Qss/spinBoxLeftArrowChosen.png);
           </property>
           <property name="font">
            <font>
-            <pointsize>24</pointsize>
+            <pointsize>18</pointsize>
            </font>
           </property>
           <property name="text">
@@ -279,21 +290,27 @@ image: url(:/Qss/Qss/spinBoxLeftArrowChosen.png);
          <widget class="QPushButton" name="chooseButton">
           <property name="geometry">
            <rect>
-            <x>400</x>
-            <y>10</y>
-            <width>110</width>
-            <height>32</height>
+            <x>380</x>
+            <y>6</y>
+            <width>140</width>
+            <height>36</height>
            </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>36</height>
+           </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>110</width>
-            <height>32</height>
+            <width>140</width>
+            <height>36</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <pointsize>24</pointsize>
+            <pointsize>18</pointsize>
            </font>
           </property>
           <property name="styleSheet">
@@ -310,20 +327,26 @@ QPushButton:disabled{background-color:rgb(191, 190, 192);border-style: inset;}</
           <property name="geometry">
            <rect>
             <x>540</x>
-            <y>10</y>
-            <width>110</width>
-            <height>32</height>
+            <y>6</y>
+            <width>140</width>
+            <height>36</height>
            </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>140</width>
+            <height>36</height>
+           </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>110</width>
-            <height>32</height>
+            <width>140</width>
+            <height>36</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <pointsize>24</pointsize>
+            <pointsize>18</pointsize>
            </font>
           </property>
           <property name="styleSheet">
@@ -340,14 +363,14 @@ QPushButton:disabled{background-color:rgb(191, 190, 192);border-style: inset;}</
           <property name="geometry">
            <rect>
             <x>740</x>
-            <y>10</y>
-            <width>150</width>
+            <y>7</y>
+            <width>200</width>
             <height>32</height>
            </rect>
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
+            <width>200</width>
             <height>0</height>
            </size>
           </property>
@@ -359,7 +382,7 @@ QPushButton:disabled{background-color:rgb(191, 190, 192);border-style: inset;}</
           </property>
           <property name="font">
            <font>
-            <pointsize>24</pointsize>
+            <pointsize>18</pointsize>
            </font>
           </property>
           <property name="text">
@@ -381,8 +404,8 @@ QPushButton:disabled{background-color:rgb(191, 190, 192);border-style: inset;}</
       </property>
       <property name="font">
        <font>
-        <family>STKaiti</family>
-        <pointsize>42</pointsize>
+        <family>楷体</family>
+        <pointsize>36</pointsize>
         <italic>false</italic>
         <bold>true</bold>
        </font>
@@ -408,7 +431,7 @@ color:rgb(255, 255, 255)
      <x>0</x>
      <y>0</y>
      <width>1440</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

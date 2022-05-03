@@ -172,7 +172,7 @@ void PersonManageDialog::refreshWidget()
             firstPerName->setText(per.perName);//设置内容
             table->setItem(row,col,firstPerName);//把这个Item加到第一行第二列中
             table->item(row,col)->setTextAlignment(Qt::AlignCenter);
-            table->item(row,col++)->setFont(QFont("song", 18));
+            table->item(row,col++)->setFont(QFont("song", 16));
 
             QComboBox *classBox = new QComboBox;
             for(auto state: m_state){

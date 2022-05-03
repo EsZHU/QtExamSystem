@@ -37,12 +37,12 @@
      <property name="maximumSize">
       <size>
        <width>100</width>
-       <height>16777215</height>
+       <height>32</height>
       </size>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -99,12 +99,12 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
         <property name="maximumSize">
          <size>
           <width>100</width>
-          <height>28</height>
+          <height>32</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <pointsize>18</pointsize>
+          <pointsize>14</pointsize>
          </font>
         </property>
         <property name="styleSheet">
@@ -128,12 +128,12 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
         <property name="maximumSize">
          <size>
           <width>100</width>
-          <height>28</height>
+          <height>32</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <pointsize>18</pointsize>
+          <pointsize>14</pointsize>
          </font>
         </property>
         <property name="styleSheet">
@@ -173,12 +173,12 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
         <property name="maximumSize">
          <size>
           <width>100</width>
-          <height>28</height>
+          <height>32</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <pointsize>18</pointsize>
+          <pointsize>14</pointsize>
          </font>
         </property>
         <property name="styleSheet">
@@ -231,12 +231,12 @@ QPushButton:pressed{background-color:rgb(140, 14, 0);border-style: inset;color:w
      <property name="maximumSize">
       <size>
        <width>100</width>
-       <height>28</height>
+       <height>32</height>
       </size>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -282,12 +282,12 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
      <property name="maximumSize">
       <size>
        <width>100</width>
-       <height>28</height>
+       <height>32</height>
       </size>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="styleSheet">

@@ -16,7 +16,7 @@ public:
         if (type == QStyle::CT_TabBarTab) {
             s.transpose();
             s.rwidth() = 280;// 设置每个tabBar中item的大小
-            s.rheight() = 30;
+            s.rheight() = 32;
         }
         return s;
     }
@@ -58,7 +58,7 @@ public:
                 option.setAlignment(Qt::AlignCenter);
                 option.setWrapMode(option.WrapAnywhere);
 
-                painter->setFont(QFont("楷体", 18, QFont::Bold));
+                painter->setFont(QFont("楷体", 14, QFont::Bold));
                 painter->setPen(0xffffff);
                 painter->drawText(allRect, tab->text, option);
                 return;

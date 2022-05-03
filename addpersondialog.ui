@@ -18,6 +18,11 @@
     <layout class="QHBoxLayout" name="horizontalLayout_8">
      <item>
       <spacer name="horizontalSpacer">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -36,7 +41,7 @@
       <widget class="QLabel" name="label_4">
        <property name="font">
         <font>
-         <pointsize>18</pointsize>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="text">
@@ -46,6 +51,11 @@
      </item>
      <item>
       <spacer name="leftHorizontalSpacer">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -64,13 +74,18 @@
       <widget class="QLineEdit" name="nameLabel">
        <property name="font">
         <font>
-         <pointsize>18</pointsize>
+         <pointsize>14</pointsize>
         </font>
        </property>
       </widget>
      </item>
      <item>
       <spacer name="rightHorizontalSpacer">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -91,6 +106,11 @@
     <layout class="QHBoxLayout" name="horizontalLayout_9">
      <item>
       <spacer name="horizontalSpacer_2">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -115,7 +135,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>18</pointsize>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="text">
@@ -125,6 +145,11 @@
      </item>
      <item>
       <spacer name="leftHorizontalSpacer_2">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -143,7 +168,7 @@
       <widget class="QLabel" name="deptNameLabel">
        <property name="font">
         <font>
-         <pointsize>18</pointsize>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="text">
@@ -153,6 +178,11 @@
      </item>
      <item>
       <spacer name="rightHorizontalSpacer_2">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -179,7 +209,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -202,7 +232,7 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="styleSheet">
