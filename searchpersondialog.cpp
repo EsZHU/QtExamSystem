@@ -22,7 +22,9 @@ SearchPersonDialog::~SearchPersonDialog()
 void SearchPersonDialog::searchPersonButton()
 {
     connect(ui->saveBtn, &QPushButton::clicked, [=](){
-        int searchDeptNum = 0;
+        int first = 1;
+        QVector<int> deptIdVec;
+        deptIdVec.clear();
         QString searchDeptNa;
         QString searchName = ui->nameLabel->text();
         QString fromDept;
@@ -32,18 +34,25 @@ void SearchPersonDialog::searchPersonButton()
             delDlg->showManageNotComplete();
             delDlg->show();
         } else {
-            searchDeptNum = database->manageSearchPerson(searchName);
-            if(searchDeptNum > 14 || searchDeptNum < 1) { // 人员不存在
+            deptIdVec = database->manageSearchPerson(searchName);
+            if(deptIdVec.empty()) { // 人员不存在
                 ui->departLabel->setText("");
                 delDlg->setWindowModality(Qt::ApplicationModal);
                 delDlg->showManageSearchFail(searchName);
                 delDlg->show();
             } else { // 显示对应的处室
                 m_depts = database->getDeptData();
-                for(auto dept : m_depts){
-                    if(searchDeptNum == dept.id){
-                        searchDeptNa = dept.deptName;
-                        break;
+                for(auto deptId: deptIdVec){
+                    for(auto dept : m_depts){
+                        if(deptId == dept.id){
+                            if(first){
+                                searchDeptNa = dept.deptName;
+                                first = 0;
+                            } else {
+                                searchDeptNa += ", ";
+                                searchDeptNa += dept.deptName;
+                            }
+                        }
                     }
                 }
                 ui->departLabel->setText(searchDeptNa);

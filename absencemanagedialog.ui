@@ -141,6 +141,13 @@ QPushButton:pressed{background-color:rgb(140, 14, 0);border-style: inset;color:w
      </layout>
     </widget>
    </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>注：在岗、请假状态无法进行编辑和删除</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>

@@ -494,16 +494,30 @@ void SqliteDatabase::manageChangePerson(QString beforeName, int beforeDeptId, QS
 
 }
 
-int SqliteDatabase::manageSearchPerson(QString searchName)
+QVector<int> SqliteDatabase::manageSearchPerson(QString searchName)
 {
     QSqlQuery query;
+    QVector<int> deptIdVec;
+    deptIdVec.clear();
 
     query.prepare("select * from person where perName = :perName");
     query.bindValue(":perName", searchName);
     query.exec();
-    query.next();
-    int chartDeptId = query.value("deptId").toInt();
-    return chartDeptId;
+
+    while(query.next()){
+        int chartDeptId = query.value("deptId").toInt();
+        deptIdVec.push_back(chartDeptId);
+    }
+
+    return deptIdVec;
+
+    // 只能得到一个处室，无法得到重名的人
+//    query.prepare("select * from person where perName = :perName");
+//    query.bindValue(":perName", searchName);
+//    query.exec();
+//    query.next();
+//    int chartDeptId = query.value("deptId").toInt();
+//    return chartDeptId;
 }
 
 bool SqliteDatabase::manageExist(int perId, int deptId)

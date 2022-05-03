@@ -50,7 +50,7 @@ public:
     void manageDeleteState(QString delName);
     bool manageDeletePerson(int perId, int deptId);
     void manageChangePerson(QString beforeName, int beforeDeptId, QString afterName, int afterDeptId);
-    int manageSearchPerson(QString searchName);
+    QVector<int> manageSearchPerson(QString searchName);
     bool manageExist(int perId, int deptId);
     bool manageAddDept(QString deptName);
     bool manageDelDept(QString deptName);
