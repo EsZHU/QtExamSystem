@@ -34,7 +34,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">QHeaderView::section {background-color: rgb(190, 56, 59);color: white;}</string>
+      <string notr="true">QHeaderView::section {background-color: rgb(190, 56, 59);color: white;font: 18pt;}</string>
      </property>
     </widget>
    </item>

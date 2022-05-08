@@ -132,6 +132,9 @@ QPushButton:pressed{background-color:rgb(191, 190, 192);border-style: inset;}</s
        <pointsize>16</pointsize>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QHeaderView::section {background-color: rgb(190, 56, 59);color: white;font: 18pt;}</string>
+     </property>
     </widget>
    </item>
    <item row="2" column="1">

@@ -100,9 +100,6 @@ void PersonManageDialog::deletePersonButton()
 void PersonManageDialog::changePersonButton()
 {
     int curDeptNum = ui->tabWidget->currentIndex() + 1;
-    //    ChangePersonDialog* changePerDlg = new ChangePersonDialog();
-    //    changePerDlg->setWindowModality(Qt::ApplicationModal);
-    //    changePerDlg->show();
 }
 
 void PersonManageDialog::searchPersonButton()

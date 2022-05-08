@@ -5,6 +5,7 @@
 #include "defs.h"
 #include <QTableWidget>
 #include <confirmhisdeletedialog.h>
+#include "sqlitedatabase.h"
 
 namespace Ui {
 class HistoryShow;
@@ -24,7 +25,10 @@ public:
 
 private:
     Ui::HistoryShow *ui;
+    QVector<department> m_depts;
+    QVector<hisRecord> m_his;
     QVector<hisDetScope> m_scopeVect;
+    SqliteDatabase* database;
 };
 
 #endif // HISTORYSHOW_H

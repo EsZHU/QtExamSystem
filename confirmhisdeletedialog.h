@@ -15,13 +15,15 @@ class ConfirmHisDeleteDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ConfirmHisDeleteDialog(QWidget *parent = nullptr);
+//    explicit ConfirmHisDeleteDialog(QWidget *parent = nullptr);
+    explicit ConfirmHisDeleteDialog(std::function<void ()> cb, QString scopeType, QWidget *parent = nullptr);
     ~ConfirmHisDeleteDialog();
     void confirmDlgTrue(QString scopeType);
 
 private:
     Ui::ConfirmHisDeleteDialog *ui;
     SqliteDatabase* database = nullptr;
+    std::function<void ()> cbf;
 };
 
 #endif // CONFIRMHISDELETEDIALOG_H
