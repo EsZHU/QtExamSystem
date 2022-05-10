@@ -7,6 +7,7 @@
         <file>Qss/spinBoxLeftArrowChosen.png</file>
         <file>Qss/spinBoxRightButtonMiddle.png</file>
         <file>Qss/spinBoxLeftButtonMiddle.png</file>
+        <file>Qss/pickPersonLogo.png</file>
     </qresource>
     <qresource prefix="/">
         <file>Qss/MyStyle.qss</file>

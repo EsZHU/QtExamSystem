@@ -15,6 +15,8 @@
 #include "absencemanagedialog.h"
 #include "historyshow.h"
 #include "confirmsthdialog.h"
+#include "helpdialog.h"
+#include "aboutdialog.h"
 
 namespace Ui {
 class MainWindowNew;

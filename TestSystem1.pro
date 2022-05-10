@@ -10,6 +10,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    aboutdialog.cpp \
     absencemanagedialog.cpp \
     addpersondialog.cpp \
     confirmhisdeletedialog.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
     customtabbar.cpp \
     deletesuccessdialog.cpp \
     dptmanagedialog.cpp \
+    helpdialog.cpp \
     historyshow.cpp \
     main.cpp \
     mainwindownew.cpp \
@@ -28,6 +30,7 @@ SOURCES += \
 
 HEADERS += \
     CustomTabStyle.h \
+    aboutdialog.h \
     absencemanagedialog.h \
     addpersondialog.h \
     confirmhisdeletedialog.h \
@@ -36,6 +39,7 @@ HEADERS += \
     defs.h \
     deletesuccessdialog.h \
     dptmanagedialog.h \
+    helpdialog.h \
     historyshow.h \
     mainwindownew.h \
     personmanagedialog.h \
@@ -45,11 +49,13 @@ HEADERS += \
     stateeditdialog.h
 
 FORMS += \
+    aboutdialog.ui \
     absencemanagedialog.ui \
     confirmhisdeletedialog.ui \
     confirmsthdialog.ui \
     deletesuccessdialog.ui \
     dptmanagedialog.ui \
+    helpdialog.ui \
     historyshow.ui \
     mainwindownew.ui \
     personmanagedialog.ui \
