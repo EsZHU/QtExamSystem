@@ -17,18 +17,13 @@ SOURCES += \
     customtabbar.cpp \
     deletesuccessdialog.cpp \
     dptmanagedialog.cpp \
-    eachrow.cpp \
     historyshow.cpp \
     main.cpp \
-    mainwindow.cpp \
     mainwindownew.cpp \
     personmanagedialog.cpp \
-    pickresultdiagram.cpp \
     randomaccess.cpp \
     searchpersondialog.cpp \
-    singlerow.cpp \
     sqlitedatabase.cpp \
-    stackedwidgetdialog.cpp \
     stateeditdialog.cpp
 
 HEADERS += \
@@ -41,34 +36,24 @@ HEADERS += \
     defs.h \
     deletesuccessdialog.h \
     dptmanagedialog.h \
-    eachrow.h \
     historyshow.h \
-    mainwindow.h \
     mainwindownew.h \
     personmanagedialog.h \
-    pickresultdiagram.h \
     randomaccess.h \
     searchpersondialog.h \
-    singlerow.h \
     sqlitedatabase.h \
-    stackedwidgetdialog.h \
     stateeditdialog.h
 
 FORMS += \
     absencemanagedialog.ui \
-    addpersondialog.ui \
     confirmhisdeletedialog.ui \
     confirmsthdialog.ui \
     deletesuccessdialog.ui \
     dptmanagedialog.ui \
     historyshow.ui \
-    mainwindow.ui \
     mainwindownew.ui \
     personmanagedialog.ui \
-    pickresultdiagram.ui \
     searchpersondialog.ui \
-    singlerow.ui \
-    stackedwidgetdialog.ui \
     stateeditdialog.ui
 
 # Default rules for deployment.

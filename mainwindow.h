@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 #include "sqlitedatabase.h"
-#include "singlerow.h"
-#include "pickresultdiagram.h"
+//#include "singlerow.h"
+//#include "pickresultdiagram.h"
 #include "defs.h"
 #include "historyshow.h"
 //#include "rygl.h"
@@ -21,8 +21,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     SqliteDatabase* database = nullptr;
-    PickResultDiagram* m_resultDiagram = nullptr;
-    QVector<SingleRow*> singleRows;
+//    PickResultDiagram* m_resultDiagram = nullptr;
+//    QVector<SingleRow*> singleRows;
 
     QVector<department> m_depts;
     QMap<int,QVector<person>> m_pers;

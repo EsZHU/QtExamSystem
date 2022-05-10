@@ -5,7 +5,6 @@
 #include "defs.h"
 #include "sqlitedatabase.h"
 #include "deletesuccessdialog.h"
-#include "personmanagedialog.h"
 
 namespace Ui {
 class AddPersonDialog;

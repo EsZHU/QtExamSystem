@@ -5,7 +5,7 @@
 #include <QHBoxLayout>
 #include <sqlitedatabase.h>
 #include "defs.h"
-#include "stackedwidgetdialog.h"
+//#include "stackedwidgetdialog.h"
 #include <QColorDialog>
 #include <QMenu>
 #include <QMenuBar>
@@ -30,7 +30,7 @@ public:
     void getData();
     void initResultShowTable();
     void refreshDptListShow();
-    void bindLindAndStack();
+//    void bindLindAndStack();
     void initMenu();
     void choosePickButton();
     void cancelPickButton();
@@ -45,7 +45,7 @@ private:
     SqliteDatabase* database;
     QVector<department> m_depts;
     QMap<int,QVector<person>> m_workPers;
-    stackedWidgetDialog* stackedWidgetDialog;
+//    stackedWidgetDialog* stackedWidgetDialog;
     QVector<hisRecord> m_his;
 //    QTableWidget* showResultTable;
     newSelectRecord m_readPersons;
